@@ -136,7 +136,7 @@ const NutritionForm: React.FC = () => {
           <form className="form-grid">
             {Object.keys(ingredientValues).map((ingredient) => (
               <div key={ingredient} className="form-group">
-                <label htmlFor={ingredient}>{ingredient}</label>
+                <label htmlFor={ingredient}>{ingredientLabels[ingredient]}</label>
                 <input
                   type="number"
                   id={ingredient}
@@ -197,3 +197,27 @@ const NutritionForm: React.FC = () => {
 
 export default NutritionForm;
  import "./NutritionForm.css"; // Import the CSS file
+const ingredientLabels = {
+  goldenFlaxSeeds: "Golden Flax Seeds",
+  brownFlaxSeeds: "Brown Flax Seeds",
+  oatmeal: "Oatmeal",
+  cocoaNibs: "Cocoa Nibs",
+  rawCocoaPowder: "Raw Cocoa Powder",
+  almonds: "Almonds",
+  gojiBerries: "Goji Berries",
+  pumpkinSeeds: "Pumpkin Seeds",
+  macadamiaNuts: "Macadamia Nuts",
+  coconutOil: "Coconut Oil",
+  hempSeedsPowder: "Hemp Seeds Powder",
+  wholeMilk: "Whole Milk",
+  chiaSeeds: "Chia Seeds",
+  driedRaisins: "Dried Raisins",
+  quinoaPowder: "Quinoa Powder",
+  almondsPowder: "Almonds Powder",
+  macadamiaPowder: "Macadamia Powder",
+  blackBeansPowder: "Black Beans Powder",
+  redBeansPowder: "Red Beans Powder",
+  mungBeansPowder: "Mung Beans Powder",
+  chickpeaPowder: "Chickpea Powder",
+  brownRicePowder: "Brown Rice Powder",
+};
