@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@shadcn/ui/components/Button";
+import { Button } from "~/components/ui/button";
 import { nutritionData } from "../../docs/defaultValues.js";
 import "./NutritionForm.css"; // Import the CSS file
 
@@ -228,3 +228,6 @@ const ingredientLabels = {
   chickpeaPowder: "Chickpea Powder",
   brownRicePowder: "Brown Rice Powder",
 };
+import { Input } from "~/components/ui/input"; // Add other components as needed
+import { Input } from "~/components/ui/input"; // Add other components as needed
+import { Input } from "~/components/ui/input"; // Add other components as needed
