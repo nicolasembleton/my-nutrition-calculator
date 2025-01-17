@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { nutritionData } from '../../docs/defaultValues.js';
+import React, { useState, useEffect } from "react";
+import { nutritionData } from "../../docs/defaultValues.js";
 
 const NutritionForm: React.FC = () => {
   const [ingredientValues, setIngredientValues] = useState({
@@ -56,7 +56,6 @@ const NutritionForm: React.FC = () => {
     });
   };
 
-
   const calculateTotalNutrition = () => {
     const nutrition = {
       calories: 0,
@@ -84,25 +83,29 @@ const NutritionForm: React.FC = () => {
       const amount = parseFloat(ingredientValues[ingredient]);
       const data = nutritionData[ingredient].nutrition;
 
-      nutrition.calories += (data.calories / 100) * amount;
-      nutrition.totalFat += (data.totalFat / 100) * amount;
-      nutrition.saturatedFat += (data.saturatedFat / 100) * amount;
-      nutrition.polyunsaturatedFat += (data.polyunsaturatedFat / 100) * amount;
-      nutrition.monounsaturatedFat += (data.monounsaturatedFat / 100) * amount;
-      nutrition.cholesterol += (data.cholesterol / 100) * amount;
-      nutrition.sodium += (data.sodium / 100) * amount;
-      nutrition.totalCarbohydrate += (data.totalCarbohydrate / 100) * amount;
-      nutrition.dietaryFiber += (data.dietaryFiber / 100) * amount;
-      nutrition.sugars += (data.sugars / 100) * amount;
-      nutrition.protein += (data.protein / 100) * amount;
-      nutrition.iron += (data.iron / 100) * amount;
-      nutrition.calcium += (data.calcium / 100) * amount;
-      nutrition.magnesium += (data.magnesium / 100) * amount;
-      nutrition.potassium += (data.potassium / 100) * amount;
-      nutrition.vitaminA += (data.vitaminA / 100) * amount || 0;
-      nutrition.vitaminC += (data.vitaminC / 100) * amount || 0;
-      nutrition.vitaminD += (data.vitaminD / 100) * amount || 0;
-      nutrition.zinc += (data.zinc / 100) * amount || 0;
+      if (!isNaN(amount)) {
+        nutrition.calories += (data.calories / 100) * amount;
+        nutrition.totalFat += (data.totalFat / 100) * amount;
+        nutrition.saturatedFat += (data.saturatedFat / 100) * amount;
+        nutrition.polyunsaturatedFat +=
+          (data.polyunsaturatedFat / 100) * amount;
+        nutrition.monounsaturatedFat +=
+          (data.monounsaturatedFat / 100) * amount;
+        nutrition.cholesterol += (data.cholesterol / 100) * amount;
+        nutrition.sodium += (data.sodium / 100) * amount;
+        nutrition.totalCarbohydrate += (data.totalCarbohydrate / 100) * amount;
+        nutrition.dietaryFiber += (data.dietaryFiber / 100) * amount;
+        nutrition.sugars += (data.sugars / 100) * amount;
+        nutrition.protein += (data.protein / 100) * amount;
+        nutrition.iron += (data.iron / 100) * amount || 0;
+        nutrition.calcium += (data.calcium / 100) * amount || 0;
+        nutrition.magnesium += (data.magnesium / 100) * amount || 0;
+        nutrition.potassium += (data.potassium / 100) * amount || 0;
+        nutrition.vitaminA += (data.vitaminA / 100) * amount || 0;
+        nutrition.vitaminC += (data.vitaminC / 100) * amount || 0;
+        nutrition.vitaminD += (data.vitaminD / 100) * amount || 0;
+        nutrition.zinc += (data.zinc / 100) * amount || 0;
+      }
     });
 
     setTotalNutrition(nutrition);
@@ -127,9 +130,7 @@ const NutritionForm: React.FC = () => {
             />
           </div>
         ))}
-        <button type="button">
-          Calculate
-        </button>
+        <button type="button">Calculate</button>
       </form>
       <div>
         <h2>Total Nutrition</h2>
@@ -141,9 +142,7 @@ const NutritionForm: React.FC = () => {
           ))}
         </ul>
       </div>
-      <div>
-        {/* Display the total nutrition here */}
-      </div>
+      <div>{/* Display the total nutrition here */}</div>
     </div>
   );
 };
