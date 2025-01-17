@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "~/components/ui/button";
 import { nutritionData } from "../../docs/defaultValues.js";
-import "./NutritionForm.css"; // Import the CSS file
+import "./NutritionForm.css";
 
 const NutritionForm: React.FC = () => {
   const [ingredientValues, setIngredientValues] = useState({
