@@ -1,0 +1,159 @@
+# Acceptance Scenario in Cucumber / Gherkin
+
+**Feature:** Nutrition Calculator
+
+**Scenario:** Calculate Nutrition with Default Values
+    Given the user is on the nutrition calculator page
+    When the user does not change any ingredient values
+    Then the following default ingredient values should be displayed:
+        | Ingredient          | Amount (g) |
+        | Golden Flax Seeds   | 1          |
+        | Brown Flax Seeds    | 1          |
+        | Oatmeal             | 12         |
+        | Cocoa Nibs          | 2          |
+        | Raw Cocoa Powder    | 2          |
+        | Almonds             | 2          |
+        | Goji Berries        | 1          |
+        | Pumpkin Seeds       | 2          |
+        | Macadamia Nuts      | 1          |
+        | Coconut Oil         | 5          |
+        | Hemp Seeds Powder   | 1          |
+        | Whole Milk          | 45         |
+        | Chia Seeds          | 0          |
+        | Dried Raisins       | 0          |
+        | Quinoa Powder       | 0          |
+        | Almonds Powder      | 0          |
+        | Macadamia Powder    | 0          |
+        | Black Beans Powder  | 0          |
+        | Red Beans Powder    | 0          |
+        | Mung Beans Powder   | 0          |
+        | Chickpea Powder     | 0          |
+        | Brown Rice Powder   | 0          |
+    And the user clicks the "Calculate" button
+    Then the displayed total nutrition should be:
+        | Nutrient            | Amount     |
+        | Calories            | 184.57     |
+        | Total Fat           | 24.22      |
+        | Saturated Fat       | 12.23      |
+        | Polyunsaturated Fat | 4.75       |
+        | Monounsaturated Fat | 7.53       |
+        | Cholesterol         | 4.50       |
+        | Sodium              | 32.58      |
+        | Total Carbohydrate  | 21.52      |
+        | Dietary Fiber       | 12.85      |
+        | Sugars              | 3.03       |
+        | Protein             | 11.33      |
+        | Iron                | 5.60       |
+        | Calcium             | 135.39     |
+        | Magnesium           | 251.80     |
+        | Potassium           | 628.38     |
+        | Vitamin A           | 83.77      |
+        | Vitamin C           | 0.48       |
+        | Vitamin D           | 57.15      |
+        | Zinc                | 0.21       |
+
+**Scenario:** Calculate Nutrition with Manual Override of One Ingredient
+    Given the user is on the nutrition calculator page
+    When the user changes the "Macadamia Nuts" value to "3"
+    And the user clicks the "Calculate" button
+    Then the displayed total nutrition should be:
+        | Nutrient            | Amount     |
+        | Calories            | 198.93     |
+        | Total Fat           | 25.74      |
+        | Saturated Fat       | 12.47      |
+        | Polyunsaturated Fat | 4.78       |
+        | Monounsaturated Fat | 8.71       |
+        | Cholesterol         | 4.50       |
+        | Sodium              | 32.58      |
+        | Total Carbohydrate  | 21.80      |
+        | Dietary Fiber       | 13.03      |
+        | Sugars              | 3.12       |
+        | Protein             | 11.49      |
+        | Iron                | 5.67       |
+        | Calcium             | 137.09     |
+        | Magnesium           | 254.40     |
+        | Potassium           | 631.74     |
+        | Vitamin A           | 83.77      |
+        | Vitamin C           | 0.48       |
+        | Vitamin D           | 57.15      |
+        | Zinc                | 0.21       |
+
+**Scenario:** Calculate Nutrition with Multiple Manual Overrides
+    Given the user is on the nutrition calculator page
+    When the user changes the "Oatmeal" value to "20"
+    And the user changes the "Coconut Oil" value to "2"
+    And the user changes the "Whole Milk" value to "30"
+    And the user clicks the "Calculate" button
+    Then the displayed total nutrition should be:
+        | Nutrient            | Amount     |
+        | Calories            | 193.96      |
+        | Total Fat           | 19.84      |
+        | Saturated Fat       | 10.67      |
+        | Polyunsaturated Fat | 4.37       |
+        | Monounsaturated Fat | 6.07      |
+        | Cholesterol         | 3.00       |
+        | Sodium              | 27.73      |
+        | Total Carbohydrate  | 30.07      |
+        | Dietary Fiber       | 14.46      |
+        | Sugars              | 2.92       |
+        | Protein             | 12.29      |
+        | Iron                | 5.79       |
+        | Calcium             | 131.02     |
+        | Magnesium           | 252.47     |
+        | Potassium           | 658.93     |
+        | Vitamin A           | 55.84      |
+        | Vitamin C           | 0.32       |
+        | Vitamin D           | 38.10      |
+        | Zinc                | 0.21       |
+
+**Scenario:** Calculate Nutrition with Zero Value Override
+    Given the user is on the nutrition calculator page
+    When the user changes the "Almonds" value to "0"
+    And the user clicks the "Calculate" button
+    Then the displayed total nutrition should be:
+        | Nutrient            | Amount     |
+        | Calories            | 173.00     |
+        | Total Fat           | 23.22      |
+        | Saturated Fat       | 12.16      |
+        | Polyunsaturated Fat | 4.51       |
+        | Monounsaturated Fat | 6.91       |
+        | Cholesterol         | 4.50       |
+        | Sodium              | 32.58      |
+        | Total Carbohydrate  | 21.08      |
+        | Dietary Fiber       | 12.60      |
+        | Sugars              | 2.94       |
+        | Protein             | 10.91      |
+        | Iron                | 5.52       |
+        | Calcium             | 130.01     |
+        | Magnesium           | 246.40     |
+        | Potassium           | 613.72     |
+        | Vitamin A           | 83.77      |
+        | Vitamin C           | 0.48       |
+        | Vitamin D           | 57.15      |
+        | Zinc                | 0.21       |
+
+**Scenario:** Handle Empty Input for Ingredient
+    Given the user is on the nutrition calculator page
+    When the user clears the "Goji Berries" value
+    And the user clicks the "Calculate" button
+    Then the displayed total nutrition should be:
+        | Nutrient            | Amount     |
+        | Calories            | 181.08     |
+        | Total Fat           | 24.18      |
+        | Saturated Fat       | 12.23      |
+        | Polyunsaturated Fat | 4.75       |
+        | Monounsaturated Fat | 7.53       |
+        | Cholesterol         | 4.50       |
+        | Sodium              | 3.78       |
+        | Total Carbohydrate  | 20.75      |
+        | Dietary Fiber       | 12.72      |
+        | Sugars              | 2.58       |
+        | Protein             | 11.19      |
+        | Iron                | 5.53       |
+        | Calcium             | 133.49     |
+        | Magnesium           | 251.80     |
+        | Potassium           | 628.38     |
+        | Vitamin A           | 0.00      |
+        | Vitamin C           | 0.00       |
+        | Vitamin D           | 57.15      |
+        | Zinc                | 0.21       |

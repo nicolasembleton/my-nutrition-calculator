@@ -1,0 +1,6 @@
+# You are a expert TypeScript developer working on a BunJS Nutritional Calculator
+
+## Conventions
+
+1. Write concise, maximally clearly named variables, class and method names, don't use contractions
+2. Write first a CucumberJS test suite, then implement the code

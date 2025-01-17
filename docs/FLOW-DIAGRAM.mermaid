@@ -1,0 +1,28 @@
+graph TD
+    A[Start] --> B{User is on the Nutrition Calculator Page};
+    B -- Yes --> C{Default ingredient values displayed?};
+    B -- No --> D;
+    D{User is on the Nutrition Calculator Page} --> E;
+    C --> E{User changes any ingredient values?};
+    E -- Yes --> F[Update ingredient value(s)];
+    E -- No --> G;
+    F --> G[Click "Calculate" button];
+    G --> H{Calculate total nutrition};
+    H --> I[Display total nutrition];
+    I --> J{Displayed values match expected values?};
+    J -- Yes --> K[Test Passed];
+    J -- No --> L[Test Failed];
+    K --> M[End];
+    L --> M;
+    subgraph "Scenarios"
+        direction TB
+        S1[Scenario 1: Default Values] --> C
+        S2[Scenario 2: Override One Ingredient] --> D
+        S2 --> E
+        S3[Scenario 3: Override Multiple Ingredients] --> D
+        S3 --> E
+        S4[Scenario 4: Zero Value Override] --> D
+        S4 --> E
+        S5[Scenario 5: Empty Input] --> D
+        S5 --> E
+    end

@@ -1,0 +1,133 @@
+read:
+  - "docs/CONVENTIONS.md"
+  - "docs/README.md"
+  - "docs/STACK.md"
+  - "docs/ACCEPTANCE.gherkin"
+  - "docs/FLOW-DIAGRAM.mermaid"
+  - "docs/defaultValues.js"
+
+verbose: false
+
+# Pre-selected / Pre-vetted models
+alias:
+  - flash2-thinking-exp:gemini/gemini-2.0-flash-thinking-exp-1219
+  - flash2-exp:gemini/gemini-2.0-flash-exp
+  - gemini-exp:gemini/gemini-exp-1206
+  - v-qwen:openai/qwen32b
+  - v-llama-huge:openai/llama-3.1-405b
+  - v-llama-big:openai/llama-3.3-70b
+  - v-llama-tiny:openai/llama-3.2-3b
+  - mistral-large:mistral/mistral-large-latest
+  - codestral:mistral/codestral-latest
+  - m-code-agent:mistral/ag:6a8f6846:20250117:ophiuchus-ai-coder:c5886261
+  - ministral:mistral/ministral-8b-latest
+  - ministral3b:mistral/ministral-8b-latest
+  - o-qwq:ollama_chat/qwq
+  - o-dolphin3:ollama_chat/dolphin3
+  - f-dsv3:fireworks_ai/accounts/fireworks/models/deepseek-v3
+  - t-dsv3:together_ai/deepseek-ai/DeepSeek-V3
+  - t-qwq:together_ai/Qwen/QwQ-32B-Preview
+
+model: t-dsv3
+editor-model: v-qwen
+weak-model: o-dolphin3
+
+architect: true
+
+edit-format: architect
+editor-edit-format: udiff
+
+env-file: ".ai/.env.aider"
+input-history-file: ".ai/.aider.input.history"
+chat-history-file: ".ai/.aider.chat.history.md"
+llm-history-file: ".ai/.aider.llm.history"
+aiderignore: ".ai/.aider.ignore"
+analytics-log: ".ai/.aider.analytics.log"
+model-metadata-file: ".ai/.aider.model.metadata.json"
+#model-settings-file: .aider.model.settings.yml
+
+openai-api-base: https://api.venice.ai/api/v1
+
+check-update: true
+
+#gui: false
+
+## Permanently disable analytics
+analytics-disable: true
+
+editor: "zed --wait"
+
+#max-chat-history-tokens: xxx
+cache-prompts: true
+#cache-keepalive-pings: false
+map-tokens: 1536
+#map-refresh: auto
+#map-multiplier-no-files: true
+# restore-chat-history: true
+dark-mode: true
+pretty: true
+stream: true
+#git: true
+auto-commits: false
+# show-diffs: true
+gitignore: true
+subtree-only: true
+yes-always: false
+
+watch-files: true
+# Lint provided files
+# lint: true
+#lint-cmd: xxx
+#lint-cmd:
+#  - xxx
+#  - yyy
+#  - zzz
+## Enable/disable automatic linting after changes (default: True)
+#auto-lint: true
+
+## Specify command to run tests
+# test-cmd: "cd $(pwd)/ && pnpm test"
+#auto-test: false
+
+## Run tests, fix problems found and then exit
+#test: false
+
+## Enable/disable commits when repo is found dirty (default: True)
+#dirty-commits: true
+#attribute-author: true
+#attribute-committer: true
+#attribute-commit-message-author: false
+#attribute-commit-message-committer: false
+## Commit all pending changes with a suitable commit message, then exit
+#commit: false
+## Specify a custom prompt for generating commit messages
+#commit-prompt: xxx
+## Perform a dry run without modifying files (default: False)
+#dry-run: false
+## Skip the sanity check for the git repository (default: False)
+#skip-sanity-check-repo: false
+
+## Load and execute /commands from a file on launch
+#load: xxx
+#encoding: utf-8
+#suggest-shell-commands: true
+
+## Enable/disable fancy input with history and completion (default: True)
+#fancy-input: true
+
+## Enable/disable multi-line input mode with Meta-Enter to submit (default: False)
+#multiline: false
+
+## Enable/disable detection and offering to add URLs to chat (default: True)
+#detect-urls: true
+
+#user-input-color: #00cc00
+#tool-output-color: xxx
+#tool-error-color: #FF2222
+#tool-warning-color: #FFA500
+#assistant-output-color: #0088ff
+#completion-menu-color: xxx
+#completion-menu-bg-color: xxx
+#completion-menu-current-color: xxx
+#completion-menu-current-bg-color: xxx
+#code-theme: default
