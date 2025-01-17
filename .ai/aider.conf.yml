@@ -4,7 +4,6 @@ read:
   - "docs/STACK.md"
   - "docs/ACCEPTANCE.gherkin"
   - "docs/FLOW-DIAGRAM.mermaid"
-  - "docs/defaultValues.js"
 
 verbose: false
 
