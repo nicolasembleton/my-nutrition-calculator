@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { nutritionData } from "../../docs/defaultValues.js";
+import { Button } from "@shadcn/ui";
+import "./NutritionForm.css"; // Import the CSS file
 
 const NutritionForm: React.FC = () => {
   const [ingredientValues, setIngredientValues] = useState({
@@ -125,23 +128,38 @@ const NutritionForm: React.FC = () => {
   }, [ingredientValues]);
 
   return (
-    <div>
-      <form>
-        {Object.keys(ingredientValues).map((ingredient) => (
-          <div key={ingredient}>
-            <label htmlFor={ingredient}>{ingredient}</label>
-            <input
-              type="number"
-              id={ingredient}
-              name={ingredient}
-              value={ingredientValues[ingredient]}
-              onChange={handleInputChange}
-            />
-          </div>
-        ))}
-        <button type="button" onClick={calculateTotalNutrition}>Calculate</button>
-      </form>
-      <div className="nutrition-label">
+    <div className="nutrition-form-container">
+      <div className="nutrition-form-card">
+        <div className="nutrition-form-card-header">
+          <h2>Nutrition Calculator</h2>
+        </div>
+        <div className="nutrition-form-card-content">
+          <form>
+            {Object.keys(ingredientValues).map((ingredient) => (
+              <div key={ingredient} className="form-group">
+                <label htmlFor={ingredient}>{ingredient}</label>
+                <input
+                  type="number"
+                  id={ingredient}
+                  name={ingredient}
+                  value={ingredientValues[ingredient]}
+                  onChange={handleInputChange}
+                />
+              </div>
+            ))}
+          </form>
+        </div>
+        <div className="nutrition-form-card-footer">
+          <Button type="button" onClick={calculateTotalNutrition}>Calculate</Button>
+        </div>
+      </div>
+
+      <motion.div
+        className="nutrition-label"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <h2>Total Nutrition</h2>
         <div className="nutrition-header">
           <div className="serving-size">Serving Size: 100g</div>
@@ -169,11 +187,11 @@ const NutritionForm: React.FC = () => {
             <div className="nutrient">Potassium: {totalNutrition.potassium.toFixed(2)}mg</div>
             <div className="nutrient">Vitamin A: {totalNutrition.vitaminA.toFixed(2)}IU</div>
             <div className="nutrient">Vitamin C: {totalNutrition.vitaminC.toFixed(2)}mg</div>
-            <div className="nutrient">Vitamin D: {totalNutrition.vitaminD.toFixed(2)}IU</div>
+            <div className="nutamin">Vitamin D: {totalNutrition.vitaminD.toFixed(2)}IU</div>
             <div className="nutrient">Zinc: {totalNutrition.zinc.toFixed(2)}mg</div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
