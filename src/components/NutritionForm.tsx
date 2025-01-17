@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Button } from "@shadcn/ui/components/Button";
 import { nutritionData } from "../../docs/defaultValues.js";
 import "./NutritionForm.css"; // Import the CSS file
 
@@ -149,7 +150,13 @@ const NutritionForm: React.FC = () => {
           </form>
         </div>
         <div className="nutrition-form-card-footer">
-          <button type="button" onClick={calculateTotalNutrition}>Calculate</button>
+          <Button
+            type="button"
+            className="bg-gradient-to-r from-pink-500 to-yellow-500 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-300 ease-in-out"
+            onClick={calculateTotalNutrition}
+          >
+            Calculate
+          </Button>
         </div>
       </div>
 
