@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { nutritionData } from '../../docs/defaultValues.js';
 
 const NutritionForm: React.FC = () => {
@@ -108,6 +108,10 @@ const NutritionForm: React.FC = () => {
     setTotalNutrition(nutrition);
   };
 
+  useEffect(() => {
+    calculateTotalNutrition();
+  }, [ingredientValues]);
+
   return (
     <div>
       <form>
@@ -123,7 +127,7 @@ const NutritionForm: React.FC = () => {
             />
           </div>
         ))}
-        <button type="button" onClick={calculateTotalNutrition}>
+        <button type="button">
           Calculate
         </button>
       </form>
