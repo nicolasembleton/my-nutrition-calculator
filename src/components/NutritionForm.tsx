@@ -139,21 +139,44 @@ const NutritionForm: React.FC = () => {
             />
           </div>
         ))}
-        <button type="button">Calculate</button>
+        <button type="button" onClick={calculateTotalNutrition}>Calculate</button>
       </form>
-      <div>
+      <div className="nutrition-label">
         <h2>Total Nutrition</h2>
-        <ul>
-          {Object.keys(totalNutrition).map((nutrient) => (
-            <li key={nutrient}>
-              {nutrient}: {totalNutrition[nutrient].toFixed(2)}
-            </li>
-          ))}
-        </ul>
+        <div className="nutrition-header">
+          <div className="serving-size">Serving Size: 100g</div>
+          <div className="calories">Calories: {totalNutrition.calories.toFixed(2)}</div>
+        </div>
+        <div className="nutrition-content">
+          <div className="nutrient-section">
+            <div className="nutrient">Total Fat: {totalNutrition.totalFat.toFixed(2)}g</div>
+            <div className="nutrient">Saturated Fat: {totalNutrition.saturatedFat.toFixed(2)}g</div>
+            <div className="nutrient">Polyunsaturated Fat: {totalNutrition.polyunsaturatedFat.toFixed(2)}g</div>
+            <div className="nutrient">Monounsaturated Fat: {totalNutrition.monounsaturatedFat.toFixed(2)}g</div>
+            <div className="nutrient">Cholesterol: {totalNutrition.cholesterol.toFixed(2)}mg</div>
+            <div className="nutrient">Sodium: {totalNutrition.sodium.toFixed(2)}mg</div>
+          </div>
+          <div className="nutrient-section">
+            <div className="nutrient">Total Carbohydrate: {totalNutrition.totalCarbohydrate.toFixed(2)}g</div>
+            <div className="nutrient">Dietary Fiber: {totalNutrition.dietaryFiber.toFixed(2)}g</div>
+            <div className="nutrient">Sugars: {totalNutrition.sugars.toFixed(2)}g</div>
+            <div className="nutrient">Protein: {totalNutrition.protein.toFixed(2)}g</div>
+          </div>
+          <div className="nutrient-section">
+            <div className="nutrient">Iron: {totalNutrition.iron.toFixed(2)}mg</div>
+            <div className="nutrient">Calcium: {totalNutrition.calcium.toFixed(2)}mg</div>
+            <div className="nutrient">Magnesium: {totalNutrition.magnesium.toFixed(2)}mg</div>
+            <div className="nutrient">Potassium: {totalNutrition.potassium.toFixed(2)}mg</div>
+            <div className="nutrient">Vitamin A: {totalNutrition.vitaminA.toFixed(2)}IU</div>
+            <div className="nutrient">Vitamin C: {totalNutrition.vitaminC.toFixed(2)}mg</div>
+            <div className="nutrient">Vitamin D: {totalNutrition.vitaminD.toFixed(2)}IU</div>
+            <div className="nutrient">Zinc: {totalNutrition.zinc.toFixed(2)}mg</div>
+          </div>
+        </div>
       </div>
-      <div>{/* Display the total nutrition here */}</div>
     </div>
   );
 };
 
 export default NutritionForm;
+ import "./NutritionForm.css"; // Import the CSS file
