@@ -106,3 +106,73 @@
 .nutrient:last-child {
   border-bottom: none;
 }
+.nutrition-form-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  margin-top: 20px;
+  gap: 20px; /* Add some space between the components */
+}
+
+.nutrition-form-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #000;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nutrition-label {
+  flex: 1;
+  border: 1px solid #000;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nutrition-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.nutrition-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.nutrient-section {
+  margin-bottom: 10px;
+}
+
+.nutrient {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding: 5px 0;
+}
+
+.nutrient:last-child {
+  border-bottom: none;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}

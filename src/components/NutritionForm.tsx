@@ -133,7 +133,7 @@ const NutritionForm: React.FC = () => {
           <h2>Nutrition Calculator</h2>
         </div>
         <div className="nutrition-form-card-content">
-          <form>
+          <form className="form-grid">
             {Object.keys(ingredientValues).map((ingredient) => (
               <div key={ingredient} className="form-group">
                 <label htmlFor={ingredient}>{ingredient}</label>
