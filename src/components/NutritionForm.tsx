@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { nutritionData } from '../docs/defaultValues.js';
+import { nutritionData } from '../../docs/defaultValues.js';
 
 const NutritionForm: React.FC = () => {
   const [ingredientValues, setIngredientValues] = useState({
@@ -56,9 +56,6 @@ const NutritionForm: React.FC = () => {
     });
   };
 
-  const calculateTotalNutrition = () => {
-    // Implement the calculation logic here
-  };
 
   const calculateTotalNutrition = () => {
     const nutrition = {
