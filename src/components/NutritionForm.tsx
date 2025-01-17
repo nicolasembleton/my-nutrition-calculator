@@ -50,10 +50,19 @@ const NutritionForm: React.FC = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setIngredientValues({
-      ...ingredientValues,
-      [name]: value,
-    });
+    const parsedValue = parseFloat(value);
+
+    if (!isNaN(parsedValue) && parsedValue >= 0) {
+      setIngredientValues({
+        ...ingredientValues,
+        [name]: parsedValue,
+      });
+    } else if (value === '') {
+      setIngredientValues({
+        ...ingredientValues,
+        [name]: '',
+      });
+    }
   };
 
   const calculateTotalNutrition = () => {
