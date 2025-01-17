@@ -152,11 +152,7 @@ const NutritionForm: React.FC = () => {
           </form>
         </div>
         <div className="nutrition-form-card-footer">
-          <Button
-            type="button"
-            className="bg-gradient-to-r from-pink-500 to-yellow-500 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-300 ease-in-out"
-            onClick={calculateTotalNutrition}
-          >
+          <Button variant={"default"} onClick={calculateTotalNutrition}>
             Calculate
           </Button>
         </div>
