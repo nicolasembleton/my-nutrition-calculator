@@ -1448,7 +1448,7 @@ const NutritionForm: React.FC = () => {
       </motion.div>
       <motion.div className="nutrition-label" variants={itemVariants}>
         <div className="nutrition-label-header">
-          <h2>Total Nutrition</h2>
+          <h2>Nutrition Report</h2>
           <Button
             onClick={() => downloadCSV(form.getValues())}
             className="download-button"
@@ -1456,73 +1456,106 @@ const NutritionForm: React.FC = () => {
             Download Detailed Report
           </Button>
         </div>
-        <div className="nutrition-header">
-          <div className="serving-size">Serving Size: 100g</div>
-          <div className="calories">
-            Calories: {totalNutrition.calories.toFixed(2)}
+        {/* Basic Info - Full Width */}
+        <div className="nutrition-section-group full-width">
+          <div className="nutrition-section-title">Basic Info</div>
+          <div className="nutrient">
+            <span className="nutrient-name">Calories</span>
+            <span className="nutrient-value">{totalNutrition.calories.toFixed(2)} cal</span>
           </div>
         </div>
-        <div className="nutrition-content">
-          <div className="nutrient-section">
+
+        <div className="nutrition-sections">
+          {/* Fats Section - First Column */}
+          <div className="nutrition-section-group">
+            <div className="nutrition-section-title">Fats</div>
             <div className="nutrient">
-              Total Fat: {totalNutrition.totalFat.toFixed(2)}g
+              <span className="nutrient-name">Total Fat</span>
+              <span className="nutrient-value">{totalNutrition.totalFat.toFixed(2)}g</span>
             </div>
             <div className="nutrient">
-              Saturated Fat: {totalNutrition.saturatedFat.toFixed(2)}g
+              <span className="nutrient-name">Saturated Fat</span>
+              <span className="nutrient-value">{totalNutrition.saturatedFat.toFixed(2)}g</span>
             </div>
             <div className="nutrient">
-              Polyunsaturated Fat:{" "}
-              {totalNutrition.polyunsaturatedFat.toFixed(2)}g
+              <span className="nutrient-name">Polyunsaturated Fat</span>
+              <span className="nutrient-value">{totalNutrition.polyunsaturatedFat.toFixed(2)}g</span>
             </div>
             <div className="nutrient">
-              Monounsaturated Fat:{" "}
-              {totalNutrition.monounsaturatedFat.toFixed(2)}g
-            </div>
-            <div className="nutrient">
-              Cholesterol: {totalNutrition.cholesterol.toFixed(2)}mg
-            </div>
-            <div className="nutrient">
-              Sodium: {totalNutrition.sodium.toFixed(2)}mg
-            </div>
-          </div>
-          <div className="nutrient-section">
-            <div className="nutrient">
-              Total Carbohydrate: {totalNutrition.totalCarbohydrate.toFixed(2)}g
-            </div>
-            <div className="nutrient">
-              Dietary Fiber: {totalNutrition.dietaryFiber.toFixed(2)}g
-            </div>
-            <div className="nutrient">
-              Sugars: {totalNutrition.sugars.toFixed(2)}g
-            </div>
-            <div className="nutrient">
-              Protein: {totalNutrition.protein.toFixed(2)}g
+              <span className="nutrient-name">Monounsaturated Fat</span>
+              <span className="nutrient-value">{totalNutrition.monounsaturatedFat.toFixed(2)}g</span>
             </div>
           </div>
-          <div className="nutrient-section">
+
+          {/* Carbs Section - Second Column */}
+          <div className="nutrition-section-group">
+            <div className="nutrition-section-title">Carbohydrates</div>
             <div className="nutrient">
-              Iron: {totalNutrition.iron.toFixed(2)}mg
+              <span className="nutrient-name">Total Carbohydrate</span>
+              <span className="nutrient-value">{totalNutrition.totalCarbohydrate.toFixed(2)}g</span>
             </div>
             <div className="nutrient">
-              Calcium: {totalNutrition.calcium.toFixed(2)}mg
+              <span className="nutrient-name">Dietary Fiber</span>
+              <span className="nutrient-value">{totalNutrition.dietaryFiber.toFixed(2)}g</span>
             </div>
             <div className="nutrient">
-              Magnesium: {totalNutrition.magnesium.toFixed(2)}mg
+              <span className="nutrient-name">Sugars</span>
+              <span className="nutrient-value">{totalNutrition.sugars.toFixed(2)}g</span>
+            </div>
+          </div>
+
+          {/* Protein Section - Full Width */}
+          <div className="nutrition-section-group full-width">
+            <div className="nutrition-section-title">Protein</div>
+            <div className="nutrient">
+              <span className="nutrient-name">Protein</span>
+              <span className="nutrient-value">{totalNutrition.protein.toFixed(2)}g</span>
+            </div>
+          </div>
+
+          {/* Minerals Section - First Column */}
+          <div className="nutrition-section-group">
+            <div className="nutrition-section-title">Minerals</div>
+            <div className="nutrient">
+              <span className="nutrient-name">Sodium</span>
+              <span className="nutrient-value">{totalNutrition.sodium.toFixed(2)}mg</span>
             </div>
             <div className="nutrient">
-              Potassium: {totalNutrition.potassium.toFixed(2)}mg
+              <span className="nutrient-name">Iron</span>
+              <span className="nutrient-value">{totalNutrition.iron.toFixed(2)}mg</span>
             </div>
             <div className="nutrient">
-              Vitamin A: {totalNutrition.vitaminA.toFixed(2)}IU
+              <span className="nutrient-name">Calcium</span>
+              <span className="nutrient-value">{totalNutrition.calcium.toFixed(2)}mg</span>
             </div>
             <div className="nutrient">
-              Vitamin C: {totalNutrition.vitaminC.toFixed(2)}mg
+              <span className="nutrient-name">Magnesium</span>
+              <span className="nutrient-value">{totalNutrition.magnesium.toFixed(2)}mg</span>
             </div>
             <div className="nutrient">
-              Vitamin D: {totalNutrition.vitaminD.toFixed(2)}IU
+              <span className="nutrient-name">Potassium</span>
+              <span className="nutrient-value">{totalNutrition.potassium.toFixed(2)}mg</span>
             </div>
             <div className="nutrient">
-              Zinc: {totalNutrition.zinc.toFixed(2)}mg
+              <span className="nutrient-name">Zinc</span>
+              <span className="nutrient-value">{totalNutrition.zinc.toFixed(2)}mg</span>
+            </div>
+          </div>
+
+          {/* Vitamins Section - Second Column */}
+          <div className="nutrition-section-group">
+            <div className="nutrition-section-title">Vitamins</div>
+            <div className="nutrient">
+              <span className="nutrient-name">Vitamin A</span>
+              <span className="nutrient-value">{totalNutrition.vitaminA.toFixed(2)}IU</span>
+            </div>
+            <div className="nutrient">
+              <span className="nutrient-name">Vitamin C</span>
+              <span className="nutrient-value">{totalNutrition.vitaminC.toFixed(2)}mg</span>
+            </div>
+            <div className="nutrient">
+              <span className="nutrient-name">Vitamin D</span>
+              <span className="nutrient-value">{totalNutrition.vitaminD.toFixed(2)}IU</span>
             </div>
           </div>
         </div>
