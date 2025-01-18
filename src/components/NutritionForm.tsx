@@ -1,6 +1,8 @@
 import { nutritionData } from "~/data/nutritionData";
 
 import React, { useState } from "react";
+import { Input } from "~/components/ui/input";
+import { Slider } from "~/components/ui/slider";
 import { Button } from "~/components/ui/button";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
@@ -13,6 +15,7 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import "./NutritionForm.css";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -274,15 +277,6 @@ const NutritionForm: React.FC = () => {
   };
 
   const onSubmit = (data: FormValues) => {
-    console.group("Nutrition Calculation Report");
-    console.log("Starting calculation with these ingredient amounts:");
-    Object.entries(data).forEach(([ingredient, amount]) => {
-      console.log(
-        `${ingredientLabels[ingredient as IngredientKey]}: ${amount}g`,
-      );
-    });
-    console.log("-------------------");
-
     const nutrition: NutritionTotal = {
       calories: 0,
       totalFat: 0,
@@ -309,10 +303,6 @@ const NutritionForm: React.FC = () => {
       const amount = data[ingredient];
       const key = ingredient as IngredientKey;
       const nutritionDataItem = nutritionData[key].nutrition;
-
-      console.group(
-        `Calculating nutrition for ${ingredientLabels[key]} (${amount}g):`,
-      );
 
       if (!isNaN(amount)) {
         // Calculate each nutrient contribution
@@ -341,33 +331,12 @@ const NutritionForm: React.FC = () => {
           zinc: (nutritionDataItem.zinc / 100) * amount || 0,
         };
 
-        // Log the calculation for each nutrient
-        console.log(`Base values per 100g:`);
-        Object.entries(nutritionDataItem).forEach(([nutrient, value]) => {
-          console.log(`${nutrient}: ${value}`);
-        });
-
-        console.log("\nCalculated contributions:");
-        Object.entries(contributions).forEach(([nutrient, value]) => {
-          console.log(
-            `${nutrient}: (${nutritionDataItem[nutrient]} / 100) * ${amount}g = ${value.toFixed(2)}`,
-          );
-        });
-
         // Add to running totals
         Object.entries(contributions).forEach(([nutrient, value]) => {
           nutrition[nutrient as keyof NutritionTotal] += value;
         });
       }
-      console.groupEnd();
     });
-
-    console.log("\nFinal Totals:");
-    Object.entries(nutrition).forEach(([nutrient, value]) => {
-      console.log(`${nutrient}: ${value.toFixed(2)}`);
-    });
-
-    console.groupEnd();
 
     setTotalNutrition(nutrition);
   };
@@ -426,16 +395,50 @@ const NutritionForm: React.FC = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>{ingredientLabels[key]}</FormLabel>
-                            <FormControl>
-                              <input
-                                type="number"
-                                step="0.1"
-                                min="0"
-                                placeholder={nutritionData[key].defaultValue.toFixed(1)}
-                                value={typeof field.value === "number" ? field.value.toFixed(1) : field.value}
-                                onChange={(e) => handleInputChange(e, field.onChange)}
-                              />
-                            </FormControl>
+                            <div className="space-y-2">
+                              <FormControl>
+                                <div className="flex items-center space-x-2">
+                                  <Input
+                                    type="number"
+                                    step="0.1"
+                                    min="0"
+                                    className="w-24 text-right"
+                                    placeholder={nutritionData[
+                                      key
+                                    ].defaultValue.toFixed(1)}
+                                    value={
+                                      typeof field.value === "number"
+                                        ? field.value.toFixed(1)
+                                        : field.value
+                                    }
+                                    onChange={(e) => {
+                                      handleInputChange(e, field.onChange);
+                                      field.onChange(
+                                        parseFloat(e.target.value) || 0,
+                                      );
+                                    }}
+                                  />
+                                  <span className="text-sm text-muted-foreground">
+                                    g
+                                  </span>
+                                </div>
+                              </FormControl>
+                              <FormControl>
+                                <Slider
+                                  min={0}
+                                  max={Math.max(
+                                    10,
+                                    nutritionData[key].defaultValue * 3,
+                                  )}
+                                  step={0.1}
+                                  value={[field.value]}
+                                  onValueChange={(vals) =>
+                                    field.onChange(vals[0])
+                                  }
+                                  className="ingredient-slider"
+                                />
+                              </FormControl>
+                            </div>
                             <FormMessage />
                           </FormItem>
                         )}
@@ -455,16 +458,50 @@ const NutritionForm: React.FC = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>{ingredientLabels[key]}</FormLabel>
-                            <FormControl>
-                              <input
-                                type="number"
-                                step="0.1"
-                                min="0"
-                                placeholder={nutritionData[key].defaultValue.toFixed(1)}
-                                value={typeof field.value === "number" ? field.value.toFixed(1) : field.value}
-                                onChange={(e) => handleInputChange(e, field.onChange)}
-                              />
-                            </FormControl>
+                            <div className="space-y-2">
+                              <FormControl>
+                                <div className="flex items-center space-x-2">
+                                  <Input
+                                    type="number"
+                                    step="0.1"
+                                    min="0"
+                                    className="w-24 text-right"
+                                    placeholder={nutritionData[
+                                      key
+                                    ].defaultValue.toFixed(1)}
+                                    value={
+                                      typeof field.value === "number"
+                                        ? field.value.toFixed(1)
+                                        : field.value
+                                    }
+                                    onChange={(e) => {
+                                      handleInputChange(e, field.onChange);
+                                      field.onChange(
+                                        parseFloat(e.target.value) || 0,
+                                      );
+                                    }}
+                                  />
+                                  <span className="text-sm text-muted-foreground">
+                                    g
+                                  </span>
+                                </div>
+                              </FormControl>
+                              <FormControl>
+                                <Slider
+                                  min={0}
+                                  max={Math.max(
+                                    10,
+                                    nutritionData[key].defaultValue * 3,
+                                  )}
+                                  step={0.1}
+                                  value={[field.value]}
+                                  onValueChange={(vals) =>
+                                    field.onChange(vals[0])
+                                  }
+                                  className="ingredient-slider"
+                                />
+                              </FormControl>
+                            </div>
                             <FormMessage />
                           </FormItem>
                         )}
@@ -484,16 +521,50 @@ const NutritionForm: React.FC = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>{ingredientLabels[key]}</FormLabel>
-                            <FormControl>
-                              <input
-                                type="number"
-                                step="0.1"
-                                min="0"
-                                placeholder={nutritionData[key].defaultValue.toFixed(1)}
-                                value={typeof field.value === "number" ? field.value.toFixed(1) : field.value}
-                                onChange={(e) => handleInputChange(e, field.onChange)}
-                              />
-                            </FormControl>
+                            <div className="space-y-2">
+                              <FormControl>
+                                <div className="flex items-center space-x-2">
+                                  <Input
+                                    type="number"
+                                    step="0.1"
+                                    min="0"
+                                    className="w-24 text-right"
+                                    placeholder={nutritionData[
+                                      key
+                                    ].defaultValue.toFixed(1)}
+                                    value={
+                                      typeof field.value === "number"
+                                        ? field.value.toFixed(1)
+                                        : field.value
+                                    }
+                                    onChange={(e) => {
+                                      handleInputChange(e, field.onChange);
+                                      field.onChange(
+                                        parseFloat(e.target.value) || 0,
+                                      );
+                                    }}
+                                  />
+                                  <span className="text-sm text-muted-foreground">
+                                    g
+                                  </span>
+                                </div>
+                              </FormControl>
+                              <FormControl>
+                                <Slider
+                                  min={0}
+                                  max={Math.max(
+                                    10,
+                                    nutritionData[key].defaultValue * 3,
+                                  )}
+                                  step={0.1}
+                                  value={[field.value]}
+                                  onValueChange={(vals) =>
+                                    field.onChange(vals[0])
+                                  }
+                                  className="ingredient-slider"
+                                />
+                              </FormControl>
+                            </div>
                             <FormMessage />
                           </FormItem>
                         )}
@@ -513,16 +584,50 @@ const NutritionForm: React.FC = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>{ingredientLabels[key]}</FormLabel>
-                            <FormControl>
-                              <input
-                                type="number"
-                                step="0.1"
-                                min="0"
-                                placeholder={nutritionData[key].defaultValue.toFixed(1)}
-                                value={typeof field.value === "number" ? field.value.toFixed(1) : field.value}
-                                onChange={(e) => handleInputChange(e, field.onChange)}
-                              />
-                            </FormControl>
+                            <div className="space-y-2">
+                              <FormControl>
+                                <div className="flex items-center space-x-2">
+                                  <Input
+                                    type="number"
+                                    step="0.1"
+                                    min="0"
+                                    className="w-24 text-right"
+                                    placeholder={nutritionData[
+                                      key
+                                    ].defaultValue.toFixed(1)}
+                                    value={
+                                      typeof field.value === "number"
+                                        ? field.value.toFixed(1)
+                                        : field.value
+                                    }
+                                    onChange={(e) => {
+                                      handleInputChange(e, field.onChange);
+                                      field.onChange(
+                                        parseFloat(e.target.value) || 0,
+                                      );
+                                    }}
+                                  />
+                                  <span className="text-sm text-muted-foreground">
+                                    g
+                                  </span>
+                                </div>
+                              </FormControl>
+                              <FormControl>
+                                <Slider
+                                  min={0}
+                                  max={Math.max(
+                                    10,
+                                    nutritionData[key].defaultValue * 3,
+                                  )}
+                                  step={0.1}
+                                  value={[field.value]}
+                                  onValueChange={(vals) =>
+                                    field.onChange(vals[0])
+                                  }
+                                  className="ingredient-slider"
+                                />
+                              </FormControl>
+                            </div>
                             <FormMessage />
                           </FormItem>
                         )}
@@ -624,39 +729,34 @@ const NutritionForm: React.FC = () => {
 };
 
 export default NutritionForm;
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 const ingredientCategories = {
-  liquids: [
-    'wholeMilk'
-  ].sort(),
+  liquids: ["wholeMilk"].sort(),
 
-  oils: [
-    'coconutOil'
-  ].sort(),
+  oils: ["coconutOil"].sort(),
 
   fullSeeds: [
-    'almonds',
-    'brownFlaxSeeds',
-    'chiaSeeds',
-    'cocoaNibs',
-    'driedRaisins',
-    'gojiBerries',
-    'goldenFlaxSeeds',
-    'macadamiaNuts',
-    'oatmeal',
-    'pumpkinSeeds'
+    "almonds",
+    "brownFlaxSeeds",
+    "chiaSeeds",
+    "cocoaNibs",
+    "driedRaisins",
+    "gojiBerries",
+    "goldenFlaxSeeds",
+    "macadamiaNuts",
+    "oatmeal",
+    "pumpkinSeeds",
   ].sort(),
 
   powders: [
-    'almondsPowder',
-    'blackBeansPowder',
-    'brownRicePowder',
-    'chickpeaPowder',
-    'hempSeedsPowder',
-    'macadamiaPowder',
-    'mungBeansPowder',
-    'quinoaPowder',
-    'rawCocoaPowder',
-    'redBeansPowder'
-  ].sort()
+    "almondsPowder",
+    "blackBeansPowder",
+    "brownRicePowder",
+    "chickpeaPowder",
+    "hempSeedsPowder",
+    "macadamiaPowder",
+    "mungBeansPowder",
+    "quinoaPowder",
+    "rawCocoaPowder",
+    "redBeansPowder",
+  ].sort(),
 } as const;

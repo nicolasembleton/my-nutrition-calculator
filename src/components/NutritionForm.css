@@ -1,3 +1,75 @@
+/* Remove old input styles */
+.ingredient-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.ingredient-grid > div:hover {
+  background: #f1f5f9;
+}
+
+/* Style number input and slider container */
+.space-y-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Style the slider */
+.ingredient-slider {
+  margin-top: 0.5rem;
+}
+
+/* Adjust input width and alignment */
+.w-24 {
+  width: 6rem !important;
+}
+.w-20 {
+  width: 5rem !important;
+  text-align: right;
+}
+
+.flex.items-center.space-x-2 {
+  align-items: center !important;
+  gap: 0.75rem !important;
+}
+
+/* Style the number input arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+  margin-left: 0.25rem;
+}
+
+.text-muted-foreground {
+  color: #64748b;
+}
+
+/* Add focus styles for better accessibility */
+input:focus-visible {
+  outline: 2px solid #20B2AA;
+  outline-offset: 2px;
+}
+
+/* Style the slider track and thumb */
+[data-radix-slider-thumb] {
+  background-color: #20B2AA !important;
+  border-color: #20B2AA !important;
+}
+
+[data-radix-slider-range] {
+  background-color: #20B2AA !important;
+}
+
+[data-radix-slider-track] {
+  background-color: #e2e8f0 !important;
+}
+
 /* Add tab styles */
 [role="tablist"] {
   width: 100%;
@@ -255,9 +327,40 @@
       input[type="number"] {
         width: 100%;
         padding: 0.5rem;
-        border: 1px solid #ddd;
+        border: 1px solid #e2e8f0;
         border-radius: 0.5rem;
         font-size: 1rem;
+      }
+
+      input[type="number"] {
+        width: 5rem !important;
+        padding: 0.5rem 1.5rem 0.5rem 0.75rem !important; /* More padding on right for arrows */
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 0.375rem !important;
+        font-size: 0.875rem !important;
+        line-height: 1.25rem !important;
+        text-align: center !important; /* Center the text */
+        appearance: textfield !important; /* Better arrow styling */
+        -moz-appearance: textfield !important;
+        height: 2.5rem !important; /* Consistent height */
+        margin: 0 !important; /* Remove default margins */
+      }
+
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        opacity: 1;
+        height: 2rem;
+        margin-left: 0.5rem;
+        margin-right: 0.25rem;
+      }
+
+      .w-20 {
+        text-align: center !important;
+      }
+
+      .flex.items-center.space-x-2 {
+        align-items: center !important;
+        gap: 0.75rem !important;
       }
 
       @media (max-width: 768px) {
@@ -465,4 +568,47 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+}
+/* Add slider styles */
+.ingredient-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Increased width for slider */
+  gap: 1.5rem;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+/* Style the number input */
+input[type="number"] {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition: border-color 0.15s ease-in-out;
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border-color: #20B2AA;
+  ring: 2px solid rgba(32, 178, 170, 0.1);
+}
+
+/* Add hover effect to slider thumb */
+[data-radix-slider-thumb] {
+  transition: all 0.2s ease;
+}
+
+[data-radix-slider-thumb]:hover {
+  background-color: #20B2AA;
+  transform: scale(1.1);
+}
+
+/* Style slider track */
+[data-radix-slider-track] {
+  background-color: rgba(32, 178, 170, 0.1);
+}
+
+[data-radix-slider-range] {
+  background-color: #20B2AA;
 }
