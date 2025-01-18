@@ -1,6 +1,7 @@
 import { nutritionData } from "~/data/nutritionData";
 
 import React, { useState } from "react";
+import { ingredientCategories } from "~/components/nutrition/constants";
 import {
   HoverCard,
   HoverCardContent,
@@ -386,6 +387,7 @@ const NutritionForm: React.FC = () => {
                 <TabsList className="h-10 rounded-md bg-muted p-1 text-muted-foreground inline-flex items-center justify-center">
                   <TabsTrigger value="liquids">Liquids</TabsTrigger>
                   <TabsTrigger value="oils">Oils</TabsTrigger>
+                  <TabsTrigger value="carbohydrates">Carbohydrates</TabsTrigger>
                   <TabsTrigger value="fullSeeds">Full Seeds</TabsTrigger>
                   <TabsTrigger value="powders">Powders</TabsTrigger>
                 </TabsList>
@@ -659,6 +661,86 @@ const NutritionForm: React.FC = () => {
                   })}
                 </TabsContent>
 
+                <TabsContent value="carbohydrates" className="ingredient-grid">
+                  {ingredientCategories.carbohydrates.map((ingredient) => {
+                    const key = ingredient as IngredientKey;
+                    return (
+                      <FormField
+                        key={key}
+                        name={key}
+                        control={form.control}
+                        render={({ field }) => (
+                          <FormItem>
+                            <div className="ingredient-cell">
+                              <div className="calorie-indicator">
+                                {(
+                                  (nutritionData[key].nutrition.calories / 100) *
+                                  field.value
+                                ).toFixed(1)}{" "}
+                                cal
+                                <HoverCard>
+                                  <HoverCardTrigger asChild>
+                                    <button className="info-button">
+                                      <InfoCircledIcon className="info-icon" />
+                                    </button>
+                                  </HoverCardTrigger>
+                                  <HoverCardContent className="nutrient-hover-content w-auto">
+                                    {/* Existing HoverCard content */}
+                                  </HoverCardContent>
+                                </HoverCard>
+                              </div>
+                              <FormLabel>{ingredientLabels[key]}</FormLabel>
+                              <FormControl>
+                                <div className="space-x-2 flex items-center">
+                                  <Input
+                                    type="number"
+                                    step="0.1"
+                                    min="0"
+                                    placeholder={nutritionData[
+                                      key
+                                    ].defaultValue.toFixed(1)}
+                                    value={
+                                      typeof field.value === "number"
+                                        ? field.value.toFixed(1)
+                                        : field.value
+                                    }
+                                    onChange={(e) => {
+                                      handleInputChange(e, field.onChange);
+                                      field.onChange(
+                                        parseFloat(e.target.value) || 0
+                                      );
+                                    }}
+                                  />
+                                  <span className="text-sm text-muted-foreground">
+                                    g
+                                  </span>
+                                </div>
+                              </FormControl>
+                              <div className="slider-container">
+                                <FormControl>
+                                  <Slider
+                                    min={0}
+                                    max={Math.max(
+                                      10,
+                                      nutritionData[key].defaultValue * 3
+                                    )}
+                                    step={0.1}
+                                    value={[field.value]}
+                                    onValueChange={(vals) =>
+                                      field.onChange(vals[0])
+                                    }
+                                  />
+                                </FormControl>
+                              </div>
+                              <FormMessage />
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+                    );
+                  })}
+                </TabsContent>
+
                 <TabsContent value="oils" className="ingredient-grid">
                   {ingredientCategories.oils.map((ingredient) => {
                     const key = ingredient as IngredientKey;
@@ -689,7 +771,9 @@ const NutritionForm: React.FC = () => {
                                     <div className="nutrient-hover-sections">
                                       {/* Basic Info Section - Full Width */}
                                       <div className="nutrient-section-group full-width">
-                                        <div className="nutrient-section-title">Basic Info</div>
+                                        <div className="nutrient-section-title">
+                                          Basic Info
+                                        </div>
                                         <div className="nutrient-hover-item">
                                           <span className="nutrient-name">
                                             Calories:
@@ -707,7 +791,9 @@ const NutritionForm: React.FC = () => {
 
                                       {/* Fats Section - First Column */}
                                       <div className="nutrient-section-group">
-                                        <div className="nutrient-section-title">Fats</div>
+                                        <div className="nutrient-section-title">
+                                          Fats
+                                        </div>
                                         {[
                                           ["Total Fat", "totalFat", "g"],
                                           [
@@ -749,7 +835,9 @@ const NutritionForm: React.FC = () => {
 
                                       {/* Carbs Section - Second Column */}
                                       <div className="nutrient-section-group">
-                                        <div className="nutrient-section-title">Carbohydrates</div>
+                                        <div className="nutrient-section-title">
+                                          Carbohydrates
+                                        </div>
                                         {[
                                           [
                                             "Total Carbohydrate",
@@ -786,7 +874,9 @@ const NutritionForm: React.FC = () => {
 
                                       {/* Protein Section - Full Width */}
                                       <div className="nutrient-section-group full-width">
-                                        <div className="nutrient-section-title">Protein</div>
+                                        <div className="nutrient-section-title">
+                                          Protein
+                                        </div>
                                         <div className="nutrient-hover-item">
                                           <span className="nutrient-name">
                                             Protein:
@@ -805,7 +895,9 @@ const NutritionForm: React.FC = () => {
 
                                       {/* Minerals Section - First Column */}
                                       <div className="nutrient-section-group">
-                                        <div className="nutrient-section-title">Minerals</div>
+                                        <div className="nutrient-section-title">
+                                          Minerals
+                                        </div>
                                         {[
                                           ["Sodium", "sodium", "mg"],
                                           ["Iron", "iron", "mg"],
@@ -837,7 +929,9 @@ const NutritionForm: React.FC = () => {
 
                                       {/* Vitamins Section - Second Column */}
                                       <div className="nutrient-section-group">
-                                        <div className="nutrient-section-title">Vitamins</div>
+                                        <div className="nutrient-section-title">
+                                          Vitamins
+                                        </div>
                                         {[
                                           ["Vitamin A", "vitaminA", "IU"],
                                           ["Vitamin C", "vitaminC", "mg"],
@@ -864,6 +958,86 @@ const NutritionForm: React.FC = () => {
                                         ))}
                                       </div>
                                     </div>
+                                  </HoverCardContent>
+                                </HoverCard>
+                              </div>
+                              <FormLabel>{ingredientLabels[key]}</FormLabel>
+                              <FormControl>
+                                <div className="space-x-2 flex items-center">
+                                  <Input
+                                    type="number"
+                                    step="0.1"
+                                    min="0"
+                                    placeholder={nutritionData[
+                                      key
+                                    ].defaultValue.toFixed(1)}
+                                    value={
+                                      typeof field.value === "number"
+                                        ? field.value.toFixed(1)
+                                        : field.value
+                                    }
+                                    onChange={(e) => {
+                                      handleInputChange(e, field.onChange);
+                                      field.onChange(
+                                        parseFloat(e.target.value) || 0
+                                      );
+                                    }}
+                                  />
+                                  <span className="text-sm text-muted-foreground">
+                                    g
+                                  </span>
+                                </div>
+                              </FormControl>
+                              <div className="slider-container">
+                                <FormControl>
+                                  <Slider
+                                    min={0}
+                                    max={Math.max(
+                                      10,
+                                      nutritionData[key].defaultValue * 3
+                                    )}
+                                    step={0.1}
+                                    value={[field.value]}
+                                    onValueChange={(vals) =>
+                                      field.onChange(vals[0])
+                                    }
+                                  />
+                                </FormControl>
+                              </div>
+                              <FormMessage />
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+                    );
+                  })}
+                </TabsContent>
+
+                <TabsContent value="carbohydrates" className="ingredient-grid">
+                  {ingredientCategories.carbohydrates.map((ingredient) => {
+                    const key = ingredient as IngredientKey;
+                    return (
+                      <FormField
+                        key={key}
+                        name={key}
+                        control={form.control}
+                        render={({ field }) => (
+                          <FormItem>
+                            <div className="ingredient-cell">
+                              <div className="calorie-indicator">
+                                {(
+                                  (nutritionData[key].nutrition.calories / 100) *
+                                  field.value
+                                ).toFixed(1)}{" "}
+                                cal
+                                <HoverCard>
+                                  <HoverCardTrigger asChild>
+                                    <button className="info-button">
+                                      <InfoCircledIcon className="info-icon" />
+                                    </button>
+                                  </HoverCardTrigger>
+                                  <HoverCardContent className="nutrient-hover-content w-auto">
+                                    {/* Existing HoverCard content */}
                                   </HoverCardContent>
                                 </HoverCard>
                               </div>
@@ -949,7 +1123,9 @@ const NutritionForm: React.FC = () => {
                                     <div className="nutrient-hover-sections">
                                       {/* Basic Info Section - Full Width */}
                                       <div className="nutrient-section-group full-width">
-                                        <div className="nutrient-section-title">Basic Info</div>
+                                        <div className="nutrient-section-title">
+                                          Basic Info
+                                        </div>
                                         <div className="nutrient-hover-item">
                                           <span className="nutrient-name">
                                             Calories:
@@ -967,7 +1143,9 @@ const NutritionForm: React.FC = () => {
 
                                       {/* Fats Section - First Column */}
                                       <div className="nutrient-section-group">
-                                        <div className="nutrient-section-title">Fats</div>
+                                        <div className="nutrient-section-title">
+                                          Fats
+                                        </div>
                                         {[
                                           ["Total Fat", "totalFat", "g"],
                                           [
@@ -1009,7 +1187,9 @@ const NutritionForm: React.FC = () => {
 
                                       {/* Carbs Section - Second Column */}
                                       <div className="nutrient-section-group">
-                                        <div className="nutrient-section-title">Carbohydrates</div>
+                                        <div className="nutrient-section-title">
+                                          Carbohydrates
+                                        </div>
                                         {[
                                           [
                                             "Total Carbohydrate",
@@ -1046,7 +1226,9 @@ const NutritionForm: React.FC = () => {
 
                                       {/* Protein Section - Full Width */}
                                       <div className="nutrient-section-group full-width">
-                                        <div className="nutrient-section-title">Protein</div>
+                                        <div className="nutrient-section-title">
+                                          Protein
+                                        </div>
                                         <div className="nutrient-hover-item">
                                           <span className="nutrient-name">
                                             Protein:
@@ -1065,7 +1247,9 @@ const NutritionForm: React.FC = () => {
 
                                       {/* Minerals Section - First Column */}
                                       <div className="nutrient-section-group">
-                                        <div className="nutrient-section-title">Minerals</div>
+                                        <div className="nutrient-section-title">
+                                          Minerals
+                                        </div>
                                         {[
                                           ["Sodium", "sodium", "mg"],
                                           ["Iron", "iron", "mg"],
@@ -1097,7 +1281,9 @@ const NutritionForm: React.FC = () => {
 
                                       {/* Vitamins Section - Second Column */}
                                       <div className="nutrient-section-group">
-                                        <div className="nutrient-section-title">Vitamins</div>
+                                        <div className="nutrient-section-title">
+                                          Vitamins
+                                        </div>
                                         {[
                                           ["Vitamin A", "vitaminA", "IU"],
                                           ["Vitamin C", "vitaminC", "mg"],
@@ -1124,6 +1310,86 @@ const NutritionForm: React.FC = () => {
                                         ))}
                                       </div>
                                     </div>
+                                  </HoverCardContent>
+                                </HoverCard>
+                              </div>
+                              <FormLabel>{ingredientLabels[key]}</FormLabel>
+                              <FormControl>
+                                <div className="space-x-2 flex items-center">
+                                  <Input
+                                    type="number"
+                                    step="0.1"
+                                    min="0"
+                                    placeholder={nutritionData[
+                                      key
+                                    ].defaultValue.toFixed(1)}
+                                    value={
+                                      typeof field.value === "number"
+                                        ? field.value.toFixed(1)
+                                        : field.value
+                                    }
+                                    onChange={(e) => {
+                                      handleInputChange(e, field.onChange);
+                                      field.onChange(
+                                        parseFloat(e.target.value) || 0
+                                      );
+                                    }}
+                                  />
+                                  <span className="text-sm text-muted-foreground">
+                                    g
+                                  </span>
+                                </div>
+                              </FormControl>
+                              <div className="slider-container">
+                                <FormControl>
+                                  <Slider
+                                    min={0}
+                                    max={Math.max(
+                                      10,
+                                      nutritionData[key].defaultValue * 3
+                                    )}
+                                    step={0.1}
+                                    value={[field.value]}
+                                    onValueChange={(vals) =>
+                                      field.onChange(vals[0])
+                                    }
+                                  />
+                                </FormControl>
+                              </div>
+                              <FormMessage />
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+                    );
+                  })}
+                </TabsContent>
+
+                <TabsContent value="carbohydrates" className="ingredient-grid">
+                  {ingredientCategories.carbohydrates.map((ingredient) => {
+                    const key = ingredient as IngredientKey;
+                    return (
+                      <FormField
+                        key={key}
+                        name={key}
+                        control={form.control}
+                        render={({ field }) => (
+                          <FormItem>
+                            <div className="ingredient-cell">
+                              <div className="calorie-indicator">
+                                {(
+                                  (nutritionData[key].nutrition.calories / 100) *
+                                  field.value
+                                ).toFixed(1)}{" "}
+                                cal
+                                <HoverCard>
+                                  <HoverCardTrigger asChild>
+                                    <button className="info-button">
+                                      <InfoCircledIcon className="info-icon" />
+                                    </button>
+                                  </HoverCardTrigger>
+                                  <HoverCardContent className="nutrient-hover-content w-auto">
+                                    {/* Existing HoverCard content */}
                                   </HoverCardContent>
                                 </HoverCard>
                               </div>
@@ -1209,7 +1475,9 @@ const NutritionForm: React.FC = () => {
                                     <div className="nutrient-hover-sections">
                                       {/* Basic Info Section - Full Width */}
                                       <div className="nutrient-section-group full-width">
-                                        <div className="nutrient-section-title">Basic Info</div>
+                                        <div className="nutrient-section-title">
+                                          Basic Info
+                                        </div>
                                         <div className="nutrient-hover-item">
                                           <span className="nutrient-name">
                                             Calories:
@@ -1227,7 +1495,9 @@ const NutritionForm: React.FC = () => {
 
                                       {/* Fats Section - First Column */}
                                       <div className="nutrient-section-group">
-                                        <div className="nutrient-section-title">Fats</div>
+                                        <div className="nutrient-section-title">
+                                          Fats
+                                        </div>
                                         {[
                                           ["Total Fat", "totalFat", "g"],
                                           [
@@ -1269,7 +1539,9 @@ const NutritionForm: React.FC = () => {
 
                                       {/* Carbs Section - Second Column */}
                                       <div className="nutrient-section-group">
-                                        <div className="nutrient-section-title">Carbohydrates</div>
+                                        <div className="nutrient-section-title">
+                                          Carbohydrates
+                                        </div>
                                         {[
                                           [
                                             "Total Carbohydrate",
@@ -1306,7 +1578,9 @@ const NutritionForm: React.FC = () => {
 
                                       {/* Protein Section - Full Width */}
                                       <div className="nutrient-section-group full-width">
-                                        <div className="nutrient-section-title">Protein</div>
+                                        <div className="nutrient-section-title">
+                                          Protein
+                                        </div>
                                         <div className="nutrient-hover-item">
                                           <span className="nutrient-name">
                                             Protein:
@@ -1325,7 +1599,9 @@ const NutritionForm: React.FC = () => {
 
                                       {/* Minerals Section - First Column */}
                                       <div className="nutrient-section-group">
-                                        <div className="nutrient-section-title">Minerals</div>
+                                        <div className="nutrient-section-title">
+                                          Minerals
+                                        </div>
                                         {[
                                           ["Sodium", "sodium", "mg"],
                                           ["Iron", "iron", "mg"],
@@ -1357,7 +1633,9 @@ const NutritionForm: React.FC = () => {
 
                                       {/* Vitamins Section - Second Column */}
                                       <div className="nutrient-section-group">
-                                        <div className="nutrient-section-title">Vitamins</div>
+                                        <div className="nutrient-section-title">
+                                          Vitamins
+                                        </div>
                                         {[
                                           ["Vitamin A", "vitaminA", "IU"],
                                           ["Vitamin C", "vitaminC", "mg"],
@@ -1439,6 +1717,7 @@ const NutritionForm: React.FC = () => {
                   })}
                 </TabsContent>
               </Tabs>
+
               <Button type="submit" className="calculate-cta">
                 Calculate Nutrition
               </Button>
@@ -1461,7 +1740,9 @@ const NutritionForm: React.FC = () => {
           <div className="nutrition-section-title">Basic Info</div>
           <div className="nutrient">
             <span className="nutrient-name">Calories</span>
-            <span className="nutrient-value">{totalNutrition.calories.toFixed(2)} cal</span>
+            <span className="nutrient-value">
+              {totalNutrition.calories.toFixed(2)} cal
+            </span>
           </div>
         </div>
 
@@ -1471,19 +1752,27 @@ const NutritionForm: React.FC = () => {
             <div className="nutrition-section-title">Fats</div>
             <div className="nutrient">
               <span className="nutrient-name">Total Fat</span>
-              <span className="nutrient-value">{totalNutrition.totalFat.toFixed(2)}g</span>
+              <span className="nutrient-value">
+                {totalNutrition.totalFat.toFixed(2)}g
+              </span>
             </div>
             <div className="nutrient">
               <span className="nutrient-name">Saturated Fat</span>
-              <span className="nutrient-value">{totalNutrition.saturatedFat.toFixed(2)}g</span>
+              <span className="nutrient-value">
+                {totalNutrition.saturatedFat.toFixed(2)}g
+              </span>
             </div>
             <div className="nutrient">
               <span className="nutrient-name">Polyunsaturated Fat</span>
-              <span className="nutrient-value">{totalNutrition.polyunsaturatedFat.toFixed(2)}g</span>
+              <span className="nutrient-value">
+                {totalNutrition.polyunsaturatedFat.toFixed(2)}g
+              </span>
             </div>
             <div className="nutrient">
               <span className="nutrient-name">Monounsaturated Fat</span>
-              <span className="nutrient-value">{totalNutrition.monounsaturatedFat.toFixed(2)}g</span>
+              <span className="nutrient-value">
+                {totalNutrition.monounsaturatedFat.toFixed(2)}g
+              </span>
             </div>
           </div>
 
@@ -1492,15 +1781,21 @@ const NutritionForm: React.FC = () => {
             <div className="nutrition-section-title">Carbohydrates</div>
             <div className="nutrient">
               <span className="nutrient-name">Total Carbohydrate</span>
-              <span className="nutrient-value">{totalNutrition.totalCarbohydrate.toFixed(2)}g</span>
+              <span className="nutrient-value">
+                {totalNutrition.totalCarbohydrate.toFixed(2)}g
+              </span>
             </div>
             <div className="nutrient">
               <span className="nutrient-name">Dietary Fiber</span>
-              <span className="nutrient-value">{totalNutrition.dietaryFiber.toFixed(2)}g</span>
+              <span className="nutrient-value">
+                {totalNutrition.dietaryFiber.toFixed(2)}g
+              </span>
             </div>
             <div className="nutrient">
               <span className="nutrient-name">Sugars</span>
-              <span className="nutrient-value">{totalNutrition.sugars.toFixed(2)}g</span>
+              <span className="nutrient-value">
+                {totalNutrition.sugars.toFixed(2)}g
+              </span>
             </div>
           </div>
 
@@ -1509,7 +1804,9 @@ const NutritionForm: React.FC = () => {
             <div className="nutrition-section-title">Protein</div>
             <div className="nutrient">
               <span className="nutrient-name">Protein</span>
-              <span className="nutrient-value">{totalNutrition.protein.toFixed(2)}g</span>
+              <span className="nutrient-value">
+                {totalNutrition.protein.toFixed(2)}g
+              </span>
             </div>
           </div>
 
@@ -1518,27 +1815,39 @@ const NutritionForm: React.FC = () => {
             <div className="nutrition-section-title">Minerals</div>
             <div className="nutrient">
               <span className="nutrient-name">Sodium</span>
-              <span className="nutrient-value">{totalNutrition.sodium.toFixed(2)}mg</span>
+              <span className="nutrient-value">
+                {totalNutrition.sodium.toFixed(2)}mg
+              </span>
             </div>
             <div className="nutrient">
               <span className="nutrient-name">Iron</span>
-              <span className="nutrient-value">{totalNutrition.iron.toFixed(2)}mg</span>
+              <span className="nutrient-value">
+                {totalNutrition.iron.toFixed(2)}mg
+              </span>
             </div>
             <div className="nutrient">
               <span className="nutrient-name">Calcium</span>
-              <span className="nutrient-value">{totalNutrition.calcium.toFixed(2)}mg</span>
+              <span className="nutrient-value">
+                {totalNutrition.calcium.toFixed(2)}mg
+              </span>
             </div>
             <div className="nutrient">
               <span className="nutrient-name">Magnesium</span>
-              <span className="nutrient-value">{totalNutrition.magnesium.toFixed(2)}mg</span>
+              <span className="nutrient-value">
+                {totalNutrition.magnesium.toFixed(2)}mg
+              </span>
             </div>
             <div className="nutrient">
               <span className="nutrient-name">Potassium</span>
-              <span className="nutrient-value">{totalNutrition.potassium.toFixed(2)}mg</span>
+              <span className="nutrient-value">
+                {totalNutrition.potassium.toFixed(2)}mg
+              </span>
             </div>
             <div className="nutrient">
               <span className="nutrient-name">Zinc</span>
-              <span className="nutrient-value">{totalNutrition.zinc.toFixed(2)}mg</span>
+              <span className="nutrient-value">
+                {totalNutrition.zinc.toFixed(2)}mg
+              </span>
             </div>
           </div>
 
@@ -1547,15 +1856,21 @@ const NutritionForm: React.FC = () => {
             <div className="nutrition-section-title">Vitamins</div>
             <div className="nutrient">
               <span className="nutrient-name">Vitamin A</span>
-              <span className="nutrient-value">{totalNutrition.vitaminA.toFixed(2)}IU</span>
+              <span className="nutrient-value">
+                {totalNutrition.vitaminA.toFixed(2)}IU
+              </span>
             </div>
             <div className="nutrient">
               <span className="nutrient-name">Vitamin C</span>
-              <span className="nutrient-value">{totalNutrition.vitaminC.toFixed(2)}mg</span>
+              <span className="nutrient-value">
+                {totalNutrition.vitaminC.toFixed(2)}mg
+              </span>
             </div>
             <div className="nutrient">
               <span className="nutrient-name">Vitamin D</span>
-              <span className="nutrient-value">{totalNutrition.vitaminD.toFixed(2)}IU</span>
+              <span className="nutrient-value">
+                {totalNutrition.vitaminD.toFixed(2)}IU
+              </span>
             </div>
           </div>
         </div>
@@ -1565,35 +1880,3 @@ const NutritionForm: React.FC = () => {
 };
 
 export default NutritionForm;
-
-const ingredientCategories = {
-  liquids: ["wholeMilk"].sort(),
-
-  oils: ["coconutOil"].sort(),
-
-  fullSeeds: [
-    "almonds",
-    "brownFlaxSeeds",
-    "chiaSeeds",
-    "cocoaNibs",
-    "driedRaisins",
-    "gojiBerries",
-    "goldenFlaxSeeds",
-    "macadamiaNuts",
-    "oatmeal",
-    "pumpkinSeeds",
-  ].sort(),
-
-  powders: [
-    "almondsPowder",
-    "blackBeansPowder",
-    "brownRicePowder",
-    "chickpeaPowder",
-    "hempSeedsPowder",
-    "macadamiaPowder",
-    "mungBeansPowder",
-    "quinoaPowder",
-    "rawCocoaPowder",
-    "redBeansPowder",
-  ].sort(),
-} as const;
