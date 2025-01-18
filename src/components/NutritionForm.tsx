@@ -684,44 +684,185 @@ const NutritionForm: React.FC = () => {
                                       <InfoCircledIcon className="info-icon" />
                                     </button>
                                   </HoverCardTrigger>
-                                  <HoverCardContent className="nutrient-hover-content">
+                                  <HoverCardContent className="nutrient-hover-content w-auto">
                                     <h4>{ingredientLabels[key]} Nutrition</h4>
-                                    <div className="nutrient-hover-grid">
-                                      {Object.entries(
-                                        nutritionData[key].nutrition
-                                      ).map(([nutrient, value]) => {
-                                        const calculatedValue =
-                                          (value / 100) * field.value;
-                                        return (
+                                    <div className="nutrient-hover-sections">
+                                      {/* Basic Info Section - Full Width */}
+                                      <div className="nutrient-section-group full-width">
+                                        <div className="nutrient-section-title">Basic Info</div>
+                                        <div className="nutrient-hover-item">
+                                          <span className="nutrient-name">
+                                            Calories:
+                                          </span>
+                                          <span className="nutrient-value">
+                                            {(
+                                              (nutritionData[key].nutrition
+                                                .calories /
+                                                100) *
+                                              field.value
+                                            ).toFixed(2)}
+                                          </span>
+                                        </div>
+                                      </div>
+
+                                      {/* Fats Section - First Column */}
+                                      <div className="nutrient-section-group">
+                                        <div className="nutrient-section-title">Fats</div>
+                                        {[
+                                          ["Total Fat", "totalFat", "g"],
+                                          [
+                                            "Saturated Fat",
+                                            "saturatedFat",
+                                            "g",
+                                          ],
+                                          [
+                                            "Polyunsaturated Fat",
+                                            "polyunsaturatedFat",
+                                            "g",
+                                          ],
+                                          [
+                                            "Monounsaturated Fat",
+                                            "monounsaturatedFat",
+                                            "g",
+                                          ],
+                                        ].map(([label, nutrientKey, unit]) => (
                                           <div
-                                            key={nutrient}
+                                            key={nutrientKey}
                                             className="nutrient-hover-item"
                                           >
                                             <span className="nutrient-name">
-                                              {nutrient
-                                                .replace(/([A-Z])/g, " $1")
-                                                .trim()}
-                                              :
+                                              {label}:
                                             </span>
                                             <span className="nutrient-value">
-                                              {calculatedValue.toFixed(2)}
-                                              {nutrient === "calories"
-                                                ? ""
-                                                : nutrient.includes("vitamin")
-                                                  ? "IU"
-                                                  : [
-                                                        "sodium",
-                                                        "cholesterol",
-                                                        "calcium",
-                                                        "magnesium",
-                                                        "potassium",
-                                                      ].includes(nutrient)
-                                                    ? "mg"
-                                                    : "g"}
+                                              {(
+                                                (nutritionData[key].nutrition[
+                                                  nutrientKey
+                                                ] /
+                                                  100) *
+                                                field.value
+                                              ).toFixed(2)}
+                                              {unit}
                                             </span>
                                           </div>
-                                        );
-                                      })}
+                                        ))}
+                                      </div>
+
+                                      {/* Carbs Section - Second Column */}
+                                      <div className="nutrient-section-group">
+                                        <div className="nutrient-section-title">Carbohydrates</div>
+                                        {[
+                                          [
+                                            "Total Carbohydrate",
+                                            "totalCarbohydrate",
+                                            "g",
+                                          ],
+                                          [
+                                            "Dietary Fiber",
+                                            "dietaryFiber",
+                                            "g",
+                                          ],
+                                          ["Sugars", "sugars", "g"],
+                                        ].map(([label, nutrientKey, unit]) => (
+                                          <div
+                                            key={nutrientKey}
+                                            className="nutrient-hover-item"
+                                          >
+                                            <span className="nutrient-name">
+                                              {label}:
+                                            </span>
+                                            <span className="nutrient-value">
+                                              {(
+                                                (nutritionData[key].nutrition[
+                                                  nutrientKey
+                                                ] /
+                                                  100) *
+                                                field.value
+                                              ).toFixed(2)}
+                                              {unit}
+                                            </span>
+                                          </div>
+                                        ))}
+                                      </div>
+
+                                      {/* Protein Section - Full Width */}
+                                      <div className="nutrient-section-group full-width">
+                                        <div className="nutrient-section-title">Protein</div>
+                                        <div className="nutrient-hover-item">
+                                          <span className="nutrient-name">
+                                            Protein:
+                                          </span>
+                                          <span className="nutrient-value">
+                                            {(
+                                              (nutritionData[key].nutrition
+                                                .protein /
+                                                100) *
+                                              field.value
+                                            ).toFixed(2)}
+                                            g
+                                          </span>
+                                        </div>
+                                      </div>
+
+                                      {/* Minerals Section - First Column */}
+                                      <div className="nutrient-section-group">
+                                        <div className="nutrient-section-title">Minerals</div>
+                                        {[
+                                          ["Sodium", "sodium", "mg"],
+                                          ["Iron", "iron", "mg"],
+                                          ["Calcium", "calcium", "mg"],
+                                          ["Magnesium", "magnesium", "mg"],
+                                          ["Potassium", "potassium", "mg"],
+                                          ["Zinc", "zinc", "mg"],
+                                        ].map(([label, nutrientKey, unit]) => (
+                                          <div
+                                            key={nutrientKey}
+                                            className="nutrient-hover-item"
+                                          >
+                                            <span className="nutrient-name">
+                                              {label}:
+                                            </span>
+                                            <span className="nutrient-value">
+                                              {(
+                                                (nutritionData[key].nutrition[
+                                                  nutrientKey
+                                                ] /
+                                                  100) *
+                                                field.value
+                                              ).toFixed(2)}
+                                              {unit}
+                                            </span>
+                                          </div>
+                                        ))}
+                                      </div>
+
+                                      {/* Vitamins Section - Second Column */}
+                                      <div className="nutrient-section-group">
+                                        <div className="nutrient-section-title">Vitamins</div>
+                                        {[
+                                          ["Vitamin A", "vitaminA", "IU"],
+                                          ["Vitamin C", "vitaminC", "mg"],
+                                          ["Vitamin D", "vitaminD", "IU"],
+                                        ].map(([label, nutrientKey, unit]) => (
+                                          <div
+                                            key={nutrientKey}
+                                            className="nutrient-hover-item"
+                                          >
+                                            <span className="nutrient-name">
+                                              {label}:
+                                            </span>
+                                            <span className="nutrient-value">
+                                              {(
+                                                (nutritionData[key].nutrition[
+                                                  nutrientKey
+                                                ] /
+                                                  100) *
+                                                field.value
+                                              ).toFixed(2)}
+                                              {unit}
+                                            </span>
+                                          </div>
+                                        ))}
+                                      </div>
                                     </div>
                                   </HoverCardContent>
                                 </HoverCard>
@@ -803,44 +944,185 @@ const NutritionForm: React.FC = () => {
                                       <InfoCircledIcon className="info-icon" />
                                     </button>
                                   </HoverCardTrigger>
-                                  <HoverCardContent className="nutrient-hover-content">
+                                  <HoverCardContent className="nutrient-hover-content w-auto">
                                     <h4>{ingredientLabels[key]} Nutrition</h4>
-                                    <div className="nutrient-hover-grid">
-                                      {Object.entries(
-                                        nutritionData[key].nutrition
-                                      ).map(([nutrient, value]) => {
-                                        const calculatedValue =
-                                          (value / 100) * field.value;
-                                        return (
+                                    <div className="nutrient-hover-sections">
+                                      {/* Basic Info Section - Full Width */}
+                                      <div className="nutrient-section-group full-width">
+                                        <div className="nutrient-section-title">Basic Info</div>
+                                        <div className="nutrient-hover-item">
+                                          <span className="nutrient-name">
+                                            Calories:
+                                          </span>
+                                          <span className="nutrient-value">
+                                            {(
+                                              (nutritionData[key].nutrition
+                                                .calories /
+                                                100) *
+                                              field.value
+                                            ).toFixed(2)}
+                                          </span>
+                                        </div>
+                                      </div>
+
+                                      {/* Fats Section - First Column */}
+                                      <div className="nutrient-section-group">
+                                        <div className="nutrient-section-title">Fats</div>
+                                        {[
+                                          ["Total Fat", "totalFat", "g"],
+                                          [
+                                            "Saturated Fat",
+                                            "saturatedFat",
+                                            "g",
+                                          ],
+                                          [
+                                            "Polyunsaturated Fat",
+                                            "polyunsaturatedFat",
+                                            "g",
+                                          ],
+                                          [
+                                            "Monounsaturated Fat",
+                                            "monounsaturatedFat",
+                                            "g",
+                                          ],
+                                        ].map(([label, nutrientKey, unit]) => (
                                           <div
-                                            key={nutrient}
+                                            key={nutrientKey}
                                             className="nutrient-hover-item"
                                           >
                                             <span className="nutrient-name">
-                                              {nutrient
-                                                .replace(/([A-Z])/g, " $1")
-                                                .trim()}
-                                              :
+                                              {label}:
                                             </span>
                                             <span className="nutrient-value">
-                                              {calculatedValue.toFixed(2)}
-                                              {nutrient === "calories"
-                                                ? ""
-                                                : nutrient.includes("vitamin")
-                                                  ? "IU"
-                                                  : [
-                                                        "sodium",
-                                                        "cholesterol",
-                                                        "calcium",
-                                                        "magnesium",
-                                                        "potassium",
-                                                      ].includes(nutrient)
-                                                    ? "mg"
-                                                    : "g"}
+                                              {(
+                                                (nutritionData[key].nutrition[
+                                                  nutrientKey
+                                                ] /
+                                                  100) *
+                                                field.value
+                                              ).toFixed(2)}
+                                              {unit}
                                             </span>
                                           </div>
-                                        );
-                                      })}
+                                        ))}
+                                      </div>
+
+                                      {/* Carbs Section - Second Column */}
+                                      <div className="nutrient-section-group">
+                                        <div className="nutrient-section-title">Carbohydrates</div>
+                                        {[
+                                          [
+                                            "Total Carbohydrate",
+                                            "totalCarbohydrate",
+                                            "g",
+                                          ],
+                                          [
+                                            "Dietary Fiber",
+                                            "dietaryFiber",
+                                            "g",
+                                          ],
+                                          ["Sugars", "sugars", "g"],
+                                        ].map(([label, nutrientKey, unit]) => (
+                                          <div
+                                            key={nutrientKey}
+                                            className="nutrient-hover-item"
+                                          >
+                                            <span className="nutrient-name">
+                                              {label}:
+                                            </span>
+                                            <span className="nutrient-value">
+                                              {(
+                                                (nutritionData[key].nutrition[
+                                                  nutrientKey
+                                                ] /
+                                                  100) *
+                                                field.value
+                                              ).toFixed(2)}
+                                              {unit}
+                                            </span>
+                                          </div>
+                                        ))}
+                                      </div>
+
+                                      {/* Protein Section - Full Width */}
+                                      <div className="nutrient-section-group full-width">
+                                        <div className="nutrient-section-title">Protein</div>
+                                        <div className="nutrient-hover-item">
+                                          <span className="nutrient-name">
+                                            Protein:
+                                          </span>
+                                          <span className="nutrient-value">
+                                            {(
+                                              (nutritionData[key].nutrition
+                                                .protein /
+                                                100) *
+                                              field.value
+                                            ).toFixed(2)}
+                                            g
+                                          </span>
+                                        </div>
+                                      </div>
+
+                                      {/* Minerals Section - First Column */}
+                                      <div className="nutrient-section-group">
+                                        <div className="nutrient-section-title">Minerals</div>
+                                        {[
+                                          ["Sodium", "sodium", "mg"],
+                                          ["Iron", "iron", "mg"],
+                                          ["Calcium", "calcium", "mg"],
+                                          ["Magnesium", "magnesium", "mg"],
+                                          ["Potassium", "potassium", "mg"],
+                                          ["Zinc", "zinc", "mg"],
+                                        ].map(([label, nutrientKey, unit]) => (
+                                          <div
+                                            key={nutrientKey}
+                                            className="nutrient-hover-item"
+                                          >
+                                            <span className="nutrient-name">
+                                              {label}:
+                                            </span>
+                                            <span className="nutrient-value">
+                                              {(
+                                                (nutritionData[key].nutrition[
+                                                  nutrientKey
+                                                ] /
+                                                  100) *
+                                                field.value
+                                              ).toFixed(2)}
+                                              {unit}
+                                            </span>
+                                          </div>
+                                        ))}
+                                      </div>
+
+                                      {/* Vitamins Section - Second Column */}
+                                      <div className="nutrient-section-group">
+                                        <div className="nutrient-section-title">Vitamins</div>
+                                        {[
+                                          ["Vitamin A", "vitaminA", "IU"],
+                                          ["Vitamin C", "vitaminC", "mg"],
+                                          ["Vitamin D", "vitaminD", "IU"],
+                                        ].map(([label, nutrientKey, unit]) => (
+                                          <div
+                                            key={nutrientKey}
+                                            className="nutrient-hover-item"
+                                          >
+                                            <span className="nutrient-name">
+                                              {label}:
+                                            </span>
+                                            <span className="nutrient-value">
+                                              {(
+                                                (nutritionData[key].nutrition[
+                                                  nutrientKey
+                                                ] /
+                                                  100) *
+                                                field.value
+                                              ).toFixed(2)}
+                                              {unit}
+                                            </span>
+                                          </div>
+                                        ))}
+                                      </div>
                                     </div>
                                   </HoverCardContent>
                                 </HoverCard>
@@ -922,44 +1204,185 @@ const NutritionForm: React.FC = () => {
                                       <InfoCircledIcon className="info-icon" />
                                     </button>
                                   </HoverCardTrigger>
-                                  <HoverCardContent className="nutrient-hover-content">
+                                  <HoverCardContent className="nutrient-hover-content w-auto">
                                     <h4>{ingredientLabels[key]} Nutrition</h4>
-                                    <div className="nutrient-hover-grid">
-                                      {Object.entries(
-                                        nutritionData[key].nutrition
-                                      ).map(([nutrient, value]) => {
-                                        const calculatedValue =
-                                          (value / 100) * field.value;
-                                        return (
+                                    <div className="nutrient-hover-sections">
+                                      {/* Basic Info Section - Full Width */}
+                                      <div className="nutrient-section-group full-width">
+                                        <div className="nutrient-section-title">Basic Info</div>
+                                        <div className="nutrient-hover-item">
+                                          <span className="nutrient-name">
+                                            Calories:
+                                          </span>
+                                          <span className="nutrient-value">
+                                            {(
+                                              (nutritionData[key].nutrition
+                                                .calories /
+                                                100) *
+                                              field.value
+                                            ).toFixed(2)}
+                                          </span>
+                                        </div>
+                                      </div>
+
+                                      {/* Fats Section - First Column */}
+                                      <div className="nutrient-section-group">
+                                        <div className="nutrient-section-title">Fats</div>
+                                        {[
+                                          ["Total Fat", "totalFat", "g"],
+                                          [
+                                            "Saturated Fat",
+                                            "saturatedFat",
+                                            "g",
+                                          ],
+                                          [
+                                            "Polyunsaturated Fat",
+                                            "polyunsaturatedFat",
+                                            "g",
+                                          ],
+                                          [
+                                            "Monounsaturated Fat",
+                                            "monounsaturatedFat",
+                                            "g",
+                                          ],
+                                        ].map(([label, nutrientKey, unit]) => (
                                           <div
-                                            key={nutrient}
+                                            key={nutrientKey}
                                             className="nutrient-hover-item"
                                           >
                                             <span className="nutrient-name">
-                                              {nutrient
-                                                .replace(/([A-Z])/g, " $1")
-                                                .trim()}
-                                              :
+                                              {label}:
                                             </span>
                                             <span className="nutrient-value">
-                                              {calculatedValue.toFixed(2)}
-                                              {nutrient === "calories"
-                                                ? ""
-                                                : nutrient.includes("vitamin")
-                                                  ? "IU"
-                                                  : [
-                                                        "sodium",
-                                                        "cholesterol",
-                                                        "calcium",
-                                                        "magnesium",
-                                                        "potassium",
-                                                      ].includes(nutrient)
-                                                    ? "mg"
-                                                    : "g"}
+                                              {(
+                                                (nutritionData[key].nutrition[
+                                                  nutrientKey
+                                                ] /
+                                                  100) *
+                                                field.value
+                                              ).toFixed(2)}
+                                              {unit}
                                             </span>
                                           </div>
-                                        );
-                                      })}
+                                        ))}
+                                      </div>
+
+                                      {/* Carbs Section - Second Column */}
+                                      <div className="nutrient-section-group">
+                                        <div className="nutrient-section-title">Carbohydrates</div>
+                                        {[
+                                          [
+                                            "Total Carbohydrate",
+                                            "totalCarbohydrate",
+                                            "g",
+                                          ],
+                                          [
+                                            "Dietary Fiber",
+                                            "dietaryFiber",
+                                            "g",
+                                          ],
+                                          ["Sugars", "sugars", "g"],
+                                        ].map(([label, nutrientKey, unit]) => (
+                                          <div
+                                            key={nutrientKey}
+                                            className="nutrient-hover-item"
+                                          >
+                                            <span className="nutrient-name">
+                                              {label}:
+                                            </span>
+                                            <span className="nutrient-value">
+                                              {(
+                                                (nutritionData[key].nutrition[
+                                                  nutrientKey
+                                                ] /
+                                                  100) *
+                                                field.value
+                                              ).toFixed(2)}
+                                              {unit}
+                                            </span>
+                                          </div>
+                                        ))}
+                                      </div>
+
+                                      {/* Protein Section - Full Width */}
+                                      <div className="nutrient-section-group full-width">
+                                        <div className="nutrient-section-title">Protein</div>
+                                        <div className="nutrient-hover-item">
+                                          <span className="nutrient-name">
+                                            Protein:
+                                          </span>
+                                          <span className="nutrient-value">
+                                            {(
+                                              (nutritionData[key].nutrition
+                                                .protein /
+                                                100) *
+                                              field.value
+                                            ).toFixed(2)}
+                                            g
+                                          </span>
+                                        </div>
+                                      </div>
+
+                                      {/* Minerals Section - First Column */}
+                                      <div className="nutrient-section-group">
+                                        <div className="nutrient-section-title">Minerals</div>
+                                        {[
+                                          ["Sodium", "sodium", "mg"],
+                                          ["Iron", "iron", "mg"],
+                                          ["Calcium", "calcium", "mg"],
+                                          ["Magnesium", "magnesium", "mg"],
+                                          ["Potassium", "potassium", "mg"],
+                                          ["Zinc", "zinc", "mg"],
+                                        ].map(([label, nutrientKey, unit]) => (
+                                          <div
+                                            key={nutrientKey}
+                                            className="nutrient-hover-item"
+                                          >
+                                            <span className="nutrient-name">
+                                              {label}:
+                                            </span>
+                                            <span className="nutrient-value">
+                                              {(
+                                                (nutritionData[key].nutrition[
+                                                  nutrientKey
+                                                ] /
+                                                  100) *
+                                                field.value
+                                              ).toFixed(2)}
+                                              {unit}
+                                            </span>
+                                          </div>
+                                        ))}
+                                      </div>
+
+                                      {/* Vitamins Section - Second Column */}
+                                      <div className="nutrient-section-group">
+                                        <div className="nutrient-section-title">Vitamins</div>
+                                        {[
+                                          ["Vitamin A", "vitaminA", "IU"],
+                                          ["Vitamin C", "vitaminC", "mg"],
+                                          ["Vitamin D", "vitaminD", "IU"],
+                                        ].map(([label, nutrientKey, unit]) => (
+                                          <div
+                                            key={nutrientKey}
+                                            className="nutrient-hover-item"
+                                          >
+                                            <span className="nutrient-name">
+                                              {label}:
+                                            </span>
+                                            <span className="nutrient-value">
+                                              {(
+                                                (nutritionData[key].nutrition[
+                                                  nutrientKey
+                                                ] /
+                                                  100) *
+                                                field.value
+                                              ).toFixed(2)}
+                                              {unit}
+                                            </span>
+                                          </div>
+                                        ))}
+                                      </div>
                                     </div>
                                   </HoverCardContent>
                                 </HoverCard>
