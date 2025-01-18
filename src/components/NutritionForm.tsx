@@ -401,38 +401,62 @@ const NutritionForm: React.FC = () => {
                         render={({ field }) => (
                           <FormItem>
                             <div className="ingredient-cell">
-                            {/* Add calorie indicator */}
-                            <div className="calorie-indicator">
-                              {((nutritionData[key].nutrition.calories / 100) * field.value).toFixed(1)} cal
-                              <HoverCard>
-                                <HoverCardTrigger asChild>
-                                  <button className="info-button">
-                                    <InfoCircledIcon className="info-icon" />
-                                  </button>
-                                </HoverCardTrigger>
-                                <HoverCardContent className="nutrient-hover-content">
-                                  <h4>{ingredientLabels[key]} Nutrition</h4>
-                                  <div className="nutrient-hover-grid">
-                                    {Object.entries(nutritionData[key].nutrition).map(([nutrient, value]) => {
-                                      const calculatedValue = (value / 100) * field.value;
-                                      return (
-                                        <div key={nutrient} className="nutrient-hover-item">
-                                          <span className="nutrient-name">
-                                            {nutrient.replace(/([A-Z])/g, ' $1').trim()}:
-                                          </span>
-                                          <span className="nutrient-value">
-                                            {calculatedValue.toFixed(2)}
-                                            {nutrient === 'calories' ? '' : 
-                                              nutrient.includes('vitamin') ? 'IU' :
-                                              ['sodium', 'cholesterol', 'calcium', 'magnesium', 'potassium'].includes(nutrient) ? 'mg' : 'g'}
-                                          </span>
-                                        </div>
-                                      );
-                                    })}
-                                  </div>
-                                </HoverCardContent>
-                              </HoverCard>
-                            </div>
+                              {/* Add calorie indicator */}
+                              <div className="calorie-indicator">
+                                {(
+                                  (nutritionData[key].nutrition.calories /
+                                    100) *
+                                  field.value
+                                ).toFixed(1)}{" "}
+                                cal
+                                <HoverCard>
+                                  <HoverCardTrigger asChild>
+                                    <button className="info-button">
+                                      <InfoCircledIcon className="info-icon" />
+                                    </button>
+                                  </HoverCardTrigger>
+                                  <HoverCardContent className="nutrient-hover-content w-auto">
+                                    <h4>{ingredientLabels[key]} Nutrition</h4>
+                                    <div className="nutrient-hover-grid">
+                                      {Object.entries(
+                                        nutritionData[key].nutrition
+                                      ).map(([nutrient, value]) => {
+                                        const calculatedValue =
+                                          (value / 100) * field.value;
+                                        return (
+                                          <div
+                                            key={nutrient}
+                                            className="nutrient-hover-item"
+                                          >
+                                            <span className="nutrient-name">
+                                              {nutrient
+                                                .replace(/([A-Z])/g, " $1")
+                                                .trim()}
+                                              :
+                                            </span>
+                                            <span className="nutrient-value">
+                                              {calculatedValue.toFixed(2)}
+                                              {nutrient === "calories"
+                                                ? ""
+                                                : nutrient.includes("vitamin")
+                                                  ? "IU"
+                                                  : [
+                                                        "sodium",
+                                                        "cholesterol",
+                                                        "calcium",
+                                                        "magnesium",
+                                                        "potassium",
+                                                      ].includes(nutrient)
+                                                    ? "mg"
+                                                    : "g"}
+                                            </span>
+                                          </div>
+                                        );
+                                      })}
+                                    </div>
+                                  </HoverCardContent>
+                                </HoverCard>
+                              </div>
                               <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
@@ -496,38 +520,62 @@ const NutritionForm: React.FC = () => {
                         render={({ field }) => (
                           <FormItem>
                             <div className="ingredient-cell">
-                            {/* Add calorie indicator */}
-                            <div className="calorie-indicator">
-                              {((nutritionData[key].nutrition.calories / 100) * field.value).toFixed(1)} cal
-                              <HoverCard>
-                                <HoverCardTrigger asChild>
-                                  <button className="info-button">
-                                    <InfoCircledIcon className="info-icon" />
-                                  </button>
-                                </HoverCardTrigger>
-                                <HoverCardContent className="nutrient-hover-content">
-                                  <h4>{ingredientLabels[key]} Nutrition</h4>
-                                  <div className="nutrient-hover-grid">
-                                    {Object.entries(nutritionData[key].nutrition).map(([nutrient, value]) => {
-                                      const calculatedValue = (value / 100) * field.value;
-                                      return (
-                                        <div key={nutrient} className="nutrient-hover-item">
-                                          <span className="nutrient-name">
-                                            {nutrient.replace(/([A-Z])/g, ' $1').trim()}:
-                                          </span>
-                                          <span className="nutrient-value">
-                                            {calculatedValue.toFixed(2)}
-                                            {nutrient === 'calories' ? '' : 
-                                              nutrient.includes('vitamin') ? 'IU' :
-                                              ['sodium', 'cholesterol', 'calcium', 'magnesium', 'potassium'].includes(nutrient) ? 'mg' : 'g'}
-                                          </span>
-                                        </div>
-                                      );
-                                    })}
-                                  </div>
-                                </HoverCardContent>
-                              </HoverCard>
-                            </div>
+                              {/* Add calorie indicator */}
+                              <div className="calorie-indicator">
+                                {(
+                                  (nutritionData[key].nutrition.calories /
+                                    100) *
+                                  field.value
+                                ).toFixed(1)}{" "}
+                                cal
+                                <HoverCard>
+                                  <HoverCardTrigger asChild>
+                                    <button className="info-button">
+                                      <InfoCircledIcon className="info-icon" />
+                                    </button>
+                                  </HoverCardTrigger>
+                                  <HoverCardContent className="nutrient-hover-content">
+                                    <h4>{ingredientLabels[key]} Nutrition</h4>
+                                    <div className="nutrient-hover-grid">
+                                      {Object.entries(
+                                        nutritionData[key].nutrition
+                                      ).map(([nutrient, value]) => {
+                                        const calculatedValue =
+                                          (value / 100) * field.value;
+                                        return (
+                                          <div
+                                            key={nutrient}
+                                            className="nutrient-hover-item"
+                                          >
+                                            <span className="nutrient-name">
+                                              {nutrient
+                                                .replace(/([A-Z])/g, " $1")
+                                                .trim()}
+                                              :
+                                            </span>
+                                            <span className="nutrient-value">
+                                              {calculatedValue.toFixed(2)}
+                                              {nutrient === "calories"
+                                                ? ""
+                                                : nutrient.includes("vitamin")
+                                                  ? "IU"
+                                                  : [
+                                                        "sodium",
+                                                        "cholesterol",
+                                                        "calcium",
+                                                        "magnesium",
+                                                        "potassium",
+                                                      ].includes(nutrient)
+                                                    ? "mg"
+                                                    : "g"}
+                                            </span>
+                                          </div>
+                                        );
+                                      })}
+                                    </div>
+                                  </HoverCardContent>
+                                </HoverCard>
+                              </div>
                               <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
@@ -591,38 +639,62 @@ const NutritionForm: React.FC = () => {
                         render={({ field }) => (
                           <FormItem>
                             <div className="ingredient-cell">
-                            {/* Add calorie indicator */}
-                            <div className="calorie-indicator">
-                              {((nutritionData[key].nutrition.calories / 100) * field.value).toFixed(1)} cal
-                              <HoverCard>
-                                <HoverCardTrigger asChild>
-                                  <button className="info-button">
-                                    <InfoCircledIcon className="info-icon" />
-                                  </button>
-                                </HoverCardTrigger>
-                                <HoverCardContent className="nutrient-hover-content">
-                                  <h4>{ingredientLabels[key]} Nutrition</h4>
-                                  <div className="nutrient-hover-grid">
-                                    {Object.entries(nutritionData[key].nutrition).map(([nutrient, value]) => {
-                                      const calculatedValue = (value / 100) * field.value;
-                                      return (
-                                        <div key={nutrient} className="nutrient-hover-item">
-                                          <span className="nutrient-name">
-                                            {nutrient.replace(/([A-Z])/g, ' $1').trim()}:
-                                          </span>
-                                          <span className="nutrient-value">
-                                            {calculatedValue.toFixed(2)}
-                                            {nutrient === 'calories' ? '' : 
-                                              nutrient.includes('vitamin') ? 'IU' :
-                                              ['sodium', 'cholesterol', 'calcium', 'magnesium', 'potassium'].includes(nutrient) ? 'mg' : 'g'}
-                                          </span>
-                                        </div>
-                                      );
-                                    })}
-                                  </div>
-                                </HoverCardContent>
-                              </HoverCard>
-                            </div>
+                              {/* Add calorie indicator */}
+                              <div className="calorie-indicator">
+                                {(
+                                  (nutritionData[key].nutrition.calories /
+                                    100) *
+                                  field.value
+                                ).toFixed(1)}{" "}
+                                cal
+                                <HoverCard>
+                                  <HoverCardTrigger asChild>
+                                    <button className="info-button">
+                                      <InfoCircledIcon className="info-icon" />
+                                    </button>
+                                  </HoverCardTrigger>
+                                  <HoverCardContent className="nutrient-hover-content">
+                                    <h4>{ingredientLabels[key]} Nutrition</h4>
+                                    <div className="nutrient-hover-grid">
+                                      {Object.entries(
+                                        nutritionData[key].nutrition
+                                      ).map(([nutrient, value]) => {
+                                        const calculatedValue =
+                                          (value / 100) * field.value;
+                                        return (
+                                          <div
+                                            key={nutrient}
+                                            className="nutrient-hover-item"
+                                          >
+                                            <span className="nutrient-name">
+                                              {nutrient
+                                                .replace(/([A-Z])/g, " $1")
+                                                .trim()}
+                                              :
+                                            </span>
+                                            <span className="nutrient-value">
+                                              {calculatedValue.toFixed(2)}
+                                              {nutrient === "calories"
+                                                ? ""
+                                                : nutrient.includes("vitamin")
+                                                  ? "IU"
+                                                  : [
+                                                        "sodium",
+                                                        "cholesterol",
+                                                        "calcium",
+                                                        "magnesium",
+                                                        "potassium",
+                                                      ].includes(nutrient)
+                                                    ? "mg"
+                                                    : "g"}
+                                            </span>
+                                          </div>
+                                        );
+                                      })}
+                                    </div>
+                                  </HoverCardContent>
+                                </HoverCard>
+                              </div>
                               <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
@@ -686,38 +758,62 @@ const NutritionForm: React.FC = () => {
                         render={({ field }) => (
                           <FormItem>
                             <div className="ingredient-cell">
-                            {/* Add calorie indicator */}
-                            <div className="calorie-indicator">
-                              {((nutritionData[key].nutrition.calories / 100) * field.value).toFixed(1)} cal
-                              <HoverCard>
-                                <HoverCardTrigger asChild>
-                                  <button className="info-button">
-                                    <InfoCircledIcon className="info-icon" />
-                                  </button>
-                                </HoverCardTrigger>
-                                <HoverCardContent className="nutrient-hover-content">
-                                  <h4>{ingredientLabels[key]} Nutrition</h4>
-                                  <div className="nutrient-hover-grid">
-                                    {Object.entries(nutritionData[key].nutrition).map(([nutrient, value]) => {
-                                      const calculatedValue = (value / 100) * field.value;
-                                      return (
-                                        <div key={nutrient} className="nutrient-hover-item">
-                                          <span className="nutrient-name">
-                                            {nutrient.replace(/([A-Z])/g, ' $1').trim()}:
-                                          </span>
-                                          <span className="nutrient-value">
-                                            {calculatedValue.toFixed(2)}
-                                            {nutrient === 'calories' ? '' : 
-                                              nutrient.includes('vitamin') ? 'IU' :
-                                              ['sodium', 'cholesterol', 'calcium', 'magnesium', 'potassium'].includes(nutrient) ? 'mg' : 'g'}
-                                          </span>
-                                        </div>
-                                      );
-                                    })}
-                                  </div>
-                                </HoverCardContent>
-                              </HoverCard>
-                            </div>
+                              {/* Add calorie indicator */}
+                              <div className="calorie-indicator">
+                                {(
+                                  (nutritionData[key].nutrition.calories /
+                                    100) *
+                                  field.value
+                                ).toFixed(1)}{" "}
+                                cal
+                                <HoverCard>
+                                  <HoverCardTrigger asChild>
+                                    <button className="info-button">
+                                      <InfoCircledIcon className="info-icon" />
+                                    </button>
+                                  </HoverCardTrigger>
+                                  <HoverCardContent className="nutrient-hover-content">
+                                    <h4>{ingredientLabels[key]} Nutrition</h4>
+                                    <div className="nutrient-hover-grid">
+                                      {Object.entries(
+                                        nutritionData[key].nutrition
+                                      ).map(([nutrient, value]) => {
+                                        const calculatedValue =
+                                          (value / 100) * field.value;
+                                        return (
+                                          <div
+                                            key={nutrient}
+                                            className="nutrient-hover-item"
+                                          >
+                                            <span className="nutrient-name">
+                                              {nutrient
+                                                .replace(/([A-Z])/g, " $1")
+                                                .trim()}
+                                              :
+                                            </span>
+                                            <span className="nutrient-value">
+                                              {calculatedValue.toFixed(2)}
+                                              {nutrient === "calories"
+                                                ? ""
+                                                : nutrient.includes("vitamin")
+                                                  ? "IU"
+                                                  : [
+                                                        "sodium",
+                                                        "cholesterol",
+                                                        "calcium",
+                                                        "magnesium",
+                                                        "potassium",
+                                                      ].includes(nutrient)
+                                                    ? "mg"
+                                                    : "g"}
+                                            </span>
+                                          </div>
+                                        );
+                                      })}
+                                    </div>
+                                  </HoverCardContent>
+                                </HoverCard>
+                              </div>
                               <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
