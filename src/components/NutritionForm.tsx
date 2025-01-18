@@ -140,7 +140,7 @@ const generateCSV = (data: FormValues): string => {
       vitaminC: 0,
       vitaminD: 0,
       zinc: 0,
-    },
+    }
   );
 
   const totalsRow = [
@@ -236,7 +236,7 @@ const NutritionForm: React.FC = () => {
         ...acc,
         [key]: nutritionData[key as IngredientKey].defaultValue,
       }),
-      {} as FormValues,
+      {} as FormValues
     ),
   });
 
@@ -264,7 +264,7 @@ const NutritionForm: React.FC = () => {
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    onChange: (...event: any[]) => void,
+    onChange: (...event: any[]) => void
   ) => {
     const value = event.target.value;
     const parsedValue = parseFloat(value);
@@ -357,7 +357,7 @@ const NutritionForm: React.FC = () => {
         ...acc,
         [key]: nutritionData[key as IngredientKey].defaultValue,
       }),
-      {} as FormValues,
+      {} as FormValues
     );
     onSubmit(defaultValues);
   }, []); // Empty dependency array means this runs once on mount
@@ -377,7 +377,7 @@ const NutritionForm: React.FC = () => {
           <Form {...form}>
             <form className="form-grid" onSubmit={form.handleSubmit(onSubmit)}>
               <Tabs defaultValue="liquids" className="tabs-container w-full">
-                <TabsList className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground">
+                <TabsList className="h-10 rounded-md bg-muted p-1 text-muted-foreground inline-flex items-center justify-center">
                   <TabsTrigger value="liquids">Liquids</TabsTrigger>
                   <TabsTrigger value="oils">Oils</TabsTrigger>
                   <TabsTrigger value="fullSeeds">Full Seeds</TabsTrigger>
@@ -397,7 +397,7 @@ const NutritionForm: React.FC = () => {
                             <FormLabel>{ingredientLabels[key]}</FormLabel>
                             <div className="space-y-2">
                               <FormControl>
-                                <div className="flex items-center space-x-2">
+                                <div className="space-x-2 flex items-center">
                                   <Input
                                     type="number"
                                     step="0.1"
@@ -413,7 +413,7 @@ const NutritionForm: React.FC = () => {
                                     onChange={(e) => {
                                       handleInputChange(e, field.onChange);
                                       field.onChange(
-                                        parseFloat(e.target.value) || 0,
+                                        parseFloat(e.target.value) || 0
                                       );
                                     }}
                                   />
@@ -425,10 +425,15 @@ const NutritionForm: React.FC = () => {
                               <FormControl>
                                 <Slider
                                   min={0}
-                                  max={Math.max(10, nutritionData[key].defaultValue * 3)}
+                                  max={Math.max(
+                                    10,
+                                    nutritionData[key].defaultValue * 3
+                                  )}
                                   step={0.1}
                                   value={[field.value]}
-                                  onValueChange={(vals) => field.onChange(vals[0])}
+                                  onValueChange={(vals) =>
+                                    field.onChange(vals[0])
+                                  }
                                   className="ingredient-slider"
                                 />
                               </FormControl>
@@ -454,7 +459,7 @@ const NutritionForm: React.FC = () => {
                             <FormLabel>{ingredientLabels[key]}</FormLabel>
                             <div className="space-y-2">
                               <FormControl>
-                                <div className="flex items-center space-x-2">
+                                <div className="space-x-2 flex items-center">
                                   <Input
                                     type="number"
                                     step="0.1"
@@ -470,7 +475,7 @@ const NutritionForm: React.FC = () => {
                                     onChange={(e) => {
                                       handleInputChange(e, field.onChange);
                                       field.onChange(
-                                        parseFloat(e.target.value) || 0,
+                                        parseFloat(e.target.value) || 0
                                       );
                                     }}
                                   />
@@ -482,10 +487,15 @@ const NutritionForm: React.FC = () => {
                               <FormControl>
                                 <Slider
                                   min={0}
-                                  max={Math.max(10, nutritionData[key].defaultValue * 3)}
+                                  max={Math.max(
+                                    10,
+                                    nutritionData[key].defaultValue * 3
+                                  )}
                                   step={0.1}
                                   value={[field.value]}
-                                  onValueChange={(vals) => field.onChange(vals[0])}
+                                  onValueChange={(vals) =>
+                                    field.onChange(vals[0])
+                                  }
                                   className="ingredient-slider"
                                 />
                               </FormControl>
@@ -511,7 +521,7 @@ const NutritionForm: React.FC = () => {
                             <FormLabel>{ingredientLabels[key]}</FormLabel>
                             <div className="space-y-2">
                               <FormControl>
-                                <div className="flex items-center space-x-2">
+                                <div className="space-x-2 flex items-center">
                                   <Input
                                     type="number"
                                     step="0.1"
@@ -527,7 +537,7 @@ const NutritionForm: React.FC = () => {
                                     onChange={(e) => {
                                       handleInputChange(e, field.onChange);
                                       field.onChange(
-                                        parseFloat(e.target.value) || 0,
+                                        parseFloat(e.target.value) || 0
                                       );
                                     }}
                                   />
@@ -539,11 +549,16 @@ const NutritionForm: React.FC = () => {
                               <FormControl>
                                 <Slider
                                   min={0}
-                                  max={Math.max(10, nutritionData[key].defaultValue * 3)}
+                                  max={Math.max(
+                                    10,
+                                    nutritionData[key].defaultValue * 3
+                                  )}
                                   step={0.1}
                                   value={[field.value]}
-                                  onValueChange={(vals) => field.onChange(vals[0])}
-                                  className="ingredient-slider"
+                                  onValueChange={(vals) =>
+                                    field.onChange(vals[0])
+                                  }
+                                  className="ingredient-slider z-10"
                                 />
                               </FormControl>
                             </div>
@@ -568,7 +583,7 @@ const NutritionForm: React.FC = () => {
                             <FormLabel>{ingredientLabels[key]}</FormLabel>
                             <div className="space-y-2">
                               <FormControl>
-                                <div className="flex items-center space-x-2">
+                                <div className="space-x-2 flex items-center">
                                   <Input
                                     type="number"
                                     step="0.1"
@@ -584,7 +599,7 @@ const NutritionForm: React.FC = () => {
                                     onChange={(e) => {
                                       handleInputChange(e, field.onChange);
                                       field.onChange(
-                                        parseFloat(e.target.value) || 0,
+                                        parseFloat(e.target.value) || 0
                                       );
                                     }}
                                   />
@@ -596,10 +611,15 @@ const NutritionForm: React.FC = () => {
                               <FormControl>
                                 <Slider
                                   min={0}
-                                  max={Math.max(10, nutritionData[key].defaultValue * 3)}
+                                  max={Math.max(
+                                    10,
+                                    nutritionData[key].defaultValue * 3
+                                  )}
                                   step={0.1}
                                   value={[field.value]}
-                                  onValueChange={(vals) => field.onChange(vals[0])}
+                                  onValueChange={(vals) =>
+                                    field.onChange(vals[0])
+                                  }
                                   className="ingredient-slider"
                                 />
                               </FormControl>
