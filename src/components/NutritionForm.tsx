@@ -407,47 +407,131 @@ const NutritionForm: React.FC = () => {
         <div className="nutrition-form-card-content">
           <Form {...form}>
             <form className="form-grid" onSubmit={form.handleSubmit(onSubmit)}>
-              {Object.keys(nutritionData).map((ingredient) => {
-                const key = ingredient as IngredientKey;
-                return (
-                  <FormField
-                    key={key}
-                    name={key}
-                    control={form.control}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{ingredientLabels[key]}</FormLabel>
-                        <FormControl>
-                          <input
-                            type="number"
-                            step="0.1"
-                            min="0"
-                            placeholder={nutritionData[
-                              key
-                            ].defaultValue.toFixed(1)}
-                            value={
-                              typeof field.value === "number"
-                                ? field.value.toFixed(1)
-                                : field.value
-                            }
-                            onChange={(e) => {
-                              const value = e.target.value;
-                              const parsedValue = parseFloat(value);
-                              if (!isNaN(parsedValue) && parsedValue >= 0) {
-                                field.onChange(Number(parsedValue.toFixed(1)));
-                              } else if (value === "") {
-                                field.onChange(0.0);
-                              }
-                            }}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                );
-              })}
-              <Button type="submit">Calculate</Button>
+              <Tabs defaultValue="liquids" className="w-full">
+                <TabsList className="grid w-full grid-cols-4">
+                  <TabsTrigger value="liquids">Liquids</TabsTrigger>
+                  <TabsTrigger value="oils">Oils</TabsTrigger>
+                  <TabsTrigger value="fullSeeds">Full Seeds</TabsTrigger>
+                  <TabsTrigger value="powders">Powders</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="liquids" className="ingredient-grid">
+                  {ingredientCategories.liquids.map((ingredient) => {
+                    const key = ingredient as IngredientKey;
+                    return (
+                      <FormField
+                        key={key}
+                        name={key}
+                        control={form.control}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>{ingredientLabels[key]}</FormLabel>
+                            <FormControl>
+                              <input
+                                type="number"
+                                step="0.1"
+                                min="0"
+                                placeholder={nutritionData[key].defaultValue.toFixed(1)}
+                                value={typeof field.value === "number" ? field.value.toFixed(1) : field.value}
+                                onChange={(e) => handleInputChange(e, field.onChange)}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    );
+                  })}
+                </TabsContent>
+
+                <TabsContent value="oils" className="ingredient-grid">
+                  {ingredientCategories.oils.map((ingredient) => {
+                    const key = ingredient as IngredientKey;
+                    return (
+                      <FormField
+                        key={key}
+                        name={key}
+                        control={form.control}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>{ingredientLabels[key]}</FormLabel>
+                            <FormControl>
+                              <input
+                                type="number"
+                                step="0.1"
+                                min="0"
+                                placeholder={nutritionData[key].defaultValue.toFixed(1)}
+                                value={typeof field.value === "number" ? field.value.toFixed(1) : field.value}
+                                onChange={(e) => handleInputChange(e, field.onChange)}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    );
+                  })}
+                </TabsContent>
+
+                <TabsContent value="fullSeeds" className="ingredient-grid">
+                  {ingredientCategories.fullSeeds.map((ingredient) => {
+                    const key = ingredient as IngredientKey;
+                    return (
+                      <FormField
+                        key={key}
+                        name={key}
+                        control={form.control}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>{ingredientLabels[key]}</FormLabel>
+                            <FormControl>
+                              <input
+                                type="number"
+                                step="0.1"
+                                min="0"
+                                placeholder={nutritionData[key].defaultValue.toFixed(1)}
+                                value={typeof field.value === "number" ? field.value.toFixed(1) : field.value}
+                                onChange={(e) => handleInputChange(e, field.onChange)}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    );
+                  })}
+                </TabsContent>
+
+                <TabsContent value="powders" className="ingredient-grid">
+                  {ingredientCategories.powders.map((ingredient) => {
+                    const key = ingredient as IngredientKey;
+                    return (
+                      <FormField
+                        key={key}
+                        name={key}
+                        control={form.control}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>{ingredientLabels[key]}</FormLabel>
+                            <FormControl>
+                              <input
+                                type="number"
+                                step="0.1"
+                                min="0"
+                                placeholder={nutritionData[key].defaultValue.toFixed(1)}
+                                value={typeof field.value === "number" ? field.value.toFixed(1) : field.value}
+                                onChange={(e) => handleInputChange(e, field.onChange)}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    );
+                  })}
+                </TabsContent>
+                <Button type="submit">Calculate</Button>
+              </Tabs>
             </form>
           </Form>
         </div>
@@ -538,3 +622,32 @@ const NutritionForm: React.FC = () => {
 };
 
 export default NutritionForm;
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+const ingredientCategories = {
+  liquids: ['wholeMilk'],
+  oils: ['coconutOil'],
+  fullSeeds: [
+    'goldenFlaxSeeds',
+    'brownFlaxSeeds',
+    'oatmeal',
+    'cocoaNibs',
+    'almonds',
+    'gojiBerries',
+    'pumpkinSeeds',
+    'macadamiaNuts',
+    'chiaSeeds',
+    'driedRaisins'
+  ],
+  powders: [
+    'rawCocoaPowder',
+    'hempSeedsPowder',
+    'quinoaPowder',
+    'almondsPowder',
+    'macadamiaPowder',
+    'blackBeansPowder',
+    'redBeansPowder',
+    'mungBeansPowder',
+    'chickpeaPowder',
+    'brownRicePowder'
+  ]
+} as const;
