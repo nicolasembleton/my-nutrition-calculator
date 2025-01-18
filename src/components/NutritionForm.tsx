@@ -395,6 +395,10 @@ const NutritionForm: React.FC = () => {
                         render={({ field }) => (
                           <FormItem>
                             <div className="ingredient-cell">
+                            {/* Add calorie indicator */}
+                            <div className="calorie-indicator">
+                              {((nutritionData[key].nutrition.calories / 100) * field.value).toFixed(1)} cal
+                            </div>
                               <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
@@ -458,6 +462,10 @@ const NutritionForm: React.FC = () => {
                         render={({ field }) => (
                           <FormItem>
                             <div className="ingredient-cell">
+                            {/* Add calorie indicator */}
+                            <div className="calorie-indicator">
+                              {((nutritionData[key].nutrition.calories / 100) * field.value).toFixed(1)} cal
+                            </div>
                               <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
@@ -521,6 +529,10 @@ const NutritionForm: React.FC = () => {
                         render={({ field }) => (
                           <FormItem>
                             <div className="ingredient-cell">
+                            {/* Add calorie indicator */}
+                            <div className="calorie-indicator">
+                              {((nutritionData[key].nutrition.calories / 100) * field.value).toFixed(1)} cal
+                            </div>
                               <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
@@ -584,6 +596,10 @@ const NutritionForm: React.FC = () => {
                         render={({ field }) => (
                           <FormItem>
                             <div className="ingredient-cell">
+                            {/* Add calorie indicator */}
+                            <div className="calorie-indicator">
+                              {((nutritionData[key].nutrition.calories / 100) * field.value).toFixed(1)} cal
+                            </div>
                               <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">

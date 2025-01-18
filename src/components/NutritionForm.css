@@ -44,6 +44,7 @@
 }
 
 .ingredient-grid > div {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 110px;
@@ -390,4 +391,17 @@ input[type="number"]::-webkit-outer-spin-button {
 .ingredient-grid {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   margin-top: 1rem;
+}
+
+/* Add styles for calorie indicator */
+.calorie-indicator {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+  background-color: hsl(var(--muted));
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
 }
