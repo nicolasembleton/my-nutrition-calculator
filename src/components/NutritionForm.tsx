@@ -196,6 +196,18 @@ const NutritionForm: React.FC = () => {
     return () => subscription.unsubscribe();
   }, [form.watch, form.handleSubmit]);
 
+  React.useEffect(() => {
+    // Trigger initial calculation with default values
+    const defaultValues = Object.keys(nutritionData).reduce(
+      (acc, key) => ({
+        ...acc,
+        [key]: nutritionData[key as IngredientKey].defaultValue,
+      }),
+      {} as FormValues
+    );
+    onSubmit(defaultValues);
+  }, []); // Empty dependency array means this runs once on mount
+
 return (
   <motion.div 
     className="nutrition-form-container"
@@ -226,6 +238,8 @@ return (
                       <FormControl>
                         <input
                           type="number"
+                          step="0.1"
+                          placeholder={nutritionData[key].defaultValue.toString()}
                           {...field}
                           onChange={(e) =>
                             handleInputChange(e, field.onChange)
