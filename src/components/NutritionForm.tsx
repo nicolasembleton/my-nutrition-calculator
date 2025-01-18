@@ -407,8 +407,8 @@ const NutritionForm: React.FC = () => {
         <div className="nutrition-form-card-content">
           <Form {...form}>
             <form className="form-grid" onSubmit={form.handleSubmit(onSubmit)}>
-              <Tabs defaultValue="liquids" className="w-full">
-                <TabsList className="grid w-full grid-cols-4">
+              <Tabs defaultValue="liquids" className="tabs-container w-full">
+                <TabsList className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground">
                   <TabsTrigger value="liquids">Liquids</TabsTrigger>
                   <TabsTrigger value="oils">Oils</TabsTrigger>
                   <TabsTrigger value="fullSeeds">Full Seeds</TabsTrigger>
