@@ -402,7 +402,6 @@ const NutritionForm: React.FC = () => {
                                     type="number"
                                     step="0.1"
                                     min="0"
-                                    className="w-24 text-right"
                                     placeholder={nutritionData[
                                       key
                                     ].defaultValue.toFixed(1)}
@@ -465,7 +464,6 @@ const NutritionForm: React.FC = () => {
                                     type="number"
                                     step="0.1"
                                     min="0"
-                                    className="w-24 text-right"
                                     placeholder={nutritionData[
                                       key
                                     ].defaultValue.toFixed(1)}
@@ -528,7 +526,6 @@ const NutritionForm: React.FC = () => {
                                     type="number"
                                     step="0.1"
                                     min="0"
-                                    className="w-24 text-right"
                                     placeholder={nutritionData[
                                       key
                                     ].defaultValue.toFixed(1)}
@@ -591,7 +588,6 @@ const NutritionForm: React.FC = () => {
                                     type="number"
                                     step="0.1"
                                     min="0"
-                                    className="w-24 text-right"
                                     placeholder={nutritionData[
                                       key
                                     ].defaultValue.toFixed(1)}
