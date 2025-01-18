@@ -1,7 +1,15 @@
 import { nutritionData } from "~/data/nutritionData";
 
 import React, { useState } from "react";
-import { ingredientCategories } from "~/components/nutrition/constants";
+import { FormHeader } from "~/components/nutrition/FormHeader";
+import { IngredientValue } from "~/components/nutrition/IngredientValue";
+import { CalculateButton } from "~/components/nutrition/CalculateButton";
+import {
+  ingredientLabels,
+  ingredientCategories,
+  motionVariants,
+} from "~/components/nutrition/constants";
+
 import {
   HoverCard,
   HoverCardContent,
@@ -208,31 +216,6 @@ interface NutritionTotal {
   zinc: number;
 }
 
-const ingredientLabels = {
-  goldenFlaxSeeds: "Golden Flax Seeds",
-  brownFlaxSeeds: "Brown Flax Seeds",
-  oatmeal: "Oatmeal",
-  cocoaNibs: "Cocoa Nibs",
-  rawCocoaPowder: "Raw Cocoa Powder",
-  almonds: "Almonds",
-  gojiBerries: "Goji Berries",
-  pumpkinSeeds: "Pumpkin Seeds",
-  macadamiaNuts: "Macadamia Nuts",
-  coconutOil: "Coconut Oil",
-  hempSeedsPowder: "Hemp Seeds Powder",
-  wholeMilk: "Whole Milk",
-  chiaSeeds: "Chia Seeds",
-  driedRaisins: "Dried Raisins",
-  quinoaPowder: "Quinoa Powder",
-  almondsPowder: "Almonds Powder",
-  macadamiaPowder: "Macadamia Powder",
-  blackBeansPowder: "Black Beans Powder",
-  redBeansPowder: "Red Beans Powder",
-  mungBeansPowder: "Mung Beans Powder",
-  chickpeaPowder: "Chickpea Powder",
-  brownRicePowder: "Brown Rice Powder",
-};
-
 type IngredientKey = keyof typeof nutritionData;
 type FormValues = Record<IngredientKey, number>;
 
@@ -372,14 +355,13 @@ const NutritionForm: React.FC = () => {
   return (
     <motion.div
       className="nutrition-form-container"
-      variants={containerVariants}
+      variants={motionVariants.containerVariants}
       initial="hidden"
       animate="visible"
     >
       <motion.div className="nutrition-form-card" variants={itemVariants}>
-        <div className="nutrition-form-card-header">
-          <h2>Nutrition Calculator</h2>
-        </div>
+        <FormHeader title="Nutrition Calculator" />
+
         <div className="nutrition-form-card-content">
           <Form {...form}>
             <form className="form-grid" onSubmit={form.handleSubmit(onSubmit)}>
@@ -612,28 +594,16 @@ const NutritionForm: React.FC = () => {
                               <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
-                                  <Input
-                                    type="number"
-                                    step="0.1"
-                                    min="0"
-                                    placeholder={nutritionData[
-                                      key
-                                    ].defaultValue.toFixed(1)}
-                                    value={
-                                      typeof field.value === "number"
-                                        ? field.value.toFixed(1)
-                                        : field.value
+                                  <IngredientValue
+                                    value={field.value}
+                                    defaultValue={
+                                      nutritionData[key].defaultValue
                                     }
-                                    onChange={(e) => {
-                                      handleInputChange(e, field.onChange);
-                                      field.onChange(
-                                        parseFloat(e.target.value) || 0
-                                      );
-                                    }}
+                                    onChange={(val) => field.onChange(val)}
+                                    onInputChange={(e) =>
+                                      handleInputChange(e, field.onChange)
+                                    }
                                   />
-                                  <span className="text-sm text-muted-foreground">
-                                    g
-                                  </span>
                                 </div>
                               </FormControl>
                               <div className="slider-container">
@@ -884,28 +854,16 @@ const NutritionForm: React.FC = () => {
                               <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
-                                  <Input
-                                    type="number"
-                                    step="0.1"
-                                    min="0"
-                                    placeholder={nutritionData[
-                                      key
-                                    ].defaultValue.toFixed(1)}
-                                    value={
-                                      typeof field.value === "number"
-                                        ? field.value.toFixed(1)
-                                        : field.value
+                                  <IngredientValue
+                                    value={field.value}
+                                    defaultValue={
+                                      nutritionData[key].defaultValue
                                     }
-                                    onChange={(e) => {
-                                      handleInputChange(e, field.onChange);
-                                      field.onChange(
-                                        parseFloat(e.target.value) || 0
-                                      );
-                                    }}
+                                    onChange={(val) => field.onChange(val)}
+                                    onInputChange={(e) =>
+                                      handleInputChange(e, field.onChange)
+                                    }
                                   />
-                                  <span className="text-sm text-muted-foreground">
-                                    g
-                                  </span>
                                 </div>
                               </FormControl>
                               <div className="slider-container">
@@ -1156,28 +1114,16 @@ const NutritionForm: React.FC = () => {
                               <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
-                                  <Input
-                                    type="number"
-                                    step="0.1"
-                                    min="0"
-                                    placeholder={nutritionData[
-                                      key
-                                    ].defaultValue.toFixed(1)}
-                                    value={
-                                      typeof field.value === "number"
-                                        ? field.value.toFixed(1)
-                                        : field.value
+                                  <IngredientValue
+                                    value={field.value}
+                                    defaultValue={
+                                      nutritionData[key].defaultValue
                                     }
-                                    onChange={(e) => {
-                                      handleInputChange(e, field.onChange);
-                                      field.onChange(
-                                        parseFloat(e.target.value) || 0
-                                      );
-                                    }}
+                                    onChange={(val) => field.onChange(val)}
+                                    onInputChange={(e) =>
+                                      handleInputChange(e, field.onChange)
+                                    }
                                   />
-                                  <span className="text-sm text-muted-foreground">
-                                    g
-                                  </span>
                                 </div>
                               </FormControl>
                               <div className="slider-container">
@@ -1237,28 +1183,16 @@ const NutritionForm: React.FC = () => {
                               <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
-                                  <Input
-                                    type="number"
-                                    step="0.1"
-                                    min="0"
-                                    placeholder={nutritionData[
-                                      key
-                                    ].defaultValue.toFixed(1)}
-                                    value={
-                                      typeof field.value === "number"
-                                        ? field.value.toFixed(1)
-                                        : field.value
+                                  <IngredientValue
+                                    value={field.value}
+                                    defaultValue={
+                                      nutritionData[key].defaultValue
                                     }
-                                    onChange={(e) => {
-                                      handleInputChange(e, field.onChange);
-                                      field.onChange(
-                                        parseFloat(e.target.value) || 0
-                                      );
-                                    }}
+                                    onChange={(val) => field.onChange(val)}
+                                    onInputChange={(e) =>
+                                      handleInputChange(e, field.onChange)
+                                    }
                                   />
-                                  <span className="text-sm text-muted-foreground">
-                                    g
-                                  </span>
                                 </div>
                               </FormControl>
                               <div className="slider-container">
@@ -1509,28 +1443,16 @@ const NutritionForm: React.FC = () => {
                               <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
-                                  <Input
-                                    type="number"
-                                    step="0.1"
-                                    min="0"
-                                    placeholder={nutritionData[
-                                      key
-                                    ].defaultValue.toFixed(1)}
-                                    value={
-                                      typeof field.value === "number"
-                                        ? field.value.toFixed(1)
-                                        : field.value
+                                  <IngredientValue
+                                    value={field.value}
+                                    defaultValue={
+                                      nutritionData[key].defaultValue
                                     }
-                                    onChange={(e) => {
-                                      handleInputChange(e, field.onChange);
-                                      field.onChange(
-                                        parseFloat(e.target.value) || 0
-                                      );
-                                    }}
+                                    onChange={(val) => field.onChange(val)}
+                                    onInputChange={(e) =>
+                                      handleInputChange(e, field.onChange)
+                                    }
                                   />
-                                  <span className="text-sm text-muted-foreground">
-                                    g
-                                  </span>
                                 </div>
                               </FormControl>
                               <div className="slider-container">
@@ -1559,9 +1481,7 @@ const NutritionForm: React.FC = () => {
                 </TabsContent>
               </Tabs>
 
-              <Button type="submit" className="calculate-cta">
-                Calculate Nutrition
-              </Button>
+              <CalculateButton onClick={form.handleSubmit(onSubmit)} />
             </form>
           </Form>
         </div>
