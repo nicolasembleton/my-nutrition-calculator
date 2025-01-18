@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --background: 180 5% 96%;
-  --foreground: 170 90% 20%;
-  --card: 0 0% 100%;
-  --card-foreground: 170 90% 20%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 170 90% 20%;
-  --primary: 155 40% 75%;
-  --primary-foreground: 0 0% 100%; /* White or 170 90% 20% for dark text on primary */
-  --secondary: 130 35% 80%;
-  --secondary-foreground: 170 90% 20%;
-  --accent: 45 25% 90%;
+  --background: 30 10% 95%; /* Warm Gray */
+  --foreground: 185 80% 25%; /* Dark Teal */
+  --card: 0 0% 98%; /* Neutral Gray */
+  --card-foreground: 185 80% 25%; /* Dark Teal */
+  --popover: 0 0% 98%; /* Neutral Gray */
+  --popover-foreground: 185 80% 25%; /* Dark Teal */
+  --primary: 160 50% 70%; /* Mint Green */
+  --primary-foreground: 185 80% 25%; /* Dark Teal or 0 0% 98% if you want a lighter text on primary*/
+  --secondary: 15 70% 80%; /* Soft Coral */
+  --secondary-foreground: 0 0% 98%; /* Lighter text color */
+  --accent: 55 80% 90%; /* Pale Lemon */
 }
