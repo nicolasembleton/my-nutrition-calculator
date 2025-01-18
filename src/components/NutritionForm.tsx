@@ -394,8 +394,8 @@ const NutritionForm: React.FC = () => {
                         control={form.control}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>{ingredientLabels[key]}</FormLabel>
-                            <div className="space-y-2">
+                            <div className="ingredient-cell">
+                              <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
                                   <Input
@@ -422,23 +422,24 @@ const NutritionForm: React.FC = () => {
                                   </span>
                                 </div>
                               </FormControl>
-                              <FormControl>
-                                <Slider
-                                  min={0}
-                                  max={Math.max(
-                                    10,
-                                    nutritionData[key].defaultValue * 3
-                                  )}
-                                  step={0.1}
-                                  value={[field.value]}
-                                  onValueChange={(vals) =>
-                                    field.onChange(vals[0])
-                                  }
-                                  className=""
-                                />
-                              </FormControl>
+                              <div className="slider-container">
+                                <FormControl>
+                                  <Slider
+                                    min={0}
+                                    max={Math.max(
+                                      10,
+                                      nutritionData[key].defaultValue * 3
+                                    )}
+                                    step={0.1}
+                                    value={[field.value]}
+                                    onValueChange={(vals) =>
+                                      field.onChange(vals[0])
+                                    }
+                                  />
+                                </FormControl>
+                              </div>
+                              <FormMessage />
                             </div>
-                            <FormMessage />
                           </FormItem>
                         )}
                       />
@@ -456,8 +457,8 @@ const NutritionForm: React.FC = () => {
                         control={form.control}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>{ingredientLabels[key]}</FormLabel>
-                            <div className="space-y-2">
+                            <div className="ingredient-cell">
+                              <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
                                   <Input
@@ -484,23 +485,24 @@ const NutritionForm: React.FC = () => {
                                   </span>
                                 </div>
                               </FormControl>
-                              <FormControl>
-                                <Slider
-                                  min={0}
-                                  max={Math.max(
-                                    10,
-                                    nutritionData[key].defaultValue * 3
-                                  )}
-                                  step={0.1}
-                                  value={[field.value]}
-                                  onValueChange={(vals) =>
-                                    field.onChange(vals[0])
-                                  }
-                                  className=""
-                                />
-                              </FormControl>
+                              <div className="slider-container">
+                                <FormControl>
+                                  <Slider
+                                    min={0}
+                                    max={Math.max(
+                                      10,
+                                      nutritionData[key].defaultValue * 3
+                                    )}
+                                    step={0.1}
+                                    value={[field.value]}
+                                    onValueChange={(vals) =>
+                                      field.onChange(vals[0])
+                                    }
+                                  />
+                                </FormControl>
+                              </div>
+                              <FormMessage />
                             </div>
-                            <FormMessage />
                           </FormItem>
                         )}
                       />
@@ -518,8 +520,8 @@ const NutritionForm: React.FC = () => {
                         control={form.control}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>{ingredientLabels[key]}</FormLabel>
-                            <div className="space-y-2">
+                            <div className="ingredient-cell">
+                              <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
                                   <Input
@@ -546,23 +548,24 @@ const NutritionForm: React.FC = () => {
                                   </span>
                                 </div>
                               </FormControl>
-                              <FormControl>
-                                <Slider
-                                  min={0}
-                                  max={Math.max(
-                                    10,
-                                    nutritionData[key].defaultValue * 3
-                                  )}
-                                  step={0.1}
-                                  value={[field.value]}
-                                  onValueChange={(vals) =>
-                                    field.onChange(vals[0])
-                                  }
-                                  className=""
-                                />
-                              </FormControl>
+                              <div className="slider-container">
+                                <FormControl>
+                                  <Slider
+                                    min={0}
+                                    max={Math.max(
+                                      10,
+                                      nutritionData[key].defaultValue * 3
+                                    )}
+                                    step={0.1}
+                                    value={[field.value]}
+                                    onValueChange={(vals) =>
+                                      field.onChange(vals[0])
+                                    }
+                                  />
+                                </FormControl>
+                              </div>
+                              <FormMessage />
                             </div>
-                            <FormMessage />
                           </FormItem>
                         )}
                       />
@@ -580,8 +583,8 @@ const NutritionForm: React.FC = () => {
                         control={form.control}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>{ingredientLabels[key]}</FormLabel>
-                            <div className="space-y-2">
+                            <div className="ingredient-cell">
+                              <FormLabel>{ingredientLabels[key]}</FormLabel>
                               <FormControl>
                                 <div className="space-x-2 flex items-center">
                                   <Input
@@ -608,23 +611,24 @@ const NutritionForm: React.FC = () => {
                                   </span>
                                 </div>
                               </FormControl>
-                              <FormControl>
-                                <Slider
-                                  min={0}
-                                  max={Math.max(
-                                    10,
-                                    nutritionData[key].defaultValue * 3
-                                  )}
-                                  step={0.1}
-                                  value={[field.value]}
-                                  onValueChange={(vals) =>
-                                    field.onChange(vals[0])
-                                  }
-                                  className=""
-                                />
-                              </FormControl>
+                              <div className="slider-container">
+                                <FormControl>
+                                  <Slider
+                                    min={0}
+                                    max={Math.max(
+                                      10,
+                                      nutritionData[key].defaultValue * 3
+                                    )}
+                                    step={0.1}
+                                    value={[field.value]}
+                                    onValueChange={(vals) =>
+                                      field.onChange(vals[0])
+                                    }
+                                  />
+                                </FormControl>
+                              </div>
+                              <FormMessage />
                             </div>
-                            <FormMessage />
                           </FormItem>
                         )}
                       />
