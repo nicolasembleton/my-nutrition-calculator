@@ -1,8 +1,9 @@
+import { nutritionData } from "~/data/nutritionData";
+
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import { Button } from "~/components/ui/button";
-import { nutritionData } from "../../docs/defaultValues.js";
-import { useForm, Controller } from "react-hook-form";
+import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
@@ -12,6 +13,21 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import "./NutritionForm.css";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
 
 interface NutritionTotal {
   calories: number;
@@ -180,47 +196,56 @@ const NutritionForm: React.FC = () => {
     return () => subscription.unsubscribe();
   }, [form.watch, form.handleSubmit]);
 
-  <div className="nutrition-form-container">
-    <div className="nutrition-form-card">
+return (
+  <motion.div 
+    className="nutrition-form-container"
+    variants={containerVariants}
+    initial="hidden"
+    animate="visible"
+  >
+    <motion.div 
+      className="nutrition-form-card"
+      variants={itemVariants}
+    >
       <div className="nutrition-form-card-header">
         <h2>Nutrition Calculator</h2>
       </div>
       <div className="nutrition-form-card-content">
         <Form {...form}>
           <form className="form-grid" onSubmit={form.handleSubmit(onSubmit)}>
-            {(Object.keys(nutritionData) as NutritionIngredient[]).map(
-              (ingredient) => (
+            {Object.keys(nutritionData).map((ingredient) => {
+              const key = ingredient as IngredientKey;
+              return (
                 <FormField
-                  key={ingredient}
-                  name={ingredient}
+                  key={key}
+                  name={key}
                   control={form.control}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{ingredientLabels[ingredient]}</FormLabel>
+                      <FormLabel>{ingredientLabels[key]}</FormLabel>
                       <FormControl>
                         <input
                           type="number"
                           {...field}
-                          onChange={(e) => handleInputChange(e, field.onChange)}
+                          onChange={(e) =>
+                            handleInputChange(e, field.onChange)
+                          }
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-              ),
-            )}
+              );
+            })}
             <Button type="submit">Calculate</Button>
           </form>
         </Form>
       </div>
-    </div>
-
+    </motion.div>
     <motion.div
       className="nutrition-label"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      variants={itemVariants}
     >
       <h2>Total Nutrition</h2>
       <div className="nutrition-header">
@@ -292,126 +317,8 @@ const NutritionForm: React.FC = () => {
         </div>
       </div>
     </motion.div>
-  </div>;
-  return (
-    <div className="nutrition-form-container">
-      <div className="nutrition-form-card">
-        <div className="nutrition-form-card-header">
-          <h2>Nutrition Calculator</h2>
-        </div>
-        <div className="nutrition-form-card-content">
-          <Form {...form}>
-            <form className="form-grid" onSubmit={form.handleSubmit(onSubmit)}>
-              {Object.keys(nutritionData).map((ingredient) => {
-                const key = ingredient as IngredientKey;
-                return (
-                  <FormField
-                    key={key}
-                    name={key}
-                    control={form.control}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{ingredientLabels[key]}</FormLabel>
-                        <FormControl>
-                          <input
-                            type="number"
-                            {...field}
-                            onChange={(e) =>
-                              handleInputChange(e, field.onChange)
-                            }
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                );
-              })}
-              <Button type="submit">Calculate</Button>
-            </form>
-          </Form>
-        </div>
-      </div>
-      <motion.div
-        className="nutrition-label"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h2>Total Nutrition</h2>
-        <div className="nutrition-header">
-          <div className="serving-size">Serving Size: 100g</div>
-          <div className="calories">
-            Calories: {totalNutrition.calories.toFixed(2)}
-          </div>
-        </div>
-        <div className="nutrition-content">
-          <div className="nutrient-section">
-            <div className="nutrient">
-              Total Fat: {totalNutrition.totalFat.toFixed(2)}g
-            </div>
-            <div className="nutrient">
-              Saturated Fat: {totalNutrition.saturatedFat.toFixed(2)}g
-            </div>
-            <div className="nutrient">
-              Polyunsaturated Fat:{" "}
-              {totalNutrition.polyunsaturatedFat.toFixed(2)}g
-            </div>
-            <div className="nutrient">
-              Monounsaturated Fat:{" "}
-              {totalNutrition.monounsaturatedFat.toFixed(2)}g
-            </div>
-            <div className="nutrient">
-              Cholesterol: {totalNutrition.cholesterol.toFixed(2)}mg
-            </div>
-            <div className="nutrient">
-              Sodium: {totalNutrition.sodium.toFixed(2)}mg
-            </div>
-          </div>
-          <div className="nutrient-section">
-            <div className="nutrient">
-              Total Carbohydrate: {totalNutrition.totalCarbohydrate.toFixed(2)}g
-            </div>
-            <div className="nutrient">
-              Dietary Fiber: {totalNutrition.dietaryFiber.toFixed(2)}g
-            </div>
-            <div className="nutrient">
-              Sugars: {totalNutrition.sugars.toFixed(2)}g
-            </div>
-            <div className="nutrient">
-              Protein: {totalNutrition.protein.toFixed(2)}g
-            </div>
-          </div>
-          <div className="nutrient-section">
-            <div className="nutrient">
-              Iron: {totalNutrition.iron.toFixed(2)}mg
-            </div>
-            <div className="nutrient">
-              Calcium: {totalNutrition.calcium.toFixed(2)}mg
-            </div>
-            <div className="nutrient">
-              Magnesium: {totalNutrition.magnesium.toFixed(2)}mg
-            </div>
-            <div className="nutrient">
-              Potassium: {totalNutrition.potassium.toFixed(2)}mg
-            </div>
-            <div className="nutrient">
-              Vitamin A: {totalNutrition.vitaminA.toFixed(2)}IU
-            </div>
-            <div className="nutrient">
-              Vitamin C: {totalNutrition.vitaminC.toFixed(2)}mg
-            </div>
-            <div className="nutrient">
-              Vitamin D: {totalNutrition.vitaminD.toFixed(2)}IU
-            </div>
-            <div className="nutrient">
-              Zinc: {totalNutrition.zinc.toFixed(2)}mg
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    </div>
-  );
+  </motion.div>
+);
 };
 
 export default NutritionForm;
