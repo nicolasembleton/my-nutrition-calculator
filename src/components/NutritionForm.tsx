@@ -624,30 +624,37 @@ const NutritionForm: React.FC = () => {
 export default NutritionForm;
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 const ingredientCategories = {
-  liquids: ['wholeMilk'],
-  oils: ['coconutOil'],
+  liquids: [
+    'wholeMilk'
+  ].sort(),
+
+  oils: [
+    'coconutOil'
+  ].sort(),
+
   fullSeeds: [
-    'goldenFlaxSeeds',
-    'brownFlaxSeeds',
-    'oatmeal',
-    'cocoaNibs',
     'almonds',
-    'gojiBerries',
-    'pumpkinSeeds',
-    'macadamiaNuts',
+    'brownFlaxSeeds',
     'chiaSeeds',
-    'driedRaisins'
-  ],
+    'cocoaNibs',
+    'driedRaisins',
+    'gojiBerries',
+    'goldenFlaxSeeds',
+    'macadamiaNuts',
+    'oatmeal',
+    'pumpkinSeeds'
+  ].sort(),
+
   powders: [
-    'rawCocoaPowder',
-    'hempSeedsPowder',
-    'quinoaPowder',
     'almondsPowder',
-    'macadamiaPowder',
     'blackBeansPowder',
-    'redBeansPowder',
-    'mungBeansPowder',
+    'brownRicePowder',
     'chickpeaPowder',
-    'brownRicePowder'
-  ]
+    'hempSeedsPowder',
+    'macadamiaPowder',
+    'mungBeansPowder',
+    'quinoaPowder',
+    'rawCocoaPowder',
+    'redBeansPowder'
+  ].sort()
 } as const;
