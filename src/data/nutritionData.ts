@@ -25,7 +25,7 @@ interface NutritionDataItem {
 
 export const nutritionData: Record<string, NutritionDataItem> = {
   goldenFlaxSeeds: {
-    defaultValue: 1,
+    defaultValue: 1.1,
     nutrition: {
       calories: 534,
       totalFat: 42.2,
@@ -49,7 +49,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   brownFlaxSeeds: {
-    defaultValue: 1,
+    defaultValue: 1.1,
     nutrition: {
       calories: 534,
       totalFat: 42.2,
@@ -73,7 +73,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   oatmeal: {
-    defaultValue: 12,
+    defaultValue: 12.0,
     nutrition: {
       calories: 389,
       totalFat: 6.9,
@@ -97,7 +97,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   cocoaNibs: {
-    defaultValue: 2,
+    defaultValue: 1.5,
     nutrition: {
       calories: 567,
       totalFat: 37.7,
@@ -121,7 +121,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   rawCocoaPowder: {
-    defaultValue: 2,
+    defaultValue: 1.5,
     nutrition: {
       calories: 228,
       totalFat: 13.7,
@@ -145,7 +145,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   almonds: {
-    defaultValue: 2,
+    defaultValue: 1.5,
     nutrition: {
       calories: 579,
       totalFat: 49.9,
@@ -169,7 +169,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   gojiBerries: {
-    defaultValue: 1,
+    defaultValue: 0.6,
     nutrition: {
       calories: 349,
       totalFat: 0.4,
@@ -193,7 +193,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   pumpkinSeeds: {
-    defaultValue: 2,
+    defaultValue: 1.5,
     nutrition: {
       calories: 559,
       totalFat: 49.1,
@@ -217,7 +217,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   macadamiaNuts: {
-    defaultValue: 1,
+    defaultValue: 0.9,
     nutrition: {
       calories: 718,
       totalFat: 75.8,
@@ -241,7 +241,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   coconutOil: {
-    defaultValue: 5,
+    defaultValue: 4.5,
     nutrition: {
       calories: 862,
       totalFat: 100,
@@ -265,7 +265,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   hempSeedsPowder: {
-    defaultValue: 1,
+    defaultValue: 0.9,
     nutrition: {
       calories: 373,
       totalFat: 12,
@@ -289,7 +289,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   wholeMilk: {
-    defaultValue: 45,
+    defaultValue: 45.0,
     nutrition: {
       calories: 61,
       totalFat: 3.3,
@@ -313,7 +313,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   chiaSeeds: {
-    defaultValue: 0,
+    defaultValue: 0.3,
     nutrition: {
       calories: 486,
       totalFat: 30.7,
@@ -337,7 +337,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   driedRaisins: {
-    defaultValue: 0,
+    defaultValue: 0.3,
     nutrition: {
       calories: 299,
       totalFat: 0.5,
@@ -361,7 +361,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   quinoaPowder: {
-    defaultValue: 0,
+    defaultValue: 0.3,
     nutrition: {
       calories: 368,
       totalFat: 6.1,
@@ -385,7 +385,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   almondsPowder: {
-    defaultValue: 0,
+    defaultValue: 0.3,
     nutrition: {
       calories: 579,
       totalFat: 49.9,
@@ -409,7 +409,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   macadamiaPowder: {
-    defaultValue: 0,
+    defaultValue: 0.3,
     nutrition: {
       calories: 718,
       totalFat: 75.8,
@@ -433,7 +433,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   blackBeansPowder: {
-    defaultValue: 0,
+    defaultValue: 0.3,
     nutrition: {
       calories: 341,
       totalFat: 1.4,
@@ -457,7 +457,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   redBeansPowder: {
-    defaultValue: 0,
+    defaultValue: 0.3,
     nutrition: {
       calories: 337,
       totalFat: 1.1,
@@ -481,7 +481,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   mungBeansPowder: {
-    defaultValue: 0,
+    defaultValue: 0.3,
     nutrition: {
       calories: 347,
       totalFat: 1.2,
@@ -505,7 +505,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   chickpeaPowder: {
-    defaultValue: 0,
+    defaultValue: 0.3,
     nutrition: {
       calories: 378,
       totalFat: 6.0,
@@ -529,7 +529,7 @@ export const nutritionData: Record<string, NutritionDataItem> = {
     },
   },
   brownRicePowder: {
-    defaultValue: 0,
+    defaultValue: 0.3,
     nutrition: {
       calories: 362,
       totalFat: 2.7,
