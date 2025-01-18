@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --background: 180 5% 96%;
+  --foreground: 170 90% 20%;
+  --card: 0 0% 100%;
+  --card-foreground: 170 90% 20%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 170 90% 20%;
+  --primary: 155 40% 75%;
+  --primary-foreground: 0 0% 100%; /* White or 170 90% 20% for dark text on primary */
+  --secondary: 130 35% 80%;
+  --secondary-foreground: 170 90% 20%;
+  --accent: 45 25% 90%;
+}

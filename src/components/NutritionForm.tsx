@@ -434,7 +434,7 @@ const NutritionForm: React.FC = () => {
                                   onValueChange={(vals) =>
                                     field.onChange(vals[0])
                                   }
-                                  className="ingredient-slider"
+                                  className=""
                                 />
                               </FormControl>
                             </div>
@@ -496,7 +496,7 @@ const NutritionForm: React.FC = () => {
                                   onValueChange={(vals) =>
                                     field.onChange(vals[0])
                                   }
-                                  className="ingredient-slider"
+                                  className=""
                                 />
                               </FormControl>
                             </div>
@@ -558,7 +558,7 @@ const NutritionForm: React.FC = () => {
                                   onValueChange={(vals) =>
                                     field.onChange(vals[0])
                                   }
-                                  className="ingredient-slider z-10"
+                                  className=""
                                 />
                               </FormControl>
                             </div>
@@ -620,7 +620,7 @@ const NutritionForm: React.FC = () => {
                                   onValueChange={(vals) =>
                                     field.onChange(vals[0])
                                   }
-                                  className="ingredient-slider"
+                                  className=""
                                 />
                               </FormControl>
                             </div>
