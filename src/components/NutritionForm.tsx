@@ -1,5 +1,7 @@
 import { nutritionData } from "~/data/nutritionData";
 import { NutrientHoverContent } from "~/components/nutrition/NutrientHoverContent";
+import { NutritionReport } from "~/components/nutrition/NutritionReport";
+import { NutrientSection } from "~/components/nutrition/NutrientSection";
 
 import React, { useState } from "react";
 import { FormHeader } from "~/components/nutrition/FormHeader";
@@ -750,156 +752,11 @@ const NutritionForm: React.FC = () => {
           </Form>
         </div>
       </motion.div>
-      <motion.div className="nutrition-label" variants={itemVariants}>
-        <div className="nutrition-label-header">
-          <h2>Nutrition Report</h2>
-          <Button
-            onClick={() => downloadCSV(form.getValues())}
-            className="download-button"
-          >
-            Download Detailed Report
-          </Button>
-        </div>
-        {/* Basic Info - Full Width */}
-        <div className="nutrition-section-group full-width">
-          <div className="nutrition-section-title">Basic Info</div>
-          <div className="nutrient">
-            <span className="nutrient-name">Calories</span>
-            <span className="nutrient-value">
-              {totalNutrition.calories.toFixed(2)} cal
-            </span>
-          </div>
-        </div>
-
-        <div className="nutrition-sections">
-          {/* Fats Section - First Column */}
-          <div className="nutrition-section-group">
-            <div className="nutrition-section-title">Fats</div>
-            <div className="nutrient">
-              <span className="nutrient-name">Total Fat</span>
-              <span className="nutrient-value">
-                {totalNutrition.totalFat.toFixed(2)}g
-              </span>
-            </div>
-            <div className="nutrient">
-              <span className="nutrient-name">Saturated Fat</span>
-              <span className="nutrient-value">
-                {totalNutrition.saturatedFat.toFixed(2)}g
-              </span>
-            </div>
-            <div className="nutrient">
-              <span className="nutrient-name">Polyunsaturated Fat</span>
-              <span className="nutrient-value">
-                {totalNutrition.polyunsaturatedFat.toFixed(2)}g
-              </span>
-            </div>
-            <div className="nutrient">
-              <span className="nutrient-name">Monounsaturated Fat</span>
-              <span className="nutrient-value">
-                {totalNutrition.monounsaturatedFat.toFixed(2)}g
-              </span>
-            </div>
-          </div>
-
-          {/* Carbs Section - Second Column */}
-          <div className="nutrition-section-group">
-            <div className="nutrition-section-title">Carbohydrates</div>
-            <div className="nutrient">
-              <span className="nutrient-name">Total Carbohydrate</span>
-              <span className="nutrient-value">
-                {totalNutrition.totalCarbohydrate.toFixed(2)}g
-              </span>
-            </div>
-            <div className="nutrient">
-              <span className="nutrient-name">Dietary Fiber</span>
-              <span className="nutrient-value">
-                {totalNutrition.dietaryFiber.toFixed(2)}g
-              </span>
-            </div>
-            <div className="nutrient">
-              <span className="nutrient-name">Sugars</span>
-              <span className="nutrient-value">
-                {totalNutrition.sugars.toFixed(2)}g
-              </span>
-            </div>
-          </div>
-
-          {/* Protein Section - Full Width */}
-          <div className="nutrition-section-group full-width">
-            <div className="nutrition-section-title">Protein</div>
-            <div className="nutrient">
-              <span className="nutrient-name">Protein</span>
-              <span className="nutrient-value">
-                {totalNutrition.protein.toFixed(2)}g
-              </span>
-            </div>
-          </div>
-
-          {/* Minerals Section - First Column */}
-          <div className="nutrition-section-group">
-            <div className="nutrition-section-title">Minerals</div>
-            <div className="nutrient">
-              <span className="nutrient-name">Sodium</span>
-              <span className="nutrient-value">
-                {totalNutrition.sodium.toFixed(2)}mg
-              </span>
-            </div>
-            <div className="nutrient">
-              <span className="nutrient-name">Iron</span>
-              <span className="nutrient-value">
-                {totalNutrition.iron.toFixed(2)}mg
-              </span>
-            </div>
-            <div className="nutrient">
-              <span className="nutrient-name">Calcium</span>
-              <span className="nutrient-value">
-                {totalNutrition.calcium.toFixed(2)}mg
-              </span>
-            </div>
-            <div className="nutrient">
-              <span className="nutrient-name">Magnesium</span>
-              <span className="nutrient-value">
-                {totalNutrition.magnesium.toFixed(2)}mg
-              </span>
-            </div>
-            <div className="nutrient">
-              <span className="nutrient-name">Potassium</span>
-              <span className="nutrient-value">
-                {totalNutrition.potassium.toFixed(2)}mg
-              </span>
-            </div>
-            <div className="nutrient">
-              <span className="nutrient-name">Zinc</span>
-              <span className="nutrient-value">
-                {totalNutrition.zinc.toFixed(2)}mg
-              </span>
-            </div>
-          </div>
-
-          {/* Vitamins Section - Second Column */}
-          <div className="nutrition-section-group">
-            <div className="nutrition-section-title">Vitamins</div>
-            <div className="nutrient">
-              <span className="nutrient-name">Vitamin A</span>
-              <span className="nutrient-value">
-                {totalNutrition.vitaminA.toFixed(2)}IU
-              </span>
-            </div>
-            <div className="nutrient">
-              <span className="nutrient-name">Vitamin C</span>
-              <span className="nutrient-value">
-                {totalNutrition.vitaminC.toFixed(2)}mg
-              </span>
-            </div>
-            <div className="nutrient">
-              <span className="nutrient-name">Vitamin D</span>
-              <span className="nutrient-value">
-                {totalNutrition.vitaminD.toFixed(2)}IU
-              </span>
-            </div>
-          </div>
-        </div>
-      </motion.div>
+      <NutritionReport
+        totalNutrition={totalNutrition}
+        onDownload={() => downloadCSV(form.getValues())}
+        formValues={form.getValues()}
+      />
     </motion.div>
   );
 };
