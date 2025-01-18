@@ -425,15 +425,10 @@ const NutritionForm: React.FC = () => {
                               <FormControl>
                                 <Slider
                                   min={0}
-                                  max={Math.max(
-                                    10,
-                                    nutritionData[key].defaultValue * 3,
-                                  )}
+                                  max={Math.max(10, nutritionData[key].defaultValue * 3)}
                                   step={0.1}
                                   value={[field.value]}
-                                  onValueChange={(vals) =>
-                                    field.onChange(vals[0])
-                                  }
+                                  onValueChange={(vals) => field.onChange(vals[0])}
                                   className="ingredient-slider"
                                 />
                               </FormControl>
@@ -487,15 +482,10 @@ const NutritionForm: React.FC = () => {
                               <FormControl>
                                 <Slider
                                   min={0}
-                                  max={Math.max(
-                                    10,
-                                    nutritionData[key].defaultValue * 3,
-                                  )}
+                                  max={Math.max(10, nutritionData[key].defaultValue * 3)}
                                   step={0.1}
                                   value={[field.value]}
-                                  onValueChange={(vals) =>
-                                    field.onChange(vals[0])
-                                  }
+                                  onValueChange={(vals) => field.onChange(vals[0])}
                                   className="ingredient-slider"
                                 />
                               </FormControl>
@@ -549,15 +539,10 @@ const NutritionForm: React.FC = () => {
                               <FormControl>
                                 <Slider
                                   min={0}
-                                  max={Math.max(
-                                    10,
-                                    nutritionData[key].defaultValue * 3,
-                                  )}
+                                  max={Math.max(10, nutritionData[key].defaultValue * 3)}
                                   step={0.1}
                                   value={[field.value]}
-                                  onValueChange={(vals) =>
-                                    field.onChange(vals[0])
-                                  }
+                                  onValueChange={(vals) => field.onChange(vals[0])}
                                   className="ingredient-slider"
                                 />
                               </FormControl>
@@ -611,15 +596,10 @@ const NutritionForm: React.FC = () => {
                               <FormControl>
                                 <Slider
                                   min={0}
-                                  max={Math.max(
-                                    10,
-                                    nutritionData[key].defaultValue * 3,
-                                  )}
+                                  max={Math.max(10, nutritionData[key].defaultValue * 3)}
                                   step={0.1}
                                   value={[field.value]}
-                                  onValueChange={(vals) =>
-                                    field.onChange(vals[0])
-                                  }
+                                  onValueChange={(vals) => field.onChange(vals[0])}
                                   className="ingredient-slider"
                                 />
                               </FormControl>
