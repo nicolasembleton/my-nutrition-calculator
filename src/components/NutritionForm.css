@@ -1,4 +1,24 @@
    .nutrition-form-container {
+     .nutrition-label-header {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       margin-bottom: 1.5rem;
+     }
+
+     .download-button {
+       background-color: #4CAF50;
+       color: white;
+       padding: 0.5rem 1rem;
+       border-radius: 0.5rem;
+       cursor: pointer;
+       transition: background-color 0.2s;
+     }
+
+     .download-button:hover {
+       background-color: #45a049;
+     }
+
      display: grid;
      grid-template-columns: 1fr 1fr;
      gap: 2rem;
@@ -89,6 +109,26 @@
       }
     }
      .nutrition-form-container {
+       .nutrition-label-header {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         margin-bottom: 1.5rem;
+       }
+
+       .download-button {
+         background-color: #4CAF50;
+         color: white;
+         padding: 0.5rem 1rem;
+         border-radius: 0.5rem;
+         cursor: pointer;
+         transition: background-color 0.2s;
+       }
+
+       .download-button:hover {
+         background-color: #45a049;
+       }
+
        display: grid;
        grid-template-columns: 1fr 1fr;
        gap: 2rem;
@@ -163,6 +203,26 @@
         }
       }
         .nutrition-form-container {
+          .nutrition-label-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+          }
+
+          .download-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+          }
+
+          .download-button:hover {
+            background-color: #45a049;
+          }
+
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 2rem;
