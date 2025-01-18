@@ -530,8 +530,10 @@ const NutritionForm: React.FC = () => {
                     );
                   })}
                 </TabsContent>
-                <Button type="submit">Calculate</Button>
               </Tabs>
+              <Button type="submit" className="calculate-cta">
+                Calculate Nutrition
+              </Button>
             </form>
           </Form>
         </div>
