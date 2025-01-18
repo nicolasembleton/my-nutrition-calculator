@@ -141,6 +141,32 @@
   white-space: nowrap;
 }
 
+/* Hover Card Section Styling */
+.nutrient-hover-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.nutrient-section-group {
+  border-bottom: 1px solid hsl(var(--border));
+  padding-bottom: 0.5rem;
+}
+
+.nutrient-section-group:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.nutrient-section-title {
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px dashed hsl(var(--border));
+}
+
 /* Add z-index to ensure hover card appears above other elements */
 [data-radix-popper-content-wrapper] {
   z-index: 50 !important;
