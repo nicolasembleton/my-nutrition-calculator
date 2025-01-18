@@ -661,86 +661,6 @@ const NutritionForm: React.FC = () => {
                   })}
                 </TabsContent>
 
-                <TabsContent value="carbohydrates" className="ingredient-grid">
-                  {ingredientCategories.carbohydrates.map((ingredient) => {
-                    const key = ingredient as IngredientKey;
-                    return (
-                      <FormField
-                        key={key}
-                        name={key}
-                        control={form.control}
-                        render={({ field }) => (
-                          <FormItem>
-                            <div className="ingredient-cell">
-                              <div className="calorie-indicator">
-                                {(
-                                  (nutritionData[key].nutrition.calories / 100) *
-                                  field.value
-                                ).toFixed(1)}{" "}
-                                cal
-                                <HoverCard>
-                                  <HoverCardTrigger asChild>
-                                    <button className="info-button">
-                                      <InfoCircledIcon className="info-icon" />
-                                    </button>
-                                  </HoverCardTrigger>
-                                  <HoverCardContent className="nutrient-hover-content w-auto">
-                                    {/* Existing HoverCard content */}
-                                  </HoverCardContent>
-                                </HoverCard>
-                              </div>
-                              <FormLabel>{ingredientLabels[key]}</FormLabel>
-                              <FormControl>
-                                <div className="space-x-2 flex items-center">
-                                  <Input
-                                    type="number"
-                                    step="0.1"
-                                    min="0"
-                                    placeholder={nutritionData[
-                                      key
-                                    ].defaultValue.toFixed(1)}
-                                    value={
-                                      typeof field.value === "number"
-                                        ? field.value.toFixed(1)
-                                        : field.value
-                                    }
-                                    onChange={(e) => {
-                                      handleInputChange(e, field.onChange);
-                                      field.onChange(
-                                        parseFloat(e.target.value) || 0
-                                      );
-                                    }}
-                                  />
-                                  <span className="text-sm text-muted-foreground">
-                                    g
-                                  </span>
-                                </div>
-                              </FormControl>
-                              <div className="slider-container">
-                                <FormControl>
-                                  <Slider
-                                    min={0}
-                                    max={Math.max(
-                                      10,
-                                      nutritionData[key].defaultValue * 3
-                                    )}
-                                    step={0.1}
-                                    value={[field.value]}
-                                    onValueChange={(vals) =>
-                                      field.onChange(vals[0])
-                                    }
-                                  />
-                                </FormControl>
-                              </div>
-                              <FormMessage />
-                            </div>
-                          </FormItem>
-                        )}
-                      />
-                    );
-                  })}
-                </TabsContent>
-
                 <TabsContent value="oils" className="ingredient-grid">
                   {ingredientCategories.oils.map((ingredient) => {
                     const key = ingredient as IngredientKey;
@@ -958,86 +878,6 @@ const NutritionForm: React.FC = () => {
                                         ))}
                                       </div>
                                     </div>
-                                  </HoverCardContent>
-                                </HoverCard>
-                              </div>
-                              <FormLabel>{ingredientLabels[key]}</FormLabel>
-                              <FormControl>
-                                <div className="space-x-2 flex items-center">
-                                  <Input
-                                    type="number"
-                                    step="0.1"
-                                    min="0"
-                                    placeholder={nutritionData[
-                                      key
-                                    ].defaultValue.toFixed(1)}
-                                    value={
-                                      typeof field.value === "number"
-                                        ? field.value.toFixed(1)
-                                        : field.value
-                                    }
-                                    onChange={(e) => {
-                                      handleInputChange(e, field.onChange);
-                                      field.onChange(
-                                        parseFloat(e.target.value) || 0
-                                      );
-                                    }}
-                                  />
-                                  <span className="text-sm text-muted-foreground">
-                                    g
-                                  </span>
-                                </div>
-                              </FormControl>
-                              <div className="slider-container">
-                                <FormControl>
-                                  <Slider
-                                    min={0}
-                                    max={Math.max(
-                                      10,
-                                      nutritionData[key].defaultValue * 3
-                                    )}
-                                    step={0.1}
-                                    value={[field.value]}
-                                    onValueChange={(vals) =>
-                                      field.onChange(vals[0])
-                                    }
-                                  />
-                                </FormControl>
-                              </div>
-                              <FormMessage />
-                            </div>
-                          </FormItem>
-                        )}
-                      />
-                    );
-                  })}
-                </TabsContent>
-
-                <TabsContent value="carbohydrates" className="ingredient-grid">
-                  {ingredientCategories.carbohydrates.map((ingredient) => {
-                    const key = ingredient as IngredientKey;
-                    return (
-                      <FormField
-                        key={key}
-                        name={key}
-                        control={form.control}
-                        render={({ field }) => (
-                          <FormItem>
-                            <div className="ingredient-cell">
-                              <div className="calorie-indicator">
-                                {(
-                                  (nutritionData[key].nutrition.calories / 100) *
-                                  field.value
-                                ).toFixed(1)}{" "}
-                                cal
-                                <HoverCard>
-                                  <HoverCardTrigger asChild>
-                                    <button className="info-button">
-                                      <InfoCircledIcon className="info-icon" />
-                                    </button>
-                                  </HoverCardTrigger>
-                                  <HoverCardContent className="nutrient-hover-content w-auto">
-                                    {/* Existing HoverCard content */}
                                   </HoverCardContent>
                                 </HoverCard>
                               </div>
@@ -1378,7 +1218,8 @@ const NutritionForm: React.FC = () => {
                             <div className="ingredient-cell">
                               <div className="calorie-indicator">
                                 {(
-                                  (nutritionData[key].nutrition.calories / 100) *
+                                  (nutritionData[key].nutrition.calories /
+                                    100) *
                                   field.value
                                 ).toFixed(1)}{" "}
                                 cal
