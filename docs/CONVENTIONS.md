@@ -4,3 +4,4 @@
 
 1. Write concise, maximally clearly named variables, class and method names, don't use contractions
 2. Write first a CucumberJS test suite, then implement the code
+3. Do not ask for confirmation, follow the request _precisely_
