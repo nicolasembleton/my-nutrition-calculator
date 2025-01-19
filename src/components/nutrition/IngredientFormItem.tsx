@@ -24,7 +24,7 @@ const IngredientFormItem: React.FC<IngredientFormItemProps> = ({
   ...props
 }) => {
   return (
-    <div {...props}>
+    <> 
       {ingredients.map((ingredient) => {
         const key = ingredient;
         return (
@@ -64,7 +64,7 @@ const IngredientFormItem: React.FC<IngredientFormItemProps> = ({
           />
         );
       })}
-    </div>
+    </>  
   );
 };
 

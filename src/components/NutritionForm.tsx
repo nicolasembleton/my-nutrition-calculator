@@ -9,22 +9,12 @@ import {
 } from "~/components/nutrition/constants";
 import { FormHeader } from "~/components/nutrition/FormHeader";
 import IngredientFormItem from "~/components/nutrition/IngredientFormItem";
-import { NutrientHoverContent } from "~/components/nutrition/NutrientHoverContent";
-import { NutrientSection } from "~/components/nutrition/NutrientSection";
 import { NutritionReport } from "~/components/nutrition/NutritionReport";
-import { IngredientKey } from "~/components/nutrition/types";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "~/components/ui/form";
+import { Form } from "~/components/ui/form";
 import { nutritionData } from "~/data/nutritionData";
 import "./NutritionForm.css";
-import { Control, FieldValues } from "react-hook-form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import { TabNavigation } from "./nutrition/TabNavigation";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -212,7 +202,6 @@ interface NutritionTotal {
 
 type IngredientKey = keyof typeof nutritionData;
 type FormValues = Record<IngredientKey, number>;
-type FieldType<T extends FieldValues> = Control<T>["fields"][keyof T];
 
 const NutritionForm: React.FC = () => {
   const form = useForm<FormValues>({
@@ -359,13 +348,7 @@ const NutritionForm: React.FC = () => {
           <Form {...form}>
             <form className="form-grid" onSubmit={form.handleSubmit(onSubmit)}>
               <Tabs defaultValue="liquids" className="tabs-container w-full">
-                <TabsList className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground">
-                  <TabsTrigger value="liquids">Liquids</TabsTrigger>
-                  <TabsTrigger value="oils">Oils</TabsTrigger>
-                  <TabsTrigger value="carbohydrates">Carbohydrates</TabsTrigger>
-                  <TabsTrigger value="fullSeeds">Full Seeds</TabsTrigger>
-                  <TabsTrigger value="powders">Powders</TabsTrigger>
-                </TabsList>
+                <TabNavigation></TabNavigation>
 
                 <TabsContent value="liquids" className="ingredient-grid">
                   <IngredientFormItem
