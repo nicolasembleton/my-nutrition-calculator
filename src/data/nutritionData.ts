@@ -23,6 +23,8 @@ export interface NutritionDataItem {
   };
 }
 
+export type NutritionKey = keyof NutritionDataItem["nutrition"];
+
 export const nutritionData: Record<string, NutritionDataItem> = {
   goldenFlaxSeeds: {
     defaultValue: 1.1,

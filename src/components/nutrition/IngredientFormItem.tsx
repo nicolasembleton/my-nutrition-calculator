@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { IngredientValue } from "./IngredientValue";
 import { IngredientKey } from "./types";
 import { Control } from "react-hook-form";
