@@ -1,19 +1,18 @@
-import { nutritionData } from "~/data/nutritionData";
-import { NutrientHoverContent } from "~/components/nutrition/NutrientHoverContent";
-import { NutritionReport } from "~/components/nutrition/NutritionReport";
-import IngredientFormItem from "~/components/nutrition/IngredientFormItem";
-import { NutrientSection } from "~/components/nutrition/NutrientSection";
-import { IngredientKey } from "~/components/nutrition/types";
+import { motion } from "framer-motion";
 import React, { useState } from "react";
-import { FormHeader } from "~/components/nutrition/FormHeader";
+import { useForm } from "react-hook-form";
 import { CalculateButton } from "~/components/nutrition/CalculateButton";
 import {
-  ingredientLabels,
   ingredientCategories,
+  ingredientLabels,
   motionVariants,
 } from "~/components/nutrition/constants";
-import { motion } from "framer-motion";
-import { useForm } from "react-hook-form";
+import { FormHeader } from "~/components/nutrition/FormHeader";
+import IngredientFormItem from "~/components/nutrition/IngredientFormItem";
+import { NutrientHoverContent } from "~/components/nutrition/NutrientHoverContent";
+import { NutrientSection } from "~/components/nutrition/NutrientSection";
+import { NutritionReport } from "~/components/nutrition/NutritionReport";
+import { IngredientKey } from "~/components/nutrition/types";
 import {
   Form,
   FormControl,
@@ -22,9 +21,10 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
+import { nutritionData } from "~/data/nutritionData";
 import "./NutritionForm.css";
+import { Control, FieldValues } from "react-hook-form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
-import { FieldValues, Control } from 'react-hook-form';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -212,12 +212,15 @@ interface NutritionTotal {
 
 type IngredientKey = keyof typeof nutritionData;
 type FormValues = Record<IngredientKey, number>;
-type FieldType<T extends FieldValues> = Control<T>['fields'][keyof T];
+type FieldType<T extends FieldValues> = Control<T>["fields"][keyof T];
 
 const NutritionForm: React.FC = () => {
   const form = useForm<FormValues>({
     defaultValues: Object.fromEntries(
-      Object.keys(nutritionData).map((key) => [key, nutritionData[key as IngredientKey].defaultValue])
+      Object.keys(nutritionData).map((key) => [
+        key,
+        nutritionData[key as IngredientKey].defaultValue,
+      ])
     ) as FormValues,
   });
 
@@ -334,7 +337,10 @@ const NutritionForm: React.FC = () => {
   React.useEffect(() => {
     // Trigger initial calculation with default values
     const defaultValues = Object.fromEntries(
-      Object.keys(nutritionData).map((key) => [key, nutritionData[key as IngredientKey].defaultValue])
+      Object.keys(nutritionData).map((key) => [
+        key,
+        nutritionData[key as IngredientKey].defaultValue,
+      ])
     ) as FormValues;
     onSubmit(defaultValues);
   }, []); // Empty dependency array means this runs once on mount
@@ -353,7 +359,7 @@ const NutritionForm: React.FC = () => {
           <Form {...form}>
             <form className="form-grid" onSubmit={form.handleSubmit(onSubmit)}>
               <Tabs defaultValue="liquids" className="tabs-container w-full">
-                <TabsList className="h-10 rounded-md bg-muted p-1 text-muted-foreground inline-flex items-center justify-center">
+                <TabsList className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground">
                   <TabsTrigger value="liquids">Liquids</TabsTrigger>
                   <TabsTrigger value="oils">Oils</TabsTrigger>
                   <TabsTrigger value="carbohydrates">Carbohydrates</TabsTrigger>

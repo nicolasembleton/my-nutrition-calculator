@@ -1,10 +1,10 @@
 import React from "react";
-import { IngredientValue } from "./IngredientValue";
-import { IngredientKey } from "./types";
 import { Control } from "react-hook-form";
 import { FormField, FormItem, FormLabel } from "~/components/ui/form";
-import { ingredientLabels } from "./constants";
 import { Slider } from "../ui/slider";
+import { ingredientLabels } from "./constants";
+import { IngredientValue } from "./IngredientValue";
+import { IngredientKey } from "./types";
 
 interface IngredientFormItemProps extends React.HTMLAttributes<HTMLDivElement> {
   ingredients: IngredientKey[];

@@ -1,7 +1,7 @@
 import React from "react";
-import { IngredientKey } from "./types";
-import { ingredientLabels } from "./constants";
 import { NutritionDataItem, NutritionKey } from "~/data/nutritionData";
+import { ingredientLabels } from "./constants";
+import { IngredientKey } from "./types";
 
 interface NutrientHoverContentProps {
   ingredient: IngredientKey;

@@ -1,13 +1,13 @@
 import React from "react";
-import { Input } from "~/components/ui/input";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "~/components/ui/hover-card";
-import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { NutrientHoverContent } from "./NutrientHoverContent";
+import { Input } from "~/components/ui/input";
 import { NutritionDataItem } from "~/data/nutritionData";
+import { NutrientHoverContent } from "./NutrientHoverContent";
 import { IngredientKey } from "./types";
 
 interface IngredientValueProps {
@@ -28,7 +28,7 @@ export const IngredientValue = ({
   onInputChange,
 }: IngredientValueProps) => (
   <div className="flex flex-row items-center justify-between">
-    <div className="space-x-2 flex items-center">
+    <div className="flex items-center space-x-2">
       <Input
         type="number"
         step="0.1"
@@ -40,10 +40,9 @@ export const IngredientValue = ({
     </div>
     <div className="calorie-indicator">
       <span className="after:content-['cal']">
-        {(
-          (nutritionData[ingredient].nutrition.calories / 100) *
-          value
-        ).toFixed(1)}{" "}
+        {((nutritionData[ingredient].nutrition.calories / 100) * value).toFixed(
+          1
+        )}{" "}
       </span>
       <HoverCard>
         <HoverCardTrigger asChild>

@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import { TabsList, TabsTrigger } from "~/components/ui/tabs";
 
 export const TabNavigation = () => (
-  <TabsList className="h-10 rounded-md bg-muted p-1 text-muted-foreground inline-flex items-center justify-center">
+  <TabsList className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground">
     <TabsTrigger value="liquids">Liquids</TabsTrigger>
     <TabsTrigger value="oils">Oils</TabsTrigger>
     <TabsTrigger value="carbohydrates">Carbohydrates</TabsTrigger>

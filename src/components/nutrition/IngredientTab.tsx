@@ -1,28 +1,35 @@
-import React from 'react';
-import { TabsContent } from "~/components/ui/tabs";
+import React from "react";
 import { Control, Controller } from "react-hook-form";
-import { IngredientKey } from "./types";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "~/components/ui/hover-card";
+import { TabsContent } from "~/components/ui/tabs";
 import { NutritionDataItem } from "~/data/nutritionData";
 import { ingredientLabels } from "./constants";
-import { NutrientHoverContent } from "./NutrientHoverContent";
 import { IngredientValue } from "./IngredientValue";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "~/components/ui/hover-card";
-import { InfoCircledIcon } from "@radix-ui/react-icons";
+import { NutrientHoverContent } from "./NutrientHoverContent";
+import { IngredientKey } from "./types";
 
 interface IngredientTabProps {
   value: string;
   ingredients: IngredientKey[];
   control: Control<any>;
   nutritionData: Record<IngredientKey, NutritionDataItem>;
-  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>, onChange: (...event: any[]) => void) => void;
+  handleInputChange: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    onChange: (...event: any[]) => void
+  ) => void;
 }
 
-export const IngredientTab = ({ 
-  value, 
-  ingredients, 
-  control, 
-  nutritionData, 
-  handleInputChange 
+export const IngredientTab = ({
+  value,
+  ingredients,
+  control,
+  nutritionData,
+  handleInputChange,
 }: IngredientTabProps) => (
   <TabsContent value={value} className="ingredient-grid">
     {ingredients.map((ingredient) => (
@@ -33,7 +40,11 @@ export const IngredientTab = ({
         render={({ field }) => (
           <div className="ingredient-cell">
             <div className="calorie-indicator">
-              {((nutritionData[ingredient].nutrition.calories / 100) * field.value).toFixed(1)} cal
+              {(
+                (nutritionData[ingredient].nutrition.calories / 100) *
+                field.value
+              ).toFixed(1)}{" "}
+              cal
               <HoverCard>
                 <HoverCardTrigger asChild>
                   <button className="info-button">
@@ -42,10 +53,10 @@ export const IngredientTab = ({
                 </HoverCardTrigger>
                 <HoverCardContent className="nutrient-hover-content w-auto">
                   <h4>{ingredientLabels[ingredient]} Nutrition</h4>
-                  <NutrientHoverContent 
-                    ingredient={ingredient} 
-                    value={field.value} 
-                    nutritionData={nutritionData} 
+                  <NutrientHoverContent
+                    ingredient={ingredient}
+                    value={field.value}
+                    nutritionData={nutritionData}
                   />
                 </HoverCardContent>
               </HoverCard>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface NutrientSectionProps {
   title: string;
@@ -10,14 +10,19 @@ interface NutrientSectionProps {
   fullWidth?: boolean;
 }
 
-export const NutrientSection = ({ title, nutrients, fullWidth = false }: NutrientSectionProps) => (
-  <div className={`nutrition-section-group ${fullWidth ? 'full-width' : ''}`}>
+export const NutrientSection = ({
+  title,
+  nutrients,
+  fullWidth = false,
+}: NutrientSectionProps) => (
+  <div className={`nutrition-section-group ${fullWidth ? "full-width" : ""}`}>
     <div className="nutrition-section-title">{title}</div>
     {nutrients.map(({ name, value, unit }) => (
       <div key={name} className="nutrient">
         <span className="nutrient-name">{name}</span>
         <span className="nutrient-value">
-          {value.toFixed(2)}{unit}
+          {value.toFixed(2)}
+          {unit}
         </span>
       </div>
     ))}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Button } from "~/components/ui/button";
 
 interface CalculateButtonProps {
@@ -6,11 +6,7 @@ interface CalculateButtonProps {
 }
 
 export const CalculateButton = ({ onClick }: CalculateButtonProps) => (
-  <Button 
-    type="submit" 
-    className="calculate-cta"
-    onClick={onClick}
-  >
+  <Button type="submit" className="calculate-cta" onClick={onClick}>
     Calculate Nutrition
   </Button>
 );
