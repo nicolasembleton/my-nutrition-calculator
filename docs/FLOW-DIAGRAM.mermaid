@@ -4,9 +4,9 @@ graph TD
     B -- No --> D;
     D{User is on the Nutrition Calculator Page} --> E;
     C --> E{User changes any ingredient values?};
-    E -- Yes --> F[Update ingredient value(s)];
+    E -- Yes --> F[Update ingredient values];
     E -- No --> G;
-    F --> G[Click "Calculate" button];
+    F --> G[Click 'Calculate' button];
     G --> H{Calculate total nutrition};
     H --> I[Display total nutrition];
     I --> J{Displayed values match expected values?};
