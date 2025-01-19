@@ -1,24 +1,10 @@
 import React, { Fragment } from "react";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "~/components/ui/hover-card";
-import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { Slider } from "~/components/ui/slider";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "~/components/ui/form";
 import { IngredientValue } from "./IngredientValue";
-import { NutrientHoverContent } from "./NutrientHoverContent";
-import { nutritionData } from "~/data/nutritionData";
-import { ingredientLabels } from "./constants";
 import { IngredientKey } from "./types";
 import { Control } from "react-hook-form";
+import { FormField, FormItem, FormLabel } from "~/components/ui/form";
+import { ingredientLabels } from "./constants";
+import { Slider } from "../ui/slider";
 
 interface IngredientFormItemProps extends React.HTMLAttributes<HTMLDivElement> {
   ingredients: IngredientKey[];
@@ -27,12 +13,14 @@ interface IngredientFormItemProps extends React.HTMLAttributes<HTMLDivElement> {
     event: React.ChangeEvent<HTMLInputElement>,
     onChange: (...event: any[]) => void
   ) => void;
+  nutritionData: any;
 }
 
 const IngredientFormItem: React.FC<IngredientFormItemProps> = ({
   ingredients,
   control,
   handleInputChange,
+  nutritionData,
   ...props
 }) => {
   return (
@@ -47,33 +35,11 @@ const IngredientFormItem: React.FC<IngredientFormItemProps> = ({
             render={({ field }) => (
               <FormItem>
                 <div className="ingredient-cell">
-                  <div className="flex flex-row items-center justify-between">
-                    <FormLabel className="">{ingredientLabels[key]}</FormLabel>
-                    <div className="calorie-indicator">
-                      <span className="after:content-['cal']">
-                        {(
-                          (nutritionData[key].nutrition.calories / 100) *
-                          field.value
-                        ).toFixed(1)}{" "}
-                      </span>
-                      <HoverCard>
-                        <HoverCardTrigger asChild>
-                          <button className="info-button">
-                            <InfoCircledIcon className="info-icon" />
-                          </button>
-                        </HoverCardTrigger>
-                        <HoverCardContent className="nutrient-hover-content w-auto">
-                          <NutrientHoverContent
-                            ingredient={key}
-                            value={field.value}
-                            nutritionData={nutritionData}
-                          />
-                        </HoverCardContent>
-                      </HoverCard>
-                    </div>
-                  </div>
-                  <div className="space-x-2 flex items-center">
+                  <FormLabel>{ingredientLabels[key]}</FormLabel>
+                  <div className="space-x-2">
                     <IngredientValue
+                      ingredient={key}
+                      nutritionData={nutritionData}
                       value={field.value}
                       defaultValue={nutritionData[key].defaultValue}
                       onChange={(val) => field.onChange(val)}
@@ -92,7 +58,6 @@ const IngredientFormItem: React.FC<IngredientFormItemProps> = ({
                       onValueChange={(vals) => field.onChange(vals[0])}
                     />
                   </div>
-                  <FormMessage />
                 </div>
               </FormItem>
             )}

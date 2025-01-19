@@ -365,6 +365,7 @@ const NutritionForm: React.FC = () => {
                   <IngredientFormItem
                     ingredients={ingredientCategories.liquids}
                     control={form.control}
+                    nutritionData={nutritionData}
                     handleInputChange={handleInputChange}
                   />
                 </TabsContent>
@@ -373,6 +374,7 @@ const NutritionForm: React.FC = () => {
                   <IngredientFormItem
                     ingredients={ingredientCategories.oils}
                     control={form.control}
+                    nutritionData={nutritionData}
                     handleInputChange={handleInputChange}
                   />
                 </TabsContent>
@@ -381,6 +383,7 @@ const NutritionForm: React.FC = () => {
                   <IngredientFormItem
                     ingredients={ingredientCategories.fullSeeds}
                     control={form.control}
+                    nutritionData={nutritionData}
                     handleInputChange={handleInputChange}
                   />
                 </TabsContent>
@@ -389,6 +392,7 @@ const NutritionForm: React.FC = () => {
                   <IngredientFormItem
                     ingredients={ingredientCategories.carbohydrates}
                     control={form.control}
+                    nutritionData={nutritionData}
                     handleInputChange={handleInputChange}
                   />
                 </TabsContent>
@@ -397,6 +401,7 @@ const NutritionForm: React.FC = () => {
                   <IngredientFormItem
                     ingredients={ingredientCategories.powders}
                     control={form.control}
+                    nutritionData={nutritionData}
                     handleInputChange={handleInputChange}
                   />
                 </TabsContent>
