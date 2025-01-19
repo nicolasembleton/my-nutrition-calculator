@@ -24,7 +24,7 @@ const IngredientFormItem: React.FC<IngredientFormItemProps> = ({
   ...props
 }) => {
   return (
-    <> 
+    <>
       {ingredients.map((ingredient) => {
         const key = ingredient;
         return (
@@ -52,7 +52,10 @@ const IngredientFormItem: React.FC<IngredientFormItemProps> = ({
                   <div className="slider-container">
                     <Slider
                       min={0}
-                      max={Math.max(10, nutritionData[key].defaultValue * 3)}
+                      max={
+                        nutritionData[key].maxValue ??
+                        Math.max(10, nutritionData[key].defaultValue * 3)
+                      }
                       step={0.1}
                       value={[field.value]}
                       onValueChange={(vals) => field.onChange(vals[0])}
@@ -64,7 +67,7 @@ const IngredientFormItem: React.FC<IngredientFormItemProps> = ({
           />
         );
       })}
-    </>  
+    </>
   );
 };
 

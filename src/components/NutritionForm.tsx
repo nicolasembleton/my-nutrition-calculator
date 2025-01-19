@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useState, useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { CalculateButton } from "~/components/nutrition/CalculateButton";
 import {
@@ -13,11 +13,19 @@ import { NutritionReport } from "~/components/nutrition/NutritionReport";
 import { Form } from "~/components/ui/form";
 import { nutritionData } from "~/data/nutritionData";
 import "./NutritionForm.css";
-import { ResetIcon } from "@radix-ui/react-icons";
+import { List } from "lucide-react";
+import { PiNumberCircleZeroFill } from "react-icons/pi";
+import { RecipeIcon, ResetIcon } from "@radix-ui/react-icons";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "~/components/ui/hover-card";
+import { Separator } from "~/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
-import { TabNavigation } from "./nutrition/TabNavigation";
 import { calculateNutrition } from "./nutrition/calculateNutrition";
 import { downloadCSV } from "./nutrition/generateCSV";
+import { TabNavigation } from "./nutrition/TabNavigation";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -109,6 +117,12 @@ const NutritionForm: React.FC = () => {
     form.reset();
   }, [form.reset]);
 
+  const setAllToZero = useCallback(() => {
+    Object.keys(nutritionData).forEach((key) => {
+      form.setValue(key as IngredientKey, 0);
+    });
+  }, [form.setValue]);
+
   React.useEffect(() => {
     const subscription = form.watch((value) => {
       if (value) {
@@ -138,15 +152,49 @@ const NutritionForm: React.FC = () => {
     >
       <motion.div className="nutrition-form-card" variants={itemVariants}>
         <FormHeader title="Nutrition Calculator" />
-        <button
-          type="button"
-          onClick={resetForm}
-          className="reset-button"
-          aria-label="Reset all ingredients to default values"
-        >
-          <ResetIcon className="reset-icon" />
-        </button>
-
+        <div className="absolute right-2 top-2 flex space-x-2">
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <button
+                type="button"
+                className="reset-button"
+                aria-label="View current recipe"
+              >
+                <List className="reset-icon" />
+              </button>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="font-semibold">Current Recipe</p>
+              <Separator className="my-2" />
+              <ul className="list-none p-0">
+                {Object.entries(form.getValues())
+                  .filter(([key, value]) => value > 0)
+                  .sort(([, a], [, b]) => b - a)
+                  .map(([key, value]) => (
+                    <li key={key} className="mb-1">
+                      {ingredientLabels[key]}: {value}g
+                    </li>
+                  ))}
+              </ul>
+            </HoverCardContent>
+          </HoverCard>
+          <button
+            type="button"
+            onClick={resetForm}
+            className="reset-button"
+            aria-label="Reset all ingredients to default values"
+          >
+            <ResetIcon className="reset-icon" />
+          </button>
+          <button
+            type="button"
+            onClick={setAllToZero}
+            className="reset-button"
+            aria-label="Set all ingredients to zero"
+          >
+            <PiNumberCircleZeroFill className="reset-icon" />
+          </button>
+        </div>
         <div className="nutrition-form-card-content">
           <Form {...form}>
             <form className="form-grid" onSubmit={form.handleSubmit(onSubmit)}>
@@ -207,7 +255,6 @@ const NutritionForm: React.FC = () => {
       <NutritionReport
         totalNutrition={totalNutrition}
         onDownload={() => downloadCSV(form.getValues())}
-        formValues={form.getValues()}
       />
     </motion.div>
   );

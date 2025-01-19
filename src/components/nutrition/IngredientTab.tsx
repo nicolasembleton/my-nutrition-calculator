@@ -66,6 +66,8 @@ export const IngredientTab = ({
               value={field.value}
               defaultValue={nutritionData[ingredient].defaultValue}
               onChange={field.onChange}
+              ingredient={ingredient}
+              nutritionData={nutritionData[ingredient]}
               onInputChange={(e) => {
                 handleInputChange(e, field.onChange);
                 field.onChange(parseFloat(e.target.value) || 0);

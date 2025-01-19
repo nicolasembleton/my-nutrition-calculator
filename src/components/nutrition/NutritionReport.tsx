@@ -1,20 +1,17 @@
 import { motion } from "framer-motion";
-import React from "react";
 import { Button } from "~/components/ui/button";
-import { motionVariants } from "./constants";
+import { ingredientLabels, motionVariants } from "./constants";
 import { NutrientSection } from "./NutrientSection";
 import { FormValues, NutritionTotal } from "./types";
 
 interface NutritionReportProps {
   totalNutrition: NutritionTotal;
   onDownload: () => void;
-  formValues: FormValues;
 }
 
 export const NutritionReport = ({
   totalNutrition,
   onDownload,
-  formValues,
 }: NutritionReportProps) => (
   <motion.div
     className="nutrition-label -z-10"
@@ -22,7 +19,7 @@ export const NutritionReport = ({
   >
     <div className="nutrition-label-header">
       <h2>Nutrition Report</h2>
-      <Button onClick={onDownload} className="download-button">
+      <Button onClick={onDownload} className="download-button" size="sm">
         Download Detailed Report
       </Button>
     </div>
@@ -77,7 +74,9 @@ export const NutritionReport = ({
       />
       <NutrientSection
         title="Protein"
-        nutrients={[{ name: "Protein", value: totalNutrition.protein, unit: "g" }]}
+        nutrients={[
+          { name: "Protein", value: totalNutrition.protein, unit: "g" },
+        ]}
         fullWidth
       />
       <NutrientSection
