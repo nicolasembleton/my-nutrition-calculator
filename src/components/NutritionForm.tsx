@@ -3,7 +3,7 @@ import { NutrientHoverContent } from "~/components/nutrition/NutrientHoverConten
 import { NutritionReport } from "~/components/nutrition/NutritionReport";
 import IngredientFormItem from "~/components/nutrition/IngredientFormItem";
 import { NutrientSection } from "~/components/nutrition/NutrientSection";
-
+import { IngredientKey } from "~/components/nutrition/types";
 import React, { useState } from "react";
 import { FormHeader } from "~/components/nutrition/FormHeader";
 import { CalculateButton } from "~/components/nutrition/CalculateButton";
@@ -12,7 +12,6 @@ import {
   ingredientCategories,
   motionVariants,
 } from "~/components/nutrition/constants";
-
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import {
@@ -25,6 +24,7 @@ import {
 } from "~/components/ui/form";
 import "./NutritionForm.css";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import { FieldValues, Control } from 'react-hook-form';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -212,16 +212,13 @@ interface NutritionTotal {
 
 type IngredientKey = keyof typeof nutritionData;
 type FormValues = Record<IngredientKey, number>;
+type FieldType<T extends FieldValues> = Control<T>['fields'][keyof T];
 
 const NutritionForm: React.FC = () => {
   const form = useForm<FormValues>({
-    defaultValues: Object.keys(nutritionData).reduce(
-      (acc, key) => ({
-        ...acc,
-        [key]: nutritionData[key as IngredientKey].defaultValue,
-      }),
-      {} as FormValues
-    ),
+    defaultValues: Object.fromEntries(
+      Object.keys(nutritionData).map((key) => [key, nutritionData[key as IngredientKey].defaultValue])
+    ) as FormValues,
   });
 
   const [totalNutrition, setTotalNutrition] = useState<NutritionTotal>({
@@ -336,13 +333,9 @@ const NutritionForm: React.FC = () => {
 
   React.useEffect(() => {
     // Trigger initial calculation with default values
-    const defaultValues = Object.keys(nutritionData).reduce(
-      (acc, key) => ({
-        ...acc,
-        [key]: nutritionData[key as IngredientKey].defaultValue,
-      }),
-      {} as FormValues
-    );
+    const defaultValues = Object.fromEntries(
+      Object.keys(nutritionData).map((key) => [key, nutritionData[key as IngredientKey].defaultValue])
+    ) as FormValues;
     onSubmit(defaultValues);
   }, []); // Empty dependency array means this runs once on mount
 
@@ -369,78 +362,43 @@ const NutritionForm: React.FC = () => {
                 </TabsList>
 
                 <TabsContent value="liquids" className="ingredient-grid">
-                  {ingredientCategories.liquids.map((ingredient) => {
-                    const key = ingredient as IngredientKey;
-                    const field = form.control.fields[key];
-                    return (
-                      <IngredientFormItem
-                        key={key}
-                        ingredient={key}
-                        field={field}
-                        handleInputChange={handleInputChange}
-                      />
-                    );
-                  })}
+                  <IngredientFormItem
+                    ingredients={ingredientCategories.liquids}
+                    control={form.control}
+                    handleInputChange={handleInputChange}
+                  />
                 </TabsContent>
 
                 <TabsContent value="oils" className="ingredient-grid">
-                  {ingredientCategories.oils.map((ingredient) => {
-                    const key = ingredient as IngredientKey;
-                    const field = form.control.fields[key];
-                    return (
-                      <IngredientFormItem
-                        key={key}
-                        ingredient={key}
-                        field={field}
-                        handleInputChange={handleInputChange}
-                      />
-                    );
-                  })}
+                  <IngredientFormItem
+                    ingredients={ingredientCategories.oils}
+                    control={form.control}
+                    handleInputChange={handleInputChange}
+                  />
                 </TabsContent>
 
                 <TabsContent value="fullSeeds" className="ingredient-grid">
-                  {ingredientCategories.fullSeeds.map((ingredient) => {
-                    const key = ingredient as IngredientKey;
-                    const field = form.control.fields[key];
-                    return (
-                      <IngredientFormItem
-                        key={key}
-                        ingredient={key}
-                        field={field}
-                        handleInputChange={handleInputChange}
-                      />
-                    );
-                  })}
+                  <IngredientFormItem
+                    ingredients={ingredientCategories.fullSeeds}
+                    control={form.control}
+                    handleInputChange={handleInputChange}
+                  />
                 </TabsContent>
 
                 <TabsContent value="carbohydrates" className="ingredient-grid">
-                  {ingredientCategories.carbohydrates.map((ingredient) => {
-                    const key = ingredient as IngredientKey;
-                    const field = form.control.fields[key];
-                    return (
-                      <IngredientFormItem
-                        key={key}
-                        ingredient={key}
-                        field={field}
-                        handleInputChange={handleInputChange}
-                      />
-                    );
-                  })}
+                  <IngredientFormItem
+                    ingredients={ingredientCategories.carbohydrates}
+                    control={form.control}
+                    handleInputChange={handleInputChange}
+                  />
                 </TabsContent>
 
                 <TabsContent value="powders" className="ingredient-grid">
-                  {ingredientCategories.powders.map((ingredient) => {
-                    const key = ingredient as IngredientKey;
-                    const field = form.control.fields[key];
-                    return (
-                      <IngredientFormItem
-                        key={key}
-                        ingredient={key}
-                        field={field}
-                        handleInputChange={handleInputChange}
-                      />
-                    );
-                  })}
+                  <IngredientFormItem
+                    ingredients={ingredientCategories.powders}
+                    control={form.control}
+                    handleInputChange={handleInputChange}
+                  />
                 </TabsContent>
               </Tabs>
 
