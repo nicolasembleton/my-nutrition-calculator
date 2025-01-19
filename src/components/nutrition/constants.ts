@@ -21,6 +21,8 @@ export const ingredientLabels = {
   mungBeansPowder: "Mung Beans Powder",
   chickpeaPowder: "Chickpea Powder",
   brownRicePowder: "Brown Rice Powder",
+} as {
+  [key: string]: string;
 };
 
 export const ingredientCategories = {

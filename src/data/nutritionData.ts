@@ -1,4 +1,4 @@
-interface NutritionDataItem {
+export interface NutritionDataItem {
   defaultValue: number;
   nutrition: {
     calories: number;

@@ -1,11 +1,11 @@
 import { nutritionData } from "~/data/nutritionData";
 import { NutrientHoverContent } from "~/components/nutrition/NutrientHoverContent";
 import { NutritionReport } from "~/components/nutrition/NutritionReport";
+import IngredientFormItem from "~/components/nutrition/IngredientFormItem";
 import { NutrientSection } from "~/components/nutrition/NutrientSection";
 
 import React, { useState } from "react";
 import { FormHeader } from "~/components/nutrition/FormHeader";
-import { IngredientValue } from "~/components/nutrition/IngredientValue";
 import { CalculateButton } from "~/components/nutrition/CalculateButton";
 import {
   ingredientLabels,
@@ -13,15 +13,6 @@ import {
   motionVariants,
 } from "~/components/nutrition/constants";
 
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "~/components/ui/hover-card";
-import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { Input } from "~/components/ui/input";
-import { Slider } from "~/components/ui/slider";
-import { Button } from "~/components/ui/button";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import {
@@ -380,72 +371,13 @@ const NutritionForm: React.FC = () => {
                 <TabsContent value="liquids" className="ingredient-grid">
                   {ingredientCategories.liquids.map((ingredient) => {
                     const key = ingredient as IngredientKey;
+                    const field = form.control.fields[key];
                     return (
-                      <FormField
+                      <IngredientFormItem
                         key={key}
-                        name={key}
-                        control={form.control}
-                        render={({ field }) => (
-                          <FormItem>
-                            <div className="ingredient-cell">
-                              {/* Add calorie indicator */}
-                              <div className="calorie-indicator">
-                                {(
-                                  (nutritionData[key].nutrition.calories /
-                                    100) *
-                                  field.value
-                                ).toFixed(1)}{" "}
-                                cal
-                                <HoverCard>
-                                  <HoverCardTrigger asChild>
-                                    <button className="info-button">
-                                      <InfoCircledIcon className="info-icon" />
-                                    </button>
-                                  </HoverCardTrigger>
-                                  <HoverCardContent className="nutrient-hover-content w-auto">
-                                    <NutrientHoverContent
-                                      ingredient={key}
-                                      value={field.value}
-                                      nutritionData={nutritionData}
-                                    />
-                                  </HoverCardContent>
-                                </HoverCard>
-                              </div>
-                              <FormLabel>{ingredientLabels[key]}</FormLabel>
-                              <FormControl>
-                                <div className="space-x-2 flex items-center">
-                                  <IngredientValue
-                                    value={field.value}
-                                    defaultValue={
-                                      nutritionData[key].defaultValue
-                                    }
-                                    onChange={(val) => field.onChange(val)}
-                                    onInputChange={(e) =>
-                                      handleInputChange(e, field.onChange)
-                                    }
-                                  />
-                                </div>
-                              </FormControl>
-                              <div className="slider-container">
-                                <FormControl>
-                                  <Slider
-                                    min={0}
-                                    max={Math.max(
-                                      10,
-                                      nutritionData[key].defaultValue * 3
-                                    )}
-                                    step={0.1}
-                                    value={[field.value]}
-                                    onValueChange={(vals) =>
-                                      field.onChange(vals[0])
-                                    }
-                                  />
-                                </FormControl>
-                              </div>
-                              <FormMessage />
-                            </div>
-                          </FormItem>
-                        )}
+                        ingredient={key}
+                        field={field}
+                        handleInputChange={handleInputChange}
                       />
                     );
                   })}
@@ -454,72 +386,13 @@ const NutritionForm: React.FC = () => {
                 <TabsContent value="oils" className="ingredient-grid">
                   {ingredientCategories.oils.map((ingredient) => {
                     const key = ingredient as IngredientKey;
+                    const field = form.control.fields[key];
                     return (
-                      <FormField
+                      <IngredientFormItem
                         key={key}
-                        name={key}
-                        control={form.control}
-                        render={({ field }) => (
-                          <FormItem>
-                            <div className="ingredient-cell">
-                              {/* Add calorie indicator */}
-                              <div className="calorie-indicator">
-                                {(
-                                  (nutritionData[key].nutrition.calories /
-                                    100) *
-                                  field.value
-                                ).toFixed(1)}{" "}
-                                cal
-                                <HoverCard>
-                                  <HoverCardTrigger asChild>
-                                    <button className="info-button">
-                                      <InfoCircledIcon className="info-icon" />
-                                    </button>
-                                  </HoverCardTrigger>
-                                  <HoverCardContent className="nutrient-hover-content w-auto">
-                                    <NutrientHoverContent
-                                      ingredient={key}
-                                      value={field.value}
-                                      nutritionData={nutritionData}
-                                    />
-                                  </HoverCardContent>
-                                </HoverCard>
-                              </div>
-                              <FormLabel>{ingredientLabels[key]}</FormLabel>
-                              <FormControl>
-                                <div className="space-x-2 flex items-center">
-                                  <IngredientValue
-                                    value={field.value}
-                                    defaultValue={
-                                      nutritionData[key].defaultValue
-                                    }
-                                    onChange={(val) => field.onChange(val)}
-                                    onInputChange={(e) =>
-                                      handleInputChange(e, field.onChange)
-                                    }
-                                  />
-                                </div>
-                              </FormControl>
-                              <div className="slider-container">
-                                <FormControl>
-                                  <Slider
-                                    min={0}
-                                    max={Math.max(
-                                      10,
-                                      nutritionData[key].defaultValue * 3
-                                    )}
-                                    step={0.1}
-                                    value={[field.value]}
-                                    onValueChange={(vals) =>
-                                      field.onChange(vals[0])
-                                    }
-                                  />
-                                </FormControl>
-                              </div>
-                              <FormMessage />
-                            </div>
-                          </FormItem>
-                        )}
+                        ingredient={key}
+                        field={field}
+                        handleInputChange={handleInputChange}
                       />
                     );
                   })}
@@ -528,72 +401,13 @@ const NutritionForm: React.FC = () => {
                 <TabsContent value="fullSeeds" className="ingredient-grid">
                   {ingredientCategories.fullSeeds.map((ingredient) => {
                     const key = ingredient as IngredientKey;
+                    const field = form.control.fields[key];
                     return (
-                      <FormField
+                      <IngredientFormItem
                         key={key}
-                        name={key}
-                        control={form.control}
-                        render={({ field }) => (
-                          <FormItem>
-                            <div className="ingredient-cell">
-                              {/* Add calorie indicator */}
-                              <div className="calorie-indicator">
-                                {(
-                                  (nutritionData[key].nutrition.calories /
-                                    100) *
-                                  field.value
-                                ).toFixed(1)}{" "}
-                                cal
-                                <HoverCard>
-                                  <HoverCardTrigger asChild>
-                                    <button className="info-button">
-                                      <InfoCircledIcon className="info-icon" />
-                                    </button>
-                                  </HoverCardTrigger>
-                                  <HoverCardContent className="nutrient-hover-content w-auto">
-                                    <NutrientHoverContent
-                                      ingredient={key}
-                                      value={field.value}
-                                      nutritionData={nutritionData}
-                                    />
-                                  </HoverCardContent>
-                                </HoverCard>
-                              </div>
-                              <FormLabel>{ingredientLabels[key]}</FormLabel>
-                              <FormControl>
-                                <div className="space-x-2 flex items-center">
-                                  <IngredientValue
-                                    value={field.value}
-                                    defaultValue={
-                                      nutritionData[key].defaultValue
-                                    }
-                                    onChange={(val) => field.onChange(val)}
-                                    onInputChange={(e) =>
-                                      handleInputChange(e, field.onChange)
-                                    }
-                                  />
-                                </div>
-                              </FormControl>
-                              <div className="slider-container">
-                                <FormControl>
-                                  <Slider
-                                    min={0}
-                                    max={Math.max(
-                                      10,
-                                      nutritionData[key].defaultValue * 3
-                                    )}
-                                    step={0.1}
-                                    value={[field.value]}
-                                    onValueChange={(vals) =>
-                                      field.onChange(vals[0])
-                                    }
-                                  />
-                                </FormControl>
-                              </div>
-                              <FormMessage />
-                            </div>
-                          </FormItem>
-                        )}
+                        ingredient={key}
+                        field={field}
+                        handleInputChange={handleInputChange}
                       />
                     );
                   })}
@@ -602,71 +416,13 @@ const NutritionForm: React.FC = () => {
                 <TabsContent value="carbohydrates" className="ingredient-grid">
                   {ingredientCategories.carbohydrates.map((ingredient) => {
                     const key = ingredient as IngredientKey;
+                    const field = form.control.fields[key];
                     return (
-                      <FormField
+                      <IngredientFormItem
                         key={key}
-                        name={key}
-                        control={form.control}
-                        render={({ field }) => (
-                          <FormItem>
-                            <div className="ingredient-cell">
-                              <div className="calorie-indicator">
-                                {(
-                                  (nutritionData[key].nutrition.calories /
-                                    100) *
-                                  field.value
-                                ).toFixed(1)}{" "}
-                                cal
-                                <HoverCard>
-                                  <HoverCardTrigger asChild>
-                                    <button className="info-button">
-                                      <InfoCircledIcon className="info-icon" />
-                                    </button>
-                                  </HoverCardTrigger>
-                                  <HoverCardContent className="nutrient-hover-content w-auto">
-                                    <NutrientHoverContent
-                                      ingredient={key}
-                                      value={field.value}
-                                      nutritionData={nutritionData}
-                                    />
-                                  </HoverCardContent>
-                                </HoverCard>
-                              </div>
-                              <FormLabel>{ingredientLabels[key]}</FormLabel>
-                              <FormControl>
-                                <div className="space-x-2 flex items-center">
-                                  <IngredientValue
-                                    value={field.value}
-                                    defaultValue={
-                                      nutritionData[key].defaultValue
-                                    }
-                                    onChange={(val) => field.onChange(val)}
-                                    onInputChange={(e) =>
-                                      handleInputChange(e, field.onChange)
-                                    }
-                                  />
-                                </div>
-                              </FormControl>
-                              <div className="slider-container">
-                                <FormControl>
-                                  <Slider
-                                    min={0}
-                                    max={Math.max(
-                                      10,
-                                      nutritionData[key].defaultValue * 3
-                                    )}
-                                    step={0.1}
-                                    value={[field.value]}
-                                    onValueChange={(vals) =>
-                                      field.onChange(vals[0])
-                                    }
-                                  />
-                                </FormControl>
-                              </div>
-                              <FormMessage />
-                            </div>
-                          </FormItem>
-                        )}
+                        ingredient={key}
+                        field={field}
+                        handleInputChange={handleInputChange}
                       />
                     );
                   })}
@@ -675,72 +431,13 @@ const NutritionForm: React.FC = () => {
                 <TabsContent value="powders" className="ingredient-grid">
                   {ingredientCategories.powders.map((ingredient) => {
                     const key = ingredient as IngredientKey;
+                    const field = form.control.fields[key];
                     return (
-                      <FormField
+                      <IngredientFormItem
                         key={key}
-                        name={key}
-                        control={form.control}
-                        render={({ field }) => (
-                          <FormItem>
-                            <div className="ingredient-cell">
-                              {/* Add calorie indicator */}
-                              <div className="calorie-indicator">
-                                {(
-                                  (nutritionData[key].nutrition.calories /
-                                    100) *
-                                  field.value
-                                ).toFixed(1)}{" "}
-                                cal
-                                <HoverCard>
-                                  <HoverCardTrigger asChild>
-                                    <button className="info-button">
-                                      <InfoCircledIcon className="info-icon" />
-                                    </button>
-                                  </HoverCardTrigger>
-                                  <HoverCardContent className="nutrient-hover-content w-auto">
-                                    <NutrientHoverContent
-                                      ingredient={key}
-                                      value={field.value}
-                                      nutritionData={nutritionData}
-                                    />
-                                  </HoverCardContent>
-                                </HoverCard>
-                              </div>
-                              <FormLabel>{ingredientLabels[key]}</FormLabel>
-                              <FormControl>
-                                <div className="space-x-2 flex items-center">
-                                  <IngredientValue
-                                    value={field.value}
-                                    defaultValue={
-                                      nutritionData[key].defaultValue
-                                    }
-                                    onChange={(val) => field.onChange(val)}
-                                    onInputChange={(e) =>
-                                      handleInputChange(e, field.onChange)
-                                    }
-                                  />
-                                </div>
-                              </FormControl>
-                              <div className="slider-container">
-                                <FormControl>
-                                  <Slider
-                                    min={0}
-                                    max={Math.max(
-                                      10,
-                                      nutritionData[key].defaultValue * 3
-                                    )}
-                                    step={0.1}
-                                    value={[field.value]}
-                                    onValueChange={(vals) =>
-                                      field.onChange(vals[0])
-                                    }
-                                  />
-                                </FormControl>
-                              </div>
-                              <FormMessage />
-                            </div>
-                          </FormItem>
-                        )}
+                        ingredient={key}
+                        field={field}
+                        handleInputChange={handleInputChange}
                       />
                     );
                   })}
