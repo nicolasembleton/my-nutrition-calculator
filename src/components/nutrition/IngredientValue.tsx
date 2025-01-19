@@ -28,7 +28,7 @@ export const IngredientValue = ({
   onInputChange,
 }: IngredientValueProps) => (
   <div className="flex flex-row items-center justify-between">
-    <div className="flex items-center space-x-2">
+    <div className="space-x-2 flex items-center">
       <Input
         type="number"
         step="0.1"
@@ -50,7 +50,10 @@ export const IngredientValue = ({
             <InfoCircledIcon className="info-icon" />
           </button>
         </HoverCardTrigger>
-        <HoverCardContent className="nutrient-hover-content w-auto">
+        <HoverCardContent
+          className="nutrient-hover-content w-auto"
+          side="right"
+        >
           <NutrientHoverContent
             ingredient={ingredient}
             value={value}
