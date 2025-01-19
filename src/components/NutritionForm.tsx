@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { CalculateButton } from "~/components/nutrition/CalculateButton";
 import {
@@ -13,6 +13,7 @@ import { NutritionReport } from "~/components/nutrition/NutritionReport";
 import { Form } from "~/components/ui/form";
 import { nutritionData } from "~/data/nutritionData";
 import "./NutritionForm.css";
+import { ResetIcon } from "@radix-ui/react-icons";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { TabNavigation } from "./nutrition/TabNavigation";
 import { calculateNutrition } from "./nutrition/calculateNutrition";
@@ -104,6 +105,10 @@ const NutritionForm: React.FC = () => {
     setTotalNutrition(nutrition);
   };
 
+  const resetForm = useCallback(() => {
+    form.reset();
+  }, [form.reset]);
+
   React.useEffect(() => {
     const subscription = form.watch((value) => {
       if (value) {
@@ -133,6 +138,14 @@ const NutritionForm: React.FC = () => {
     >
       <motion.div className="nutrition-form-card" variants={itemVariants}>
         <FormHeader title="Nutrition Calculator" />
+        <button
+          type="button"
+          onClick={resetForm}
+          className="reset-button"
+          aria-label="Reset all ingredients to default values"
+        >
+          <ResetIcon className="reset-icon" />
+        </button>
 
         <div className="nutrition-form-card-content">
           <Form {...form}>
