@@ -1,5 +1,5 @@
 import React from "react";
-import { InfoCircledIcon } from "@radix-ui/react-icons";
+import { QuestionMarkCircledIcon } from "@radix-ui/react-icons";
 import {
   HoverCard,
   HoverCardContent,
@@ -49,7 +49,7 @@ export const IngredientValue = ({
       <HoverCard>
         <HoverCardTrigger asChild>
           <button className="info-button">
-            <InfoCircledIcon className="info-icon" />
+            <QuestionMarkCircledIcon className="info-icon" />
           </button>
         </HoverCardTrigger>
         <HoverCardContent

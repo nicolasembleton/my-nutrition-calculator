@@ -7,3 +7,4 @@
 5. Add animatino via MotionJS
 6. PNPM as package manager
 7. BunJS as a build runtime
+8. "@radix/react-icons" set for icons

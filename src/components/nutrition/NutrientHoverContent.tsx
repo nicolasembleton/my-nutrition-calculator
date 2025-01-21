@@ -1,6 +1,5 @@
 import React from "react";
 import { NutritionDataItem, NutritionKey } from "~/data/nutritionData";
-import { ingredientLabels } from "./constants";
 import { IngredientKey } from "./types";
 
 interface NutrientHoverContentProps {

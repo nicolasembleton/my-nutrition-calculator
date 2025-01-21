@@ -13,9 +13,12 @@ import { NutritionReport } from "~/components/nutrition/NutritionReport";
 import { Form } from "~/components/ui/form";
 import { nutritionData } from "~/data/nutritionData";
 import "./NutritionForm.css";
-import { List } from "lucide-react";
-import { PiNumberCircleZeroFill } from "react-icons/pi";
-import { ResetIcon } from "@radix-ui/react-icons";
+import {
+  InputIcon,
+  ResetIcon,
+  RulerSquareIcon,
+  ShadowNoneIcon,
+} from "@radix-ui/react-icons";
 import {
   HoverCard,
   HoverCardContent,
@@ -195,7 +198,7 @@ const NutritionForm: React.FC = () => {
                 className="reset-button"
                 aria-label="Paste a recipe"
               >
-                <List className="reset-icon" />
+                <InputIcon className="reset-icon" />
               </button>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
@@ -218,10 +221,10 @@ const NutritionForm: React.FC = () => {
                 className="reset-button"
                 aria-label="View current recipe"
               >
-                <List className="reset-icon" />
+                <RulerSquareIcon className="reset-icon" />
               </button>
             </HoverCardTrigger>
-            <HoverCardContent className="w-80 z-50">
+            <HoverCardContent className="z-50 w-80">
               <p className="font-semibold">Current Recipe</p>
               <Separator className="my-2" />
               <ul className="list-none p-0">
@@ -250,13 +253,13 @@ const NutritionForm: React.FC = () => {
             className="reset-button"
             aria-label="Set all ingredients to zero"
           >
-            <PiNumberCircleZeroFill className="reset-icon" />
+            <ShadowNoneIcon className="reset-icon" />
           </button>
         </div>
         <div className="nutrition-form-card-content">
           <Form {...form}>
             <form className="form-grid" onSubmit={form.handleSubmit(onSubmit)}>
-              <Tabs defaultValue="liquids" className="w-full tabs-container">
+              <Tabs defaultValue="liquids" className="tabs-container w-full">
                 <TabNavigation></TabNavigation>
 
                 <TabsContent value="liquids" className="ingredient-grid">
