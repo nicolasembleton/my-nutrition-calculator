@@ -58,7 +58,7 @@ export const NutrientSection = ({
               <HoverCard>
                 <HoverCardTrigger asChild>
                   <button className="ml-1 text-xs opacity-50">
-                    <QuestionMarkCircledIcon className="h-4 w-4" />
+                    <QuestionMarkCircledIcon className="h-4 w-4 pr-1" />
                   </button>
                 </HoverCardTrigger>
                 <HoverCardContent className="w-80">
@@ -75,7 +75,9 @@ export const NutrientSection = ({
                               nutrientKey as keyof (typeof nutritionData)[key]["nutrition"]
                             ] || 0);
                           const formattedAmount = amount.toFixed(2);
-                          return formattedAmount !== "0.00" ? { key, value: amount } : null;
+                          return formattedAmount !== "0.00"
+                            ? { key, value: amount }
+                            : null;
                         })
                         .filter(Boolean)
                         .sort((a, b) => b!.value - a!.value)
