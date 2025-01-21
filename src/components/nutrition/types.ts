@@ -1,4 +1,8 @@
-import { nutritionData } from "~/data/nutritionData";
+import { NutritionDataItem } from "~/data/nutritionData";
+
+export interface FormValues {
+  [key: string]: number;
+}
 
 export interface NutritionTotal {
   calories: number;
@@ -21,6 +25,3 @@ export interface NutritionTotal {
   vitaminD: number;
   zinc: number;
 }
-
-export type IngredientKey = keyof typeof nutritionData;
-export type FormValues = Record<IngredientKey, number>;

@@ -8,11 +8,13 @@ import { FormValues, NutritionTotal } from "./types";
 interface NutritionReportProps {
   totalNutrition: NutritionTotal;
   onDownload: () => void;
+  formValues: FormValues;
 }
 
 export const NutritionReport = ({
   totalNutrition,
   onDownload,
+  formValues,
 }: NutritionReportProps) => (
   <motion.div
     className="nutrition-label"
@@ -26,6 +28,7 @@ export const NutritionReport = ({
     </div>
     <NutrientSection
       title="Basic Info"
+      formValues={formValues}
       nutrients={[
         {
           name: "Calories",
@@ -41,6 +44,7 @@ export const NutritionReport = ({
     <div className="nutrition-sections">
       <NutrientSection
         title="Fats"
+        formValues={formValues}
         nutrients={[
           { name: "Total Fat", value: totalNutrition.totalFat, unit: "g", nutrientKey: "totalFat" },
           {
@@ -67,6 +71,7 @@ export const NutritionReport = ({
       />
       <NutrientSection
         title="Carbohydrates"
+        formValues={formValues}
         nutrients={[
           {
             name: "Total Carbohydrate",
@@ -87,6 +92,7 @@ export const NutritionReport = ({
       />
       <NutrientSection
         title="Protein"
+        formValues={formValues}
         nutrients={[
           { name: "Protein", value: totalNutrition.protein, unit: "g", nutrientKey: "protein" },
         ]}
@@ -96,6 +102,7 @@ export const NutritionReport = ({
       />
       <NutrientSection
         title="Minerals"
+        formValues={formValues}
         nutrients={[
           { name: "Sodium", value: totalNutrition.sodium, unit: "mg", nutrientKey: "sodium" },
           { name: "Iron", value: totalNutrition.iron, unit: "mg", nutrientKey: "iron" },
@@ -109,6 +116,7 @@ export const NutritionReport = ({
       />
       <NutrientSection
         title="Vitamins"
+        formValues={formValues}
         nutrients={[
           { name: "Vitamin A", value: totalNutrition.vitaminA, unit: "IU", nutrientKey: "vitaminA" },
           { name: "Vitamin C", value: totalNutrition.vitaminC, unit: "mg", nutrientKey: "vitaminC" },
