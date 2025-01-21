@@ -15,7 +15,7 @@ import { nutritionData } from "~/data/nutritionData";
 import "./NutritionForm.css";
 import { List } from "lucide-react";
 import { PiNumberCircleZeroFill } from "react-icons/pi";
-import { RecipeIcon, ResetIcon } from "@radix-ui/react-icons";
+import { ResetIcon } from "@radix-ui/react-icons";
 import {
   HoverCard,
   HoverCardContent,

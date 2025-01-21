@@ -2,12 +2,17 @@
 
 import React from "react";
 import NutritionForm from "./components/NutritionForm";
+import { ThemeProvider } from "./lib/theme-provider";
+import { ThemeToggle } from "./components/ui/theme-toggle";
 
 const App: React.FC = () => {
   return (
-    <div>
-      <NutritionForm />
-    </div>
+    <ThemeProvider>
+      <div className="min-h-screen bg-background text-foreground transition-colors">
+        <ThemeToggle />
+        <NutritionForm />
+      </div>
+    </ThemeProvider>
   );
 };
 

@@ -3,15 +3,42 @@
 @tailwind utilities;
 
 :root {
-  --background: 30 10% 95%; /* Warm Gray */
-  --foreground: 185 80% 25%; /* Dark Teal */
-  --card: 0 0% 98%; /* Neutral Gray */
-  --card-foreground: 185 80% 25%; /* Dark Teal */
-  --popover: 0 0% 98%; /* Neutral Gray */
-  --popover-foreground: 185 80% 25%; /* Dark Teal */
-  --primary: 160 50% 70%; /* Mint Green */
-  --primary-foreground: 185 80% 25%; /* Dark Teal or 0 0% 98% if you want a lighter text on primary*/
-  --secondary: 15 70% 80%; /* Soft Coral */
-  --secondary-foreground: 0 0% 98%; /* Lighter text color */
-  --accent: 55 80% 90%; /* Pale Lemon */
+  --background: 30 10% 95%;
+  --foreground: 185 80% 25%;
+  --card: 0 0% 98%;
+  --card-foreground: 185 80% 25%;
+  --popover: 0 0% 98%;
+  --popover-foreground: 185 80% 25%;
+  --primary: 160 50% 70%;
+  --primary-foreground: 185 80% 25%;
+  --secondary: 15 70% 80%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 55 80% 90%;
+  --accent-foreground: 185 80% 25%;
+  --muted: 30 10% 90%;
+  --muted-foreground: 185 40% 40%;
+  --border: 185 20% 85%;
+  --input: 185 20% 85%;
+  --ring: 160 50% 70%;
 }
+
+.dark {
+  --background: 220 20% 10%;
+  --foreground: 185 40% 90%;
+  --card: 220 20% 15%;
+  --card-foreground: 185 40% 90%;
+  --popover: 220 20% 15%;
+  --popover-foreground: 185 40% 90%;
+  --primary: 160 50% 50%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 15 70% 50%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 55 80% 50%;
+  --accent-foreground: 0 0% 98%;
+  --muted: 220 20% 20%;
+  --muted-foreground: 185 40% 70%;
+  --border: 220 20% 25%;
+  --input: 220 20% 25%;
+  --ring: 160 50% 50%;
+}
+
