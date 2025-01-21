@@ -31,13 +31,6 @@ export const NutrientSection = ({
   showIngredientBreakdown = false,
   nutritionData,
 }: NutrientSectionProps) => {
-  console.log(`NutrientSection - ${title} - Props:`, {
-    showIngredientBreakdown,
-    nutrientKey: nutrients[0]?.nutrientKey,
-    nutritionData,
-    formValues,
-  });
-
   return (
     <div className={`nutrition-section-group ${fullWidth ? "full-width" : ""}`}>
       <div className="nutrition-section-title">{title}</div>
@@ -48,56 +41,48 @@ export const NutrientSection = ({
           nutrientKey &&
           nutritionData &&
           formValues ? (
-            <>
-              {console.log(`Conditions for ${name}:`, {
-                showIngredientBreakdown,
-                nutrientKey,
-                nutritionData,
-                formValues,
-              })}
-              <HoverCard>
-                <HoverCardTrigger asChild>
-                  <button className="ml-1 text-xs opacity-50">
-                    <QuestionMarkCircledIcon className="h-4 w-4 pr-1" />
-                  </button>
-                </HoverCardTrigger>
-                <HoverCardContent className="w-80">
-                  <div className="grid gap-4">
-                    <div className="font-bold">
-                      Ingredients contributing to {name}
-                    </div>
-                    <ul className="m-0 list-none p-0">
-                      {Object.entries(formValues)
-                        .map(([key, value]) => {
-                          const amount =
-                            (value / 100) *
-                            (nutritionData[key]?.nutrition[
-                              nutrientKey as keyof (typeof nutritionData)[key]["nutrition"]
-                            ] || 0);
-                          const formattedAmount = amount.toFixed(2);
-                          return formattedAmount !== "0.00"
-                            ? { key, value: amount }
-                            : null;
-                        })
-                        .filter(Boolean)
-                        .sort((a, b) => b!.value - a!.value)
-                        .map(({ key, value }) => (
-                          <li
-                            key={key}
-                            className="flex justify-between text-sm text-muted-foreground"
-                          >
-                            <span>{ingredientLabels[key as string]}</span>
-                            <span>
-                              {value.toFixed(2)}
-                              {unit}
-                            </span>
-                          </li>
-                        ))}
-                    </ul>
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <button className="ml-1 text-xs opacity-50">
+                  <QuestionMarkCircledIcon className="h-4 w-4 pr-1" />
+                </button>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                <div className="grid gap-4">
+                  <div className="font-bold">
+                    Ingredients contributing to {name}
                   </div>
-                </HoverCardContent>
-              </HoverCard>
-            </>
+                  <ul className="m-0 list-none p-0">
+                    {Object.entries(formValues)
+                      .map(([key, value]) => {
+                        const amount =
+                          (value / 100) *
+                          (nutritionData[key]?.nutrition[
+                            nutrientKey as keyof (typeof nutritionData)[key]["nutrition"]
+                          ] || 0);
+                        const formattedAmount = amount.toFixed(2);
+                        return formattedAmount !== "0.00"
+                          ? { key, value: amount }
+                          : null;
+                      })
+                      .filter(Boolean)
+                      .sort((a, b) => b!.value - a!.value)
+                      .map(({ key, value }) => (
+                        <li
+                          key={key}
+                          className="flex justify-between text-sm text-muted-foreground"
+                        >
+                          <span>{ingredientLabels[key as string]}</span>
+                          <span>
+                            {value.toFixed(2)}
+                            {unit}
+                          </span>
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
           ) : null}
           <span className="nutrient-value">
             {value.toFixed(2)}

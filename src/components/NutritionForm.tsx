@@ -141,11 +141,7 @@ const NutritionForm: React.FC = () => {
         ) as IngredientKey;
         if (ingredientKey) {
           form.setValue(ingredientKey, amount);
-        } else {
-          console.error(`Ingredient "${ingredientName}" not found`);
         }
-      } else {
-        console.error(`Could not parse line: "${line}"`);
       }
     });
   };
