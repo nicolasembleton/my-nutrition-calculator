@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { CalculateButton } from "~/components/nutrition/CalculateButton";
 import {
@@ -148,6 +148,7 @@ const NutritionForm: React.FC = () => {
   };
 
   const [isPasteOpen, setIsPasteOpen] = React.useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   React.useEffect(() => {
     const subscription = form.watch((value) => {
@@ -169,6 +170,14 @@ const NutritionForm: React.FC = () => {
     onSubmit(defaultValues);
   }, []); // Empty dependency array means this runs once on mount
 
+  const handleTextareaInput = () => {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = "auto";
+      textarea.style.height = Math.min(400, textarea.scrollHeight) + "px"; // Limit max height
+    }
+  };
+
   return (
     <motion.div
       className="nutrition-form-container"
@@ -189,7 +198,7 @@ const NutritionForm: React.FC = () => {
                 <List className="reset-icon" />
               </button>
             </HoverCardTrigger>
-            <HoverCardContent className="z-100 w-80">
+            <HoverCardContent className="w-80">
               <Label htmlFor="paste-recipe">Enter a recipe</Label>
               <Separator className="my-2" />
               <Textarea
@@ -197,6 +206,8 @@ const NutritionForm: React.FC = () => {
                 placeholder="e.g., Oatmeal: 50g"
                 className="resize-none"
                 onChange={handlePasteRecipe}
+                ref={textareaRef}
+                onInput={handleTextareaInput}
               />
             </HoverCardContent>
           </HoverCard>
@@ -210,7 +221,7 @@ const NutritionForm: React.FC = () => {
                 <List className="reset-icon" />
               </button>
             </HoverCardTrigger>
-            <HoverCardContent className="w-80">
+            <HoverCardContent className="w-80 z-50">
               <p className="font-semibold">Current Recipe</p>
               <Separator className="my-2" />
               <ul className="list-none p-0">
@@ -245,7 +256,7 @@ const NutritionForm: React.FC = () => {
         <div className="nutrition-form-card-content">
           <Form {...form}>
             <form className="form-grid" onSubmit={form.handleSubmit(onSubmit)}>
-              <Tabs defaultValue="liquids" className="tabs-container w-full">
+              <Tabs defaultValue="liquids" className="w-full tabs-container">
                 <TabNavigation></TabNavigation>
 
                 <TabsContent value="liquids" className="ingredient-grid">
