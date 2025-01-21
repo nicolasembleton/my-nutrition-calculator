@@ -20,6 +20,13 @@ export interface NutritionDataItem {
     vitaminA: number;
     vitaminC: number;
     vitaminD: number;
+    vitaminE?: number;
+    vitaminK?: number;
+    phosphorus?: number;
+    thiamin?: number;
+    niacin?: number;
+    copper?: number;
+    manganese?: number;
     zinc: number;
   };
 }
@@ -27,6 +34,38 @@ export interface NutritionDataItem {
 export type NutritionKey = keyof NutritionDataItem["nutrition"];
 
 export const nutritionData: Record<string, NutritionDataItem> = {
+  pineNuts: {
+    maxValue: 200,
+    defaultValue: 0,
+    nutrition: {
+      calories: 673,
+      totalFat: 68,
+      saturatedFat: 4.9,
+      polyunsaturatedFat: 34.1,
+      monounsaturatedFat: 18.8,
+      cholesterol: 0,
+      sodium: 2,
+      totalCarbohydrate: 13,
+      dietaryFiber: 3.7,
+      sugars: 3.6,
+      protein: 14,
+      iron: 5.5,
+      calcium: 16,
+      magnesium: 251,
+      potassium: 597,
+      vitaminA: 29,
+      vitaminC: 0.8,
+      vitaminD: 0,
+      zinc: 6.5,
+      vitaminE: 9.3,
+      vitaminK: 53.9,
+      phosphorus: 575,
+      thiamin: 0.4,
+      niacin: 4.4,
+      copper: 1.3,
+      manganese: 8.8,
+    },
+  },
   rawMilkYogurt: {
     maxValue: 200,
     defaultValue: 0,
