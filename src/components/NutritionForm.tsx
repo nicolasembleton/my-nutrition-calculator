@@ -314,10 +314,13 @@ const NutritionForm: React.FC = () => {
           </Form>
         </div>
       </motion.div>
-      <NutritionReport
-        totalNutrition={totalNutrition}
-        onDownload={() => downloadCSV(form.getValues())}
-      />
+      {form && (
+        <NutritionReport
+          totalNutrition={totalNutrition}
+          onDownload={() => downloadCSV(form.getValues())}
+          formValues={form.getValues()}
+        />
+      )}
     </motion.div>
   );
 };

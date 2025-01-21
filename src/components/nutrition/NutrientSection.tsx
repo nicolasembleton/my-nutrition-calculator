@@ -30,51 +30,56 @@ export const NutrientSection = ({
   fullWidth = false,
   showIngredientBreakdown = false,
   nutritionData,
-}: NutrientSectionProps) => (
-  <div className={`nutrition-section-group ${fullWidth ? "full-width" : ""}`}>
-    <div className="nutrition-section-title">{title}</div>
-    {nutrients.map(({ name, value, unit, nutrientKey }) => (
-      <div key={name} className="nutrient">
-        <span className="nutrient-name">{name}</span>
-        {showIngredientBreakdown && nutrientKey && nutritionData && formValues
-          ? (
-            <HoverCard>
-              <HoverCardTrigger asChild>
-                <button className="ml-1 text-xs opacity-50">
-                  <QuestionMarkCircledIcon className="h-4 w-4" />
-                </button>
-              </HoverCardTrigger>
-              <HoverCardContent className="w-80">
-                <div className="grid gap-4">
-                  <div className="font-bold">Ingredients contributing to {name}</div>
-                  <div className="text-sm text-muted-foreground">
-                    {Object.entries(formValues).map(([key, value]) => {
-                      const amount =
-                        (value / 100) *
-                        (nutritionData[key]?.nutrition[
-                          nutrientKey as keyof typeof nutritionData[key]["nutrition"]
-                        ] || 0);
-                      if (amount > 0) {
-                        return (
-                          <div key={key} className="flex justify-between">
-                            <span>{ingredientLabels[key]}</span>
-                            <span>{amount.toFixed(2)}{unit}</span>
-                          </div>
-                        );
-                      }
-                      return null;
-                    })}
+}: NutrientSectionProps) => {
+  console.log(`NutrientSection - ${title} - Props:`, { showIngredientBreakdown, nutrientKey: nutrients[0]?.nutrientKey, nutritionData, formValues });
+
+  return (
+    <div className={`nutrition-section-group ${fullWidth ? "full-width" : ""}`}>
+      <div className="nutrition-section-title">{title}</div>
+      {nutrients.map(({ name, value, unit, nutrientKey }) => (
+        <div key={name} className="nutrient">
+          <span className="nutrient-name">{name}</span>
+          {showIngredientBreakdown && nutrientKey && nutritionData && formValues ? (
+            <>
+              {console.log(`Conditions for ${name}:`, { showIngredientBreakdown, nutrientKey, nutritionData, formValues })}
+              <HoverCard>
+                <HoverCardTrigger asChild>
+                  <button className="ml-1 text-xs opacity-50">
+                    <QuestionMarkCircledIcon className="h-4 w-4" />
+                  </button>
+                </HoverCardTrigger>
+                <HoverCardContent className="w-80">
+                  <div className="grid gap-4">
+                    <div className="font-bold">Ingredients contributing to {name}</div>
+                    <div className="text-sm text-muted-foreground">
+                      {Object.entries(formValues).map(([key, value]) => {
+                        const amount =
+                          (value / 100) *
+                          (nutritionData[key]?.nutrition[
+                            nutrientKey as keyof typeof nutritionData[key]["nutrition"]
+                          ] || 0);
+                        if (amount > 0) {
+                          return (
+                            <div key={key} className="flex justify-between">
+                              <span>{ingredientLabels[key]}</span>
+                              <span>{amount.toFixed(2)}{unit}</span>
+                            </div>
+                          );
+                        }
+                        return null;
+                      })}
+                    </div>
                   </div>
-                </div>
-              </HoverCardContent>
-            </HoverCard>
-          )
-          : null}
-        <span className="nutrient-value">
-          {value.toFixed(2)}
-          {unit}
-        </span>
-      </div>
-    ))}
-  </div>
-);
+                </HoverCardContent>
+              </HoverCard>
+            </>
+          ) : null}
+          <span className="nutrient-value">
+            {value.toFixed(2)}
+            {unit}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+};
