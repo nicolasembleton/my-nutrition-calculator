@@ -14,10 +14,10 @@ export const NutritionReport = ({
   onDownload,
 }: NutritionReportProps) => (
   <motion.div
-    className="nutrition-label -z-10"
+    className="nutrition-label"
     variants={motionVariants.itemVariants}
   >
-    <div className="nutrition-label-header">
+    <div className="nutrition-label-header -z-10">
       <h2>Nutrition Report</h2>
       <Button onClick={onDownload} className="download-button" size="sm">
         Download Detailed Report
