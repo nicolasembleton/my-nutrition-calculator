@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "~/components/ui/button";
 import { ingredientLabels, motionVariants } from "./constants";
 import { NutrientSection } from "./NutrientSection";
+import { nutritionData } from "~/data/nutritionData";
 import { FormValues, NutritionTotal } from "./types";
 
 interface NutritionReportProps {
@@ -30,31 +31,39 @@ export const NutritionReport = ({
           name: "Calories",
           value: totalNutrition.calories,
           unit: " cal",
+          nutrientKey: "calories",
         },
       ]}
       fullWidth
+      showIngredientBreakdown={true}
+      nutritionData={nutritionData}
     />
     <div className="nutrition-sections">
       <NutrientSection
         title="Fats"
         nutrients={[
-          { name: "Total Fat", value: totalNutrition.totalFat, unit: "g" },
+          { name: "Total Fat", value: totalNutrition.totalFat, unit: "g", nutrientKey: "totalFat" },
           {
             name: "Saturated Fat",
             value: totalNutrition.saturatedFat,
             unit: "g",
+            nutrientKey: "saturatedFat",
           },
           {
             name: "Polyunsaturated Fat",
             value: totalNutrition.polyunsaturatedFat,
             unit: "g",
+            nutrientKey: "polyunsaturatedFat",
           },
           {
             name: "Monounsaturated Fat",
             value: totalNutrition.monounsaturatedFat,
             unit: "g",
+            nutrientKey: "monounsaturatedFat",
           },
         ]}
+        showIngredientBreakdown={true}
+        nutritionData={nutritionData}
       />
       <NutrientSection
         title="Carbohydrates"
@@ -63,40 +72,50 @@ export const NutritionReport = ({
             name: "Total Carbohydrate",
             value: totalNutrition.totalCarbohydrate,
             unit: "g",
+            nutrientKey: "totalCarbohydrate",
           },
           {
             name: "Dietary Fiber",
             value: totalNutrition.dietaryFiber,
             unit: "g",
+            nutrientKey: "dietaryFiber",
           },
-          { name: "Sugars", value: totalNutrition.sugars, unit: "g" },
+          { name: "Sugars", value: totalNutrition.sugars, unit: "g", nutrientKey: "sugars" },
         ]}
+        showIngredientBreakdown={true}
+        nutritionData={nutritionData}
       />
       <NutrientSection
         title="Protein"
         nutrients={[
-          { name: "Protein", value: totalNutrition.protein, unit: "g" },
+          { name: "Protein", value: totalNutrition.protein, unit: "g", nutrientKey: "protein" },
         ]}
         fullWidth
+        showIngredientBreakdown={true}
+        nutritionData={nutritionData}
       />
       <NutrientSection
         title="Minerals"
         nutrients={[
-          { name: "Sodium", value: totalNutrition.sodium, unit: "mg" },
-          { name: "Iron", value: totalNutrition.iron, unit: "mg" },
-          { name: "Calcium", value: totalNutrition.calcium, unit: "mg" },
-          { name: "Magnesium", value: totalNutrition.magnesium, unit: "mg" },
-          { name: "Potassium", value: totalNutrition.potassium, unit: "mg" },
-          { name: "Zinc", value: totalNutrition.zinc, unit: "mg" },
+          { name: "Sodium", value: totalNutrition.sodium, unit: "mg", nutrientKey: "sodium" },
+          { name: "Iron", value: totalNutrition.iron, unit: "mg", nutrientKey: "iron" },
+          { name: "Calcium", value: totalNutrition.calcium, unit: "mg", nutrientKey: "calcium" },
+          { name: "Magnesium", value: totalNutrition.magnesium, unit: "mg", nutrientKey: "magnesium" },
+          { name: "Potassium", value: totalNutrition.potassium, unit: "mg", nutrientKey: "potassium" },
+          { name: "Zinc", value: totalNutrition.zinc, unit: "mg", nutrientKey: "zinc" },
         ]}
+        showIngredientBreakdown={true}
+        nutritionData={nutritionData}
       />
       <NutrientSection
         title="Vitamins"
         nutrients={[
-          { name: "Vitamin A", value: totalNutrition.vitaminA, unit: "IU" },
-          { name: "Vitamin C", value: totalNutrition.vitaminC, unit: "mg" },
-          { name: "Vitamin D", value: totalNutrition.vitaminD, unit: "IU" },
+          { name: "Vitamin A", value: totalNutrition.vitaminA, unit: "IU", nutrientKey: "vitaminA" },
+          { name: "Vitamin C", value: totalNutrition.vitaminC, unit: "mg", nutrientKey: "vitaminC" },
+          { name: "Vitamin D", value: totalNutrition.vitaminD, unit: "IU", nutrientKey: "vitaminD" },
         ]}
+        showIngredientBreakdown={true}
+        nutritionData={nutritionData}
       />
     </div>
   </motion.div>
