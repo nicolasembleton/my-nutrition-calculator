@@ -17,7 +17,7 @@ export const NutritionReport = ({
     className="nutrition-label"
     variants={motionVariants.itemVariants}
   >
-    <div className="nutrition-label-header -z-10">
+    <div className="nutrition-label-header">
       <h2>Nutrition Report</h2>
       <Button onClick={onDownload} className="download-button" size="sm">
         Download Detailed Report

@@ -21,8 +21,10 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "~/components/ui/hover-card";
+import { Label } from "~/components/ui/label";
 import { Separator } from "~/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import { Textarea } from "~/components/ui/textarea";
 import { calculateNutrition } from "./nutrition/calculateNutrition";
 import { downloadCSV } from "./nutrition/generateCSV";
 import { TabNavigation } from "./nutrition/TabNavigation";
@@ -123,6 +125,30 @@ const NutritionForm: React.FC = () => {
     });
   }, [form.setValue]);
 
+  const handlePasteRecipe = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const pastedText = event.target.value;
+    setAllToZero();
+    pastedText.split("\n").forEach((line) => {
+      const match = line.match(/(.+):\s*([\d.]+)g/);
+      if (match) {
+        const ingredientName = match[1].trim();
+        const amount = parseFloat(match[2]);
+        const ingredientKey = Object.keys(ingredientLabels).find(
+          (key) => ingredientLabels[key as IngredientKey] === ingredientName
+        ) as IngredientKey;
+        if (ingredientKey) {
+          form.setValue(ingredientKey, amount);
+        } else {
+          console.error(`Ingredient "${ingredientName}" not found`);
+        }
+      } else {
+        console.error(`Could not parse line: "${line}"`);
+      }
+    });
+  };
+
+  const [isPasteOpen, setIsPasteOpen] = React.useState(false);
+
   React.useEffect(() => {
     const subscription = form.watch((value) => {
       if (value) {
@@ -150,9 +176,30 @@ const NutritionForm: React.FC = () => {
       initial="hidden"
       animate="visible"
     >
-      <motion.div className="nutrition-form-card" variants={itemVariants}>
+      <motion.div className="nutrition-form-card z-10" variants={itemVariants}>
         <FormHeader title="Nutrition Calculator" />
         <div className="absolute right-2 top-2 flex space-x-2">
+          <HoverCard open={isPasteOpen} onOpenChange={setIsPasteOpen}>
+            <HoverCardTrigger asChild>
+              <button
+                type="button"
+                className="reset-button"
+                aria-label="Paste a recipe"
+              >
+                <List className="reset-icon" />
+              </button>
+            </HoverCardTrigger>
+            <HoverCardContent className="z-100 w-80">
+              <Label htmlFor="paste-recipe">Enter a recipe</Label>
+              <Separator className="my-2" />
+              <Textarea
+                id="paste-recipe"
+                placeholder="e.g., Oatmeal: 50g"
+                className="resize-none"
+                onChange={handlePasteRecipe}
+              />
+            </HoverCardContent>
+          </HoverCard>
           <HoverCard>
             <HoverCardTrigger asChild>
               <button
