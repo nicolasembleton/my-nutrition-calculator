@@ -51,24 +51,27 @@ export const NutrientSection = ({
                 <HoverCardContent className="w-80">
                   <div className="grid gap-4">
                     <div className="font-bold">Ingredients contributing to {name}</div>
-                    <div className="text-sm text-muted-foreground">
-                      {Object.entries(formValues).map(([key, value]) => {
-                        const amount =
-                          (value / 100) *
-                          (nutritionData[key]?.nutrition[
-                            nutrientKey as keyof typeof nutritionData[key]["nutrition"]
-                          ] || 0);
-                        if (amount > 0) {
-                          return (
-                            <div key={key} className="flex justify-between">
-                              <span>{ingredientLabels[key]}</span>
-                              <span>{amount.toFixed(2)}{unit}</span>
-                            </div>
-                          );
-                        }
-                        return null;
-                      })}
-                    </div>
+                    <ul className="list-none m-0 p-0">
+                      {Object.entries(formValues)
+                        .map(([key, value]) => {
+                          const amount =
+                            (value / 100) *
+                            (nutritionData[key]?.nutrition[
+                              nutrientKey as keyof typeof nutritionData[key]["nutrition"]
+                            ] || 0);
+                          return amount > 0
+                            ? { key, value: amount }
+                            : null;
+                        })
+                        .filter(Boolean)
+                        .sort((a, b) => b!.value - a!.value)
+                        .map(({ key, value }) => (
+                          <li key={key} className="flex justify-between text-sm text-muted-foreground">
+                            <span>{ingredientLabels[key as string]}</span>
+                            <span>{value.toFixed(2)}{unit}</span>
+                          </li>
+                        ))}
+                    </ul>
                   </div>
                 </HoverCardContent>
               </HoverCard>
