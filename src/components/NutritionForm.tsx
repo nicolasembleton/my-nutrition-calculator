@@ -205,6 +205,7 @@ const NutritionForm: React.FC = () => {
                   <IngredientFormItem
                     ingredients={ingredientCategories.liquids}
                     control={form.control}
+                    className="bg-background"
                     nutritionData={nutritionData}
                     handleInputChange={handleInputChange}
                   />

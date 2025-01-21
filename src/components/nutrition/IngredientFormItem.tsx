@@ -33,7 +33,7 @@ const IngredientFormItem: React.FC<IngredientFormItemProps> = ({
             name={key}
             control={control}
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="bg-background">
                 <div className="ingredient-cell">
                   <FormLabel>{ingredientLabels[key]}</FormLabel>
                   <div className="space-x-2">

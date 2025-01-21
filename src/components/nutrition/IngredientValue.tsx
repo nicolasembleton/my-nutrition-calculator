@@ -27,7 +27,7 @@ export const IngredientValue = ({
   onChange,
   onInputChange,
 }: IngredientValueProps) => (
-  <div className="flex flex-row items-center justify-between">
+  <div className="flex flex-row items-center justify-between ingredient-value-card">
     <div className="flex items-center space-x-2">
       <Input
         type="number"
