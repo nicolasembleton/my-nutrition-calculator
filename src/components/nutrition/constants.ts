@@ -29,8 +29,6 @@ export const ingredientLabels = {
 };
 
 export const ingredientCategories = {
-  liquids: ["rawMilkYogurt", "wholeMilk", "fromageBlanc"].sort(),
-  oils: ["coconutOil"].sort(),
   carbohydrates: [
     "oatmeal",
     "brownRicePowder",
@@ -41,6 +39,7 @@ export const ingredientCategories = {
     "redBeansPowder",
     "mungBeansPowder",
   ].sort(),
+  dairy: ["rawMilkYogurt", "wholeMilk", "fromageBlanc"].sort(),
   fullSeeds: [
     "almonds",
     "brownFlaxSeeds",
@@ -51,6 +50,8 @@ export const ingredientCategories = {
     "macadamiaNuts",
     "pumpkinSeeds",
   ].sort(),
+  meats: ["beefRibSteak5"].sort(),
+  oils: ["coconutOil"].sort(),
   powders: [
     "almondsPowder",
     "blackBeansPowder",

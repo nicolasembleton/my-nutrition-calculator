@@ -255,14 +255,23 @@ const NutritionForm: React.FC = () => {
         <div className="nutrition-form-card-content">
           <Form {...form}>
             <form className="form-grid" onSubmit={form.handleSubmit(onSubmit)}>
-              <Tabs defaultValue="liquids" className="tabs-container w-full">
+              <Tabs defaultValue="dairy" className="tabs-container w-full">
                 <TabNavigation></TabNavigation>
 
-                <TabsContent value="liquids" className="ingredient-grid">
+                <TabsContent value="dairy" className="ingredient-grid">
                   <IngredientFormItem
-                    ingredients={ingredientCategories.liquids}
+                    ingredients={ingredientCategories.dairy}
                     control={form.control}
                     className="bg-background"
+                    nutritionData={nutritionData}
+                    handleInputChange={handleInputChange}
+                  />
+                </TabsContent>
+
+                <TabsContent value="meats" className="ingredient-grid">
+                  <IngredientFormItem
+                    ingredients={ingredientCategories.meats}
+                    control={form.control}
                     nutritionData={nutritionData}
                     handleInputChange={handleInputChange}
                   />
