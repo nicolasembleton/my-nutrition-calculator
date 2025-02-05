@@ -1,4 +1,5 @@
 export const ingredientLabels = {
+  beefRibSteak5: "Beef Rib Steak 5%f",
   fromageBlanc: "Fromage Blanc",
   goldenFlaxSeeds: "Golden Flax Seeds",
   rawMilkYogurt: "Raw Milk Yogurt",
