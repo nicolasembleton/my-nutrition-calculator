@@ -34,6 +34,38 @@ export interface NutritionDataItem {
 export type NutritionKey = keyof NutritionDataItem["nutrition"];
 
 export const nutritionData: Record<string, NutritionDataItem> = {
+  greenPapaya: {
+    maxValue: 150,
+    defaultValue: 0,
+    nutrition: {
+      calories: 39,
+      totalFat: 0.1,
+      saturatedFat: 0.03,
+      polyunsaturatedFat: 0.02,
+      monounsaturatedFat: 0.02,
+      cholesterol: 0,
+      sodium: 3,
+      totalCarbohydrate: 9.8,
+      dietaryFiber: 2.5,
+      sugars: 5,
+      protein: 0.6,
+      iron: 0.4,
+      calcium: 24,
+      magnesium: 10,
+      potassium: 257,
+      vitaminA: 5,
+      vitaminC: 61.8,
+      vitaminD: 0,
+      vitaminE: 0.7,
+      vitaminK: 2.6,
+      phosphorus: 5,
+      thiamin: 0.04,
+      niacin: 0.2,
+      copper: 0.045,
+      manganese: 0.02,
+      zinc: 0.07
+    }
+  },
   beefRibSteak5: {
     maxValue: 200,
     defaultValue: 0,

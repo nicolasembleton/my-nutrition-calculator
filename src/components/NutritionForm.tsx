@@ -184,7 +184,10 @@ const NutritionForm: React.FC = () => {
       initial="hidden"
       animate="visible"
     >
-      <motion.div className="nutrition-form-card z-10" variants={itemVariants}>
+      <motion.div
+        className="nutrition-form-card z-10 max-w-xl"
+        variants={itemVariants}
+      >
         <FormHeader title="Nutrition Calculator" />
         <div className="absolute right-2 top-2 flex space-x-2">
           <HoverCard open={isPasteOpen} onOpenChange={setIsPasteOpen}>
@@ -307,6 +310,15 @@ const NutritionForm: React.FC = () => {
                 <TabsContent value="powders" className="ingredient-grid">
                   <IngredientFormItem
                     ingredients={ingredientCategories.powders}
+                    control={form.control}
+                    nutritionData={nutritionData}
+                    handleInputChange={handleInputChange}
+                  />
+                </TabsContent>
+
+                <TabsContent value="fruits" className="ingredient-grid">
+                  <IngredientFormItem
+                    ingredients={ingredientCategories.fruits}
                     control={form.control}
                     nutritionData={nutritionData}
                     handleInputChange={handleInputChange}

@@ -1,4 +1,5 @@
 export const ingredientLabels = {
+  greenPapaya: "Green Papaya",
   beefRibSteak5: "Beef Rib Steak 5%f",
   fromageBlanc: "Fromage Blanc",
   goldenFlaxSeeds: "Golden Flax Seeds",
@@ -40,6 +41,7 @@ export const ingredientCategories = {
     "mungBeansPowder",
   ].sort(),
   dairy: ["rawMilkYogurt", "wholeMilk", "fromageBlanc"].sort(),
+  fruits: ["greenPapaya"].sort(),
   fullSeeds: [
     "almonds",
     "brownFlaxSeeds",
