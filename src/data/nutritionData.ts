@@ -34,6 +34,38 @@ export interface NutritionDataItem {
 export type NutritionKey = keyof NutritionDataItem["nutrition"];
 
 export const nutritionData: Record<string, NutritionDataItem> = {
+  fromageBlanc: {
+    maxValue: 200,
+    defaultValue: 0,
+    nutrition: {
+      calories: 72,
+      totalFat: 0.2,
+      saturatedFat: 0.1,
+      polyunsaturatedFat: 0.0,
+      monounsaturatedFat: 0.0,
+      cholesterol: 2,
+      sodium: 40,
+      totalCarbohydrate: 4,
+      dietaryFiber: 0,
+      sugars: 4,
+      protein: 13,
+      iron: 0,
+      calcium: 120,
+      magnesium: 10,
+      potassium: 150,
+      vitaminA: 10,
+      vitaminC: 0,
+      vitaminD: 0,
+      vitaminE: 0,
+      vitaminK: 0,
+      phosphorus: 170,
+      thiamin: 0.04,
+      niacin: 0.1,
+      copper: 0,
+      manganese: 0,
+      zinc: 0.5
+    }
+  },
   pineNuts: {
     maxValue: 200,
     defaultValue: 0,

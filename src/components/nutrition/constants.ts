@@ -1,4 +1,5 @@
 export const ingredientLabels = {
+  fromageBlanc: "Fromage Blanc",
   goldenFlaxSeeds: "Golden Flax Seeds",
   rawMilkYogurt: "Raw Milk Yogurt",
   brownFlaxSeeds: "Brown Flax Seeds",
@@ -27,7 +28,7 @@ export const ingredientLabels = {
 };
 
 export const ingredientCategories = {
-  liquids: ["rawMilkYogurt", "wholeMilk"].sort(),
+  liquids: ["rawMilkYogurt", "wholeMilk", "fromageBlanc"].sort(),
   oils: ["coconutOil"].sort(),
   carbohydrates: [
     "oatmeal",
